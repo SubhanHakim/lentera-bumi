@@ -9,14 +9,14 @@ import { HiArrowRight } from 'react-icons/hi'
 interface Proyek {
   id: string
   client: string
-  clientShort: string
+  year: string
   title: string
   location: string
   tech: string
   desc: string
   tags: string[]
-  image: string           // path di /public — ganti dengan foto asli
-  imagePlaceholder: string // gradient fallback saat foto belum ada
+  image: string
+  imagePlaceholder: string
   href: string
 }
 
@@ -24,12 +24,12 @@ const PROJECTS: Proyek[] = [
   {
     id: '01',
     client: 'PERTAMINA',
-    clientShort: 'Pertamina',
-    title: 'Turbin Angin Sumba',
+    year: '2013',
+    title: 'PLTB Hybrid Sumba',
     location: 'Pulau Sumba, NTT',
     tech: 'Wind Turbine',
-    desc: 'Pengembangan dan instalasi turbin angin untuk mendukung kebutuhan energi di wilayah terpencil Pulau Sumba sebagai bagian dari program elektrifikasi nasional.',
-    tags: ['Wind Turbine', 'Energi Terbarukan', 'NTT'],
+    desc: 'Pembangunan Pembangkit Listrik Tenaga Hybrid (Bayu dan Surya) di Sumba. Instalasi 100 unit turbin angin kapasitas 500 watt (total 50 kW) dan panel surya 20 kW di 4 lokasi.',
+    tags: ['PLTB Hybrid', '100 Unit', 'Sumba NTT'],
     image: `${import.meta.env.BASE_URL}proyek_pertamina.jpg`,
     imagePlaceholder: 'linear-gradient(135deg, #062f45 0%, #0c6b96 50%, #1a8fc0 100%)',
     href: '#proyek',
@@ -37,12 +37,12 @@ const PROJECTS: Proyek[] = [
   {
     id: '02',
     client: 'PLN NUSANTARA POWER',
-    clientShort: 'PLN NP',
-    title: 'PMSG 100 KW',
-    location: 'Indonesia',
+    year: '2019–2020',
+    title: 'PMSG 100 kW & PLTB Hybrid',
+    location: 'Ciheras & Tulungagung',
     tech: 'PMSG Generator',
-    desc: 'Desain dan pengembangan Permanent Magnet Synchronous Generator kapasitas 100 KW yang dipercayakan PLN Nusantara Power kepada tim riset Lentera Bumi Nusantara.',
-    tags: ['PMSG', '100 KW', 'Generator'],
+    desc: 'Pembuatan sarana riset PLTB Combine System Tenaga Surya, riset prototype sepeda listrik dan Golf Car listrik, serta pengembangan Permanent Magnet Generator 100 kW.',
+    tags: ['PMSG 100 kW', 'PLTB Hybrid', 'PLN NP'],
     image: `${import.meta.env.BASE_URL}proyek_pln.jpg`,
     imagePlaceholder: 'linear-gradient(135deg, #0a3d5c 0%, #0e7aaa 50%, #1a9fd4 100%)',
     href: '#proyek',
@@ -50,12 +50,12 @@ const PROJECTS: Proyek[] = [
   {
     id: '03',
     client: 'CeCUR',
-    clientShort: 'CeCUR',
-    title: 'VAWT Samarinda',
+    year: '2024',
+    title: 'VAWT & Panel Surya Samarinda',
     location: 'Samarinda, Kalimantan Timur',
     tech: 'VAWT',
-    desc: 'Instalasi Vertical Axis Wind Turbine (VAWT) di Samarinda sebagai solusi energi angin untuk kawasan urban dengan karakteristik angin berbeda dari wilayah pesisir.',
-    tags: ['VAWT', 'Urban Energy', 'Kaltim'],
+    desc: 'Instalasi turbin vertikal 500 watt dan panel surya 500 Wp di Samarinda, dalam program ruang publik berketahanan iklim oleh Center for Climate and Urban Resilience.',
+    tags: ['VAWT', 'Panel Surya', 'Kaltim'],
     image: `${import.meta.env.BASE_URL}proyek_cecur.jpg`,
     imagePlaceholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 50%, #13a878 100%)',
     href: '#proyek',
@@ -125,7 +125,7 @@ export default function ProyekSection() {
               marginBottom: 16,
             }}
           >
-            Highlight Proyek
+            Rekam Jejak Proyek
           </motion.p>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
@@ -141,7 +141,7 @@ export default function ProyekSection() {
                 margin: 0,
               }}
             >
-              Proyek yang{' '}
+              Klien &amp; Proyek yang{' '}
               <span style={{ color: '#0c6b96' }}>Telah Kami Kerjakan</span>
             </motion.h2>
 
@@ -271,6 +271,27 @@ function ProjectCard({ project: p }: { project: Proyek }) {
           </span>
         </div>
 
+        {/* Year badge — top-right */}
+        <div
+          style={{
+            position: 'absolute', top: 14, right: 14,
+            background: 'rgba(0,0,0,0.35)',
+            backdropFilter: 'blur(6px)',
+            borderRadius: 4,
+            padding: '3px 8px',
+          }}
+        >
+          <span style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 600,
+            fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)',
+            color: 'rgba(255,255,255,0.85)',
+            letterSpacing: '0.08em',
+          }}>
+            {p.year}
+          </span>
+        </div>
+
         {/* Tech tag — bottom-left */}
         <div
           style={{
@@ -299,7 +320,7 @@ function ProjectCard({ project: p }: { project: Proyek }) {
             fontFamily: 'var(--font-sans)',
             fontWeight: 700,
             fontSize: 'clamp(0.65rem, 0.8vw, 0.72rem)',
-            color: 'rgba(255,255,255,0.45)',
+            color: 'rgba(255,255,255,0.35)',
             letterSpacing: '0.15em',
           }}
         >

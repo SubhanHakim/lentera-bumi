@@ -83,15 +83,6 @@ export default function StatsSection() {
       className="relative bg-white overflow-hidden"
       style={{ borderTop: '3px solid #5ab0d6' }}
     >
-      {/* Faint watermark */}
-      <span
-        aria-hidden
-        className="pointer-events-none select-none absolute right-[-2%] top-1/2 -translate-y-1/2 font-bold leading-none text-[#0c6b96]"
-        style={{ fontSize: 'clamp(8rem, 22vw, 22rem)', opacity: 0.032, letterSpacing: '-0.04em', zIndex: 0 }}
-      >
-        DAMPAK
-      </span>
-
       <div
         className="relative z-10 mx-auto"
         style={{ maxWidth: '1400px', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}
@@ -113,10 +104,10 @@ export default function StatsSection() {
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              className="font-bold text-[#0a2540] leading-[1.1] m-0"
-              style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3.25rem)', letterSpacing: '-0.03em' }}
+              className="font-bold leading-[1.1] m-0"
+              style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3.25rem)', letterSpacing: '-0.03em', color: '#0a2540' }}
             >
-              Bukan sekadar rencana —<br />
+              <span style={{ color: '#0a2540' }}>Bukan sekadar rencana —</span><br />
               <span style={{ color: '#0c6b96' }}>ini jejaknya.</span>
             </motion.h2>
           </div>
@@ -156,18 +147,13 @@ function StatCard({ stat, inView }: { stat: Stat; inView: boolean }) {
   return (
     <motion.div
       variants={fadeUp}
-      whileHover={{ backgroundColor: '#f8fbfe' }}
-      transition={{ duration: 0.2 }}
-      className="group relative flex flex-col gap-5 cursor-default"
+      className="group relative flex flex-col gap-5 cursor-default bg-white hover:bg-[#f0f8fc] transition-colors duration-300"
       style={{ padding: 'clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem)' }}
     >
       {/* Hover accent line */}
-      <motion.div
-        className="absolute left-0 top-0 bottom-0 w-[3px] origin-top"
-        initial={{ scaleY: 0 }}
-        whileHover={{ scaleY: 1 }}
-        transition={{ duration: 0.25, ease: EASE }}
-        style={{ background: '#5ab0d6' }}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-[3px] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"
+        style={{ background: '#5ab0d6', transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
       />
 
       {/* Index */}
@@ -223,11 +209,10 @@ function StatCard({ stat, inView }: { stat: Stat; inView: boolean }) {
 function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
   const count = useMotionValue(0)
   const display = useTransform(count, (v) => Math.round(v).toLocaleString('id-ID'))
-  const started = useRef(false)
 
   useEffect(() => {
-    if (!inView || started.current) return
-    started.current = true
+    if (!inView) return
+    count.set(0)
     const ctrl = animate(count, target, {
       duration: 2.0,
       ease: [0.16, 1, 0.3, 1] as [number, number, number, number],

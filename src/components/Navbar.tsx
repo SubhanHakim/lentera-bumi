@@ -227,7 +227,7 @@ function Logo() {
       aria-label="Lentera Bumi Nusantara — Beranda"
     >
       <img
-        src={`${import.meta.env.BASE_URL}logo_lentera.png`}
+        src={`${import.meta.env.BASE_URL}logo_lentera.webp`}
         alt="Lentera Bumi Nusantara"
         className="w-auto object-contain select-none"
         style={{ height: 'clamp(52px, 6vw, 68px)' }}
