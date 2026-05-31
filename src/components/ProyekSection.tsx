@@ -1,0 +1,402 @@
+import { useRef } from 'react'
+import { motion, useInView, type Variants } from 'framer-motion'
+import { HiArrowRight } from 'react-icons/hi'
+
+/* ─────────────────────────────────────────────
+   Data
+───────────────────────────────────────────── */
+
+interface Proyek {
+  id: string
+  client: string
+  clientShort: string
+  title: string
+  location: string
+  tech: string
+  desc: string
+  tags: string[]
+  image: string           // path di /public — ganti dengan foto asli
+  imagePlaceholder: string // gradient fallback saat foto belum ada
+  href: string
+}
+
+const PROJECTS: Proyek[] = [
+  {
+    id: '01',
+    client: 'PERTAMINA',
+    clientShort: 'Pertamina',
+    title: 'Turbin Angin Sumba',
+    location: 'Pulau Sumba, NTT',
+    tech: 'Wind Turbine',
+    desc: 'Pengembangan dan instalasi turbin angin untuk mendukung kebutuhan energi di wilayah terpencil Pulau Sumba sebagai bagian dari program elektrifikasi nasional.',
+    tags: ['Wind Turbine', 'Energi Terbarukan', 'NTT'],
+    image: '/proyek_pertamina.jpg',
+    imagePlaceholder: 'linear-gradient(135deg, #062f45 0%, #0c6b96 50%, #1a8fc0 100%)',
+    href: '#proyek',
+  },
+  {
+    id: '02',
+    client: 'PLN NUSANTARA POWER',
+    clientShort: 'PLN NP',
+    title: 'PMSG 100 KW',
+    location: 'Indonesia',
+    tech: 'PMSG Generator',
+    desc: 'Desain dan pengembangan Permanent Magnet Synchronous Generator kapasitas 100 KW yang dipercayakan PLN Nusantara Power kepada tim riset Lentera Bumi Nusantara.',
+    tags: ['PMSG', '100 KW', 'Generator'],
+    image: '/proyek_pln.jpg',
+    imagePlaceholder: 'linear-gradient(135deg, #0a3d5c 0%, #0e7aaa 50%, #1a9fd4 100%)',
+    href: '#proyek',
+  },
+  {
+    id: '03',
+    client: 'CeCUR',
+    clientShort: 'CeCUR',
+    title: 'VAWT Samarinda',
+    location: 'Samarinda, Kalimantan Timur',
+    tech: 'VAWT',
+    desc: 'Instalasi Vertical Axis Wind Turbine (VAWT) di Samarinda sebagai solusi energi angin untuk kawasan urban dengan karakteristik angin berbeda dari wilayah pesisir.',
+    tags: ['VAWT', 'Urban Energy', 'Kaltim'],
+    image: '/proyek_cecur.jpg',
+    imagePlaceholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 50%, #13a878 100%)',
+    href: '#proyek',
+  },
+]
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+/* ─────────────────────────────────────────────
+   Variants
+───────────────────────────────────────────── */
+
+const containerV: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.08 } },
+}
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.72, ease: EASE } },
+}
+
+/* ─────────────────────────────────────────────
+   Component
+───────────────────────────────────────────── */
+
+export default function ProyekSection() {
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.12 })
+
+  return (
+    <section
+      id="proyek"
+      ref={ref}
+      style={{
+        background: '#f8fafc',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Top accent line */}
+      <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
+
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: '0 auto',
+          padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+        }}
+      >
+        {/* ── Header ── */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 600,
+              fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)',
+              color: '#5ab0d6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.3em',
+              marginBottom: 16,
+            }}
+          >
+            Highlight Proyek
+          </motion.p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
+            <motion.h2
+              variants={fadeUp}
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 700,
+                fontSize: 'clamp(2rem, 3.8vw, 3.5rem)',
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+                color: '#0a2540',
+                margin: 0,
+              }}
+            >
+              Proyek yang{' '}
+              <span style={{ color: '#0c6b96' }}>Telah Kami Kerjakan</span>
+            </motion.h2>
+
+            <motion.a
+              variants={fadeUp}
+              href="#proyek"
+              whileHover={{ x: 4 }}
+              transition={{ type: 'spring', stiffness: 400 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: 'clamp(0.8rem, 0.95vw, 0.875rem)',
+                color: '#0c6b96',
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+                flexShrink: 0,
+              }}
+            >
+              Lihat semua proyek
+              <HiArrowRight size={15} />
+            </motion.a>
+          </div>
+        </motion.div>
+
+        {/* ── Project cards ── */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'clamp(1.25rem, 2vw, 2rem)',
+          }}
+        >
+          {PROJECTS.map((p) => (
+            <ProjectCard key={p.id} project={p} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Project card
+───────────────────────────────────────────── */
+
+function ProjectCard({ project: p }: { project: Proyek }) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      whileHover="hover"
+      initial="rest"
+      animate="rest"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#ffffff',
+        borderRadius: 16,
+        overflow: 'hidden',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
+        transition: 'box-shadow 0.25s',
+      }}
+    >
+      {/* Image area */}
+      <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
+        {/* Actual image — hidden if 404, gradient shows instead */}
+        <motion.img
+          src={p.image}
+          alt={p.title}
+          variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+          transition={{ duration: 0.55, ease: EASE }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+          onError={(e) => {
+            // Fallback: hide img and show gradient behind it
+            e.currentTarget.style.display = 'none'
+          }}
+        />
+
+        {/* Gradient placeholder — always renders behind, visible if img fails */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute', inset: 0, zIndex: -1,
+            background: p.imagePlaceholder,
+          }}
+        />
+
+        {/* Dark overlay on image */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(to top, rgba(4,18,32,0.65) 0%, transparent 55%)',
+          }}
+        />
+
+        {/* Client badge — top-left */}
+        <div
+          style={{
+            position: 'absolute', top: 14, left: 14,
+            background: 'rgba(255,255,255,0.12)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            borderRadius: 6,
+            padding: '4px 10px',
+          }}
+        >
+          <span style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 700,
+            fontSize: 'clamp(0.58rem, 0.72vw, 0.65rem)',
+            color: '#ffffff',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+          }}>
+            {p.client}
+          </span>
+        </div>
+
+        {/* Tech tag — bottom-left */}
+        <div
+          style={{
+            position: 'absolute', bottom: 14, left: 14,
+            background: '#0c6b96',
+            borderRadius: 4,
+            padding: '3px 9px',
+          }}
+        >
+          <span style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 600,
+            fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)',
+            color: '#ffffff',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}>
+            {p.tech}
+          </span>
+        </div>
+
+        {/* Project index — bottom-right */}
+        <span
+          style={{
+            position: 'absolute', bottom: 14, right: 14,
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 700,
+            fontSize: 'clamp(0.65rem, 0.8vw, 0.72rem)',
+            color: 'rgba(255,255,255,0.45)',
+            letterSpacing: '0.15em',
+          }}
+        >
+          {p.id}
+        </span>
+      </div>
+
+      {/* Card body */}
+      <div style={{ padding: 'clamp(1.25rem, 2vw, 1.75rem)', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+        {/* Location */}
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 500,
+          fontSize: 'clamp(0.68rem, 0.82vw, 0.74rem)',
+          color: '#94a3b8',
+          textTransform: 'uppercase',
+          letterSpacing: '0.16em',
+          margin: 0,
+        }}>
+          {p.location}
+        </p>
+
+        {/* Title */}
+        <h3 style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 700,
+          fontSize: 'clamp(1.05rem, 1.4vw, 1.3rem)',
+          lineHeight: 1.25,
+          letterSpacing: '-0.02em',
+          color: '#0a2540',
+          margin: 0,
+        }}>
+          {p.title}
+        </h3>
+
+        {/* Description */}
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: 'clamp(0.8rem, 0.92vw, 0.875rem)',
+          lineHeight: 1.72,
+          color: '#64748b',
+          margin: 0,
+          flex: 1,
+        }}>
+          {p.desc}
+        </p>
+
+        {/* Tags row */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+          {p.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 500,
+                fontSize: '0.68rem',
+                color: '#0c6b96',
+                background: '#eff8fd',
+                borderRadius: 4,
+                padding: '3px 8px',
+                letterSpacing: '0.04em',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Card footer — hover CTA */}
+      <motion.div
+        variants={{
+          rest: { opacity: 0, height: 0 },
+          hover: { opacity: 1, height: 'auto' },
+        }}
+        transition={{ duration: 0.22 }}
+        style={{ overflow: 'hidden', borderTop: '1px solid #f1f5f9' }}
+      >
+        <a
+          href={p.href}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.875rem 1.75rem',
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 600,
+            fontSize: 'clamp(0.78rem, 0.9vw, 0.85rem)',
+            color: '#0c6b96',
+            textDecoration: 'none',
+            letterSpacing: '0.01em',
+          }}
+        >
+          Lihat detail proyek
+          <HiArrowRight size={15} />
+        </a>
+      </motion.div>
+    </motion.article>
+  )
+}
