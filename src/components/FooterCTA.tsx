@@ -176,7 +176,7 @@ export default function FooterCTA() {
           }}
         >
           <img
-            src="/logo_lentera.png"
+            src={`${import.meta.env.BASE_URL}logo_lentera.png`}
             alt="Lentera Bumi Nusantara"
             style={{ height: 44, width: 'auto', objectFit: 'contain', opacity: 0.7 }}
           />
