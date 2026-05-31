@@ -58,7 +58,7 @@ export default function HeroSection() {
         }}
       >
         <img
-          src="/hero_Section.JPG"
+          src={`${import.meta.env.BASE_URL}hero_Section.JPG`}
           alt=""
           aria-hidden="true"
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 50%' }}
