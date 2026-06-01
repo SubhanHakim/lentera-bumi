@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+﻿import { useRef } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 
 /* ─────────────────────────────────────────────
@@ -37,7 +37,7 @@ interface Photo {
 
 const PHOTOS: Photo[] = [
   {
-    file:    'kegiatan/kegiatan_foto_bersama.jpg',
+    file:    'kegiatan/kegiatan_foto_bersama.webp',
     alt:     'Foto bersama mahasiswa dan tim LBN di depan turbin angin',
     label:   'Komunitas',
     caption: 'Ratusan mahasiswa bersatu di bawah turbin angin Ciheras',
@@ -45,7 +45,7 @@ const PHOTOS: Photo[] = [
     area:    'hero',
   },
   {
-    file:    'kegiatan/kegiatan_instalasi_turbin.jpg',
+    file:    'kegiatan/kegiatan_instalasi_turbin.webp',
     alt:     'Teknisi memasang bilah turbin angin',
     label:   'Riset & Teknik',
     caption: 'Proses instalasi turbin di lapangan bersama PLN Nusantara Power',
@@ -53,7 +53,7 @@ const PHOTOS: Photo[] = [
     area:    'instalasi',
   },
   {
-    file:    'kegiatan/kegiatan_vawt_tower.jpg',
+    file:    'kegiatan/kegiatan_vawt_tower.webp',
     alt:     'Tower VAWT proyek Samarinda',
     label:   'Infrastruktur',
     caption: 'Tower VAWT — proyek energi terbarukan di Samarinda, Kalimantan Timur',
@@ -61,7 +61,7 @@ const PHOTOS: Photo[] = [
     area:    'vawt',
   },
   {
-    file:    'kegiatan/kegiatan_volleyball_pantai.jpg',
+    file:    'kegiatan/kegiatan_volleyball_pantai.webp',
     alt:     'Permainan voli di pantai Ciheras saat senja',
     label:   'Kehidupan Lapangan',
     caption: 'Sore di Ciheras — kerja keras bersambung kebersamaan',
@@ -69,7 +69,7 @@ const PHOTOS: Photo[] = [
     area:    'volley',
   },
   {
-    file:    'kegiatan/kegiatan_tim_lapangan.jpg',
+    file:    'kegiatan/kegiatan_tim_lapangan.webp',
     alt:     'Tim LBN dan mahasiswa di site lapangan',
     label:   'Tim',
     caption: 'Transfer knowledge langsung di lapangan bersama mahasiswa',
@@ -77,7 +77,7 @@ const PHOTOS: Photo[] = [
     area:    'tim',
   },
   {
-    file:    'kegiatan/kegiatan_diskusi.jpg',
+    file:    'kegiatan/kegiatan_diskusi.webp',
     alt:     'Sesi diskusi dan rapat tim di gudang',
     label:   'Kolaborasi',
     caption: 'Ruang diskusi terbuka — ide lahir dari percakapan nyata',
@@ -85,7 +85,7 @@ const PHOTOS: Photo[] = [
     area:    'diskusi',
   },
   {
-    file:    'kegiatan/kegiatan_sosial_qurban.jpg',
+    file:    'kegiatan/kegiatan_sosial_qurban.webp',
     alt:     'Program sosial qurban bersama masyarakat',
     label:   'Sosial & Komunitas',
     caption: 'Program sosial menyentuh lebih dari 21.100 KK di pesisir Ciheras',

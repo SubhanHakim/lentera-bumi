@@ -1,33 +1,27 @@
 import sharp from 'sharp'
-import { readdirSync, statSync } from 'fs'
+import { readdir, unlink } from 'fs/promises'
 import { join, extname, basename } from 'path'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
-const PUBLIC_DIR = new URL('../public', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const PUBLIC = join(__dirname, '..', 'public')
+const DIRS = [PUBLIC, join(PUBLIC, 'activity'), join(PUBLIC, 'kegiatan')]
+const EXTS = ['.jpg', '.jpeg', '.png']
+let converted = 0
 
-const TARGETS = ['.jpg', '.jpeg', '.png']
-
-async function convert(inputPath, outputPath) {
-  const before = statSync(inputPath).size
-  await sharp(inputPath)
-    .webp({ quality: 85, effort: 5 })
-    .toFile(outputPath)
-  const after = statSync(outputPath).size
-  const saved = (((before - after) / before) * 100).toFixed(1)
-  const kb = (n) => (n / 1024).toFixed(1) + ' KB'
-  console.log(`✓  ${basename(inputPath)}  →  ${basename(outputPath)}   ${kb(before)} → ${kb(after)}  (−${saved}%)`)
+for (const dir of DIRS) {
+  let files
+  try { files = await readdir(dir) } catch { continue }
+  for (const file of files) {
+    const ext = extname(file).toLowerCase()
+    if (!EXTS.includes(ext)) continue
+    const input  = join(dir, file)
+    const output = join(dir, basename(file, ext) + '.webp')
+    await sharp(input).webp({ quality: 85, effort: 4 }).toFile(output)
+    await unlink(input)
+    console.log('converted: ' + file)
+    converted++
+  }
 }
-
-const files = readdirSync(PUBLIC_DIR).filter(f => TARGETS.includes(extname(f).toLowerCase()))
-
-if (files.length === 0) {
-  console.log('No JPG/PNG files found in /public.')
-  process.exit(0)
-}
-
-for (const file of files) {
-  const input  = join(PUBLIC_DIR, file)
-  const output = join(PUBLIC_DIR, basename(file, extname(file)) + '.webp')
-  await convert(input, output)
-}
-
-console.log('\nDone. Update your src references to use .webp extensions.')
+console.log('Done: ' + converted + ' files')

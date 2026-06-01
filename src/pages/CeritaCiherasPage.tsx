@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+﻿import { useRef, useEffect, useState } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 import { ArrowRight, BookOpen, Quote, ExternalLink, Calendar, User } from 'lucide-react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa'
@@ -37,7 +37,7 @@ const TESTIMONIALS = [
     quote: 'Ciheras bukan sekadar tempat riset — ini adalah ruang di mana kamu bisa menemukan dirimu yang sebenarnya. Energi yang ada di sini, baik dari angin maupun dari orang-orangnya, benar-benar luar biasa.',
     author: 'Nasrul',
     role: 'Alumni Magang LBN',
-    avatar: `${import.meta.env.BASE_URL}nasrul.jpeg`,
+    avatar: `${import.meta.env.BASE_URL}nasrul.webp`,
   },
 ]
 
@@ -119,7 +119,7 @@ export default function CeritaCiherasPage() {
         <section style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}>
           <div aria-hidden style={{
             position: 'absolute', inset: 0, zIndex: 0,
-            backgroundImage: `url(${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.jpg)`,
+            backgroundImage: `url(${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.webp)`,
             backgroundSize: 'cover', backgroundPosition: 'center 30%',
           }} />
           <div aria-hidden style={{
@@ -315,7 +315,7 @@ export default function CeritaCiherasPage() {
                   boxShadow: '0 24px 64px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.07)',
                 }}>
                   <img
-                    src={`${import.meta.env.BASE_URL}kegiatan/kegiatan_instalasi_turbin.jpg`}
+                    src={`${import.meta.env.BASE_URL}kegiatan/kegiatan_instalasi_turbin.webp`}
                     alt="Instalasi turbin angin di Ciheras"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
@@ -356,7 +356,7 @@ export default function CeritaCiherasPage() {
                   position: 'relative',
                 }}>
                   <img
-                    src={`${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.jpg`}
+                    src={`${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`}
                     alt="Tim lapangan Lentera Bumi Nusantara"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+﻿import { useRef } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 
 /* ─────────────────────────────────────────────
@@ -41,7 +41,7 @@ const FOUNDERS: Founder[] = [
     name:     'Ricky Elson',
     role:     'Founder',
     tagline:  'Pelopor riset turbin angin skala mikro di Indonesia',
-    photo:    'ricky.jpeg',
+    photo:    'ricky.webp',
     photoPos: 'center 20%',
   },
   {
@@ -49,7 +49,7 @@ const FOUNDERS: Founder[] = [
     name:     'Muhammad Nasrul',
     role:     'CEO',
     tagline:  'Memimpin visi dan strategi pertumbuhan Lentera Bumi Nusantara',
-    photo:    'nasrul.jpeg',
+    photo:    'nasrul.webp',
     photoPos: 'center 15%',
   },
 ]

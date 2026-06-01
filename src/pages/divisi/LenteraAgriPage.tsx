@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+﻿import { useRef, useEffect } from 'react'
 import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
@@ -60,7 +60,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Pertanian Presisi',
     desc: 'Implementasi teknologi sensor tanah dan sistem irigasi otomatis untuk optimasi pola tanam di lahan milik petani mitra.',
     tags: ['Sensor IoT', 'Irigasi Otomatis', 'Tasikmalaya'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
     placeholder: 'linear-gradient(135deg, #0a2218 0%, #16a34a 100%)',
   },
   {
@@ -70,7 +70,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Pelatihan',
     desc: 'Program pelatihan intensif bagi petani lokal dalam adopsi teknologi pertanian modern, dari pemilihan benih hingga pasca panen.',
     tags: ['Pelatihan', 'Teknologi Pangan', 'Ciheras'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
     placeholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 100%)',
   },
   {
@@ -80,7 +80,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Ketahanan Pangan',
     desc: 'Program pemberdayaan ketahanan pangan berbasis komunitas yang mengintegrasikan potensi lokal dengan inovasi teknologi pertanian.',
     tags: ['Ketahanan Pangan', 'Komunitas', 'Lokal'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.webp`,
     placeholder: 'linear-gradient(135deg, #0a2218 0%, #2d6a4f 100%)',
   },
 ]
@@ -88,31 +88,31 @@ const HIGHLIGHT_PROJECTS = [
 const ACTIVITIES = [
   {
     no: '01', label: 'Diskusi & Riset Pertanian', category: 'Riset',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
     placeholder: 'linear-gradient(135deg, #0a2218 0%, #16a34a 100%)',
     featured: true,
   },
   {
     no: '02', label: 'Tim Lapangan', category: 'Lapangan',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
     placeholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 100%)',
     featured: false,
   },
   {
     no: '03', label: 'Foto Bersama Mitra', category: 'Kemitraan',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
     placeholder: 'linear-gradient(135deg, #0a2218 0%, #2d6a4f 100%)',
     featured: false,
   },
   {
     no: '04', label: 'Kegiatan Sosial', category: 'Sosial',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.webp`,
     placeholder: 'linear-gradient(135deg, #1a2e1a 0%, #3a7d44 100%)',
     featured: false,
   },
   {
     no: '05', label: 'Kebersamaan Tim', category: 'Tim',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_volleyball_pantai.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_volleyball_pantai.webp`,
     placeholder: 'linear-gradient(135deg, #0e3d1a 0%, #1a6b2e 100%)',
     featured: false,
   },

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+﻿import { useRef, useEffect } from 'react'
 import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
@@ -34,7 +34,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Wind Turbine',
     desc: 'Instalasi 100 unit turbin angin kapasitas 500 watt (total 50 kW) dan panel surya 20 kW di 4 lokasi sebagai pembangkit listrik hybrid.',
     tags: ['PLTB Hybrid', '100 Unit', 'Sumba NTT'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_instalasi_turbin.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_instalasi_turbin.webp`,
     placeholder: 'linear-gradient(135deg, #062f45 0%, #0c6b96 100%)',
   },
   {
@@ -46,7 +46,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'PMSG Generator',
     desc: 'PT PJB mempercayakan riset dan pembuatan 10 unit generator 1 kW. Dilanjutkan pengembangan Permanent Magnet Generator 100 kW.',
     tags: ['PMSG 100 kW', 'PLTB Hybrid', 'PLN NP'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
     placeholder: 'linear-gradient(135deg, #0a3d5c 0%, #0e7aaa 100%)',
   },
   {
@@ -58,7 +58,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'VAWT',
     desc: 'Instalasi turbin vertikal 500 watt dan panel surya 500 Wp di Samarinda dalam program ruang publik berketahanan iklim.',
     tags: ['VAWT', 'Panel Surya', 'Kaltim'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.webp`,
     placeholder: 'linear-gradient(135deg, #0c1e30 0%, #1a3a5c 100%)',
   },
 ]
@@ -740,7 +740,7 @@ const ACTIVITIES = [
     no: '01',
     label: 'Fabrikasi Bilah',
     category: 'Manufaktur',
-    image: `${import.meta.env.BASE_URL}activity/activity_laser_cutting.jpg`,
+    image: `${import.meta.env.BASE_URL}activity/activity_laser_cutting.webp`,
     placeholder: 'linear-gradient(135deg, #041c2e 0%, #0a3d5c 100%)',
     featured: true, // col-span-2
   },
@@ -748,7 +748,7 @@ const ACTIVITIES = [
     no: '02',
     label: 'Instalasi Panel Kontrol',
     category: 'Kelistrikan',
-    image: `${import.meta.env.BASE_URL}activity/activity_panel_wiring.jpg`,
+    image: `${import.meta.env.BASE_URL}activity/activity_panel_wiring.webp`,
     placeholder: 'linear-gradient(135deg, #1a2e1a 0%, #0f5c35 100%)',
     featured: false,
   },
@@ -756,7 +756,7 @@ const ACTIVITIES = [
     no: '03',
     label: 'Perakitan Controller',
     category: 'Elektronika',
-    image: `${import.meta.env.BASE_URL}activity/activity_controller_assembly.jpg`,
+    image: `${import.meta.env.BASE_URL}activity/activity_controller_assembly.webp`,
     placeholder: 'linear-gradient(135deg, #1a1a2e 0%, #2e1a5c 100%)',
     featured: false,
   },
@@ -764,7 +764,7 @@ const ACTIVITIES = [
     no: '04',
     label: 'Wiring Sistem EBT',
     category: 'Kelistrikan',
-    image: `${import.meta.env.BASE_URL}activity/activity_controller_cabinet.jpg`,
+    image: `${import.meta.env.BASE_URL}activity/activity_controller_cabinet.webp`,
     placeholder: 'linear-gradient(135deg, #1a2a1a 0%, #0a4f35 100%)',
     featured: false,
   },
@@ -772,7 +772,7 @@ const ACTIVITIES = [
     no: '05',
     label: 'Fabrikasi Logam',
     category: 'Manufaktur',
-    image: `${import.meta.env.BASE_URL}activity/activity_metal_fabrication.jpg`,
+    image: `${import.meta.env.BASE_URL}activity/activity_metal_fabrication.webp`,
     placeholder: 'linear-gradient(135deg, #2a1a0a 0%, #5c3d0a 100%)',
     featured: false,
   },

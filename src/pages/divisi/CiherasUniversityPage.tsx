@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+﻿import { useRef, useEffect } from 'react'
 import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
@@ -60,7 +60,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Kurikulum Lapangan',
     desc: 'Kolaborasi dengan universitas mitra untuk program KKN berbasis riset energi terbarukan langsung di site Lentera Bumi Nusantara.',
     tags: ['KKN', 'Energi Terbarukan', 'Ciheras'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
     placeholder: 'linear-gradient(135deg, #0c1e30 0%, #0a3d5c 100%)',
   },
   {
@@ -70,7 +70,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Transfer Ilmu',
     desc: 'Sesi workshop intensif bagi mahasiswa untuk memahami proses fabrikasi dan pengujian komponen turbin angin skala mikro.',
     tags: ['Workshop', 'Fabrikasi', 'Mahasiswa'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
     placeholder: 'linear-gradient(135deg, #0c1e30 0%, #1a3a5c 100%)',
   },
   {
@@ -80,7 +80,7 @@ const HIGHLIGHT_PROJECTS = [
     tech: 'Inkubasi',
     desc: 'Presentasi akhir startup teknologi hijau peserta program inkubasi dihadapan investor dan mitra industri energi terbarukan.',
     tags: ['Startup', 'Teknologi Hijau', 'Demo Day'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
     placeholder: 'linear-gradient(135deg, #0e1a30 0%, #1a2e5c 100%)',
   },
 ]
@@ -88,31 +88,31 @@ const HIGHLIGHT_PROJECTS = [
 const ACTIVITIES = [
   {
     no: '01', label: 'Diskusi & Riset Bersama', category: 'Riset',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
     placeholder: 'linear-gradient(135deg, #0c1e30 0%, #0a3d5c 100%)',
     featured: true,
   },
   {
     no: '02', label: 'Sesi Lapangan Mahasiswa', category: 'Lapangan',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
     placeholder: 'linear-gradient(135deg, #0e1a2e 0%, #1a3052 100%)',
     featured: false,
   },
   {
     no: '03', label: 'Foto Bersama Peserta', category: 'Komunitas',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
     placeholder: 'linear-gradient(135deg, #0c1e30 0%, #1a2e4a 100%)',
     featured: false,
   },
   {
     no: '04', label: 'Kegiatan Sosial & Pengabdian', category: 'Sosial',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.webp`,
     placeholder: 'linear-gradient(135deg, #1a1e2e 0%, #2e3a5c 100%)',
     featured: false,
   },
   {
     no: '05', label: 'Kebersamaan & Refreshment', category: 'Tim',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_volleyball_pantai.jpg`,
+    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_volleyball_pantai.webp`,
     placeholder: 'linear-gradient(135deg, #0e1e30 0%, #1a3048 100%)',
     featured: false,
   },
