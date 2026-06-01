@@ -24,8 +24,8 @@ interface Stat {
 const STATS: Stat[] = [
   {
     index: '01',
-    value: '1.050+',
-    numericTarget: 1050,
+    value: '1.100+',
+    numericTarget: 1100,
     suffix: '+',
     label: 'Mahasiswa Berkarya',
     sublabel:

@@ -10,7 +10,23 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/preview/"
+  base: "/preview/",
+  server: {
+    proxy: {
+      '/api/lbn': {
+        target: 'https://lenterabumi.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/lbn/, '/data'),
+        secure: true,
+      },
+      '/api/wp': {
+        target: 'https://lenterabumi.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/wp/, '/wp-json'),
+        secure: true,
+      },
+    },
+  },
 })
 
 

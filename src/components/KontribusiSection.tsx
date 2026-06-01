@@ -22,10 +22,10 @@ interface Kontribusi {
 
 const DATA: Kontribusi[] = [
   {
-    numericTarget: 1050,
+    numericTarget: 1100,
     suffix: '+',
     label: 'Mahasiswa',
-    desc: 'Mahasiswa dari berbagai universitas telah berkarya dan melakukan riset langsung di Pantai Ciheras.',
+    desc: 'Mahasiswa dari berbagai universitas telah dibekali pengetahuan teknologi energi angin dan melakukan riset di Pantai Ciheras.',
     color: '#0c6b96',
   },
   {
