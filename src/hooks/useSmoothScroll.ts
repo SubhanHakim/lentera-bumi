@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
-let lenisInstance: Lenis | null = null
+export let lenisInstance: Lenis | null = null
 
 /**
  * Initialises Lenis once at the app root.

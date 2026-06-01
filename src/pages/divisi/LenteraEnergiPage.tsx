@@ -880,7 +880,7 @@ function ActivitySection() {
             gap: 'clamp(0.75rem, 1.2vw, 1rem)',
           }}
         >
-          {ACTIVITIES.map((act, i) => (
+          {ACTIVITIES.map((act) => (
             /* Outer: scroll fade-in */
             <motion.div
               key={act.no}
