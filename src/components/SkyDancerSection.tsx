@@ -96,7 +96,7 @@ export default function SkyDancerSection() {
             }}
           >
             <img
-              src={`${import.meta.env.BASE_URL}sky_dancer.JPG`}
+              src={`${import.meta.env.BASE_URL}sky_dancer.webp`}
               alt="Sky Dancer TSD-500 wind turbine"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />

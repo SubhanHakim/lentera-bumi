@@ -34,7 +34,7 @@ const DIVISI: Divisi[] = [
     category: 'Energi Terbarukan',
     title: 'Lentera Energi Nusantara',
     desc: 'Riset dan pengembangan teknologi pembangkit listrik tenaga angin skala mikro — bilah, generator, controller, hingga data logger — untuk kemandirian energi Indonesia.',
-    image: `${import.meta.env.BASE_URL}divisi_energi.jpg`,
+    image: `${import.meta.env.BASE_URL}divisi_energi.webp`,
     imagePlaceholder: 'linear-gradient(160deg, #041c2e 0%, #0a4f75 55%, #0c6b96 100%)',
     featured: true,
   },
@@ -43,7 +43,7 @@ const DIVISI: Divisi[] = [
     category: 'Pertanian & Peternakan',
     title: 'Lentera Agri Nusantara',
     desc: 'Inovasi teknologi pertanian dan peternakan untuk meningkatkan produktivitas dan memberdayakan masyarakat sekitar.',
-    image: `${import.meta.env.BASE_URL}divisi_agri.jpg`,
+    image: `${import.meta.env.BASE_URL}divisi_agri.webp`,
     imagePlaceholder: 'linear-gradient(160deg, #0a2218 0%, #0f5c35 55%, #18874f 100%)',
   },
   {
@@ -51,7 +51,7 @@ const DIVISI: Divisi[] = [
     category: 'Pendidikan & Riset',
     title: 'Ciheras University',
     desc: 'Platform pembelajaran terbuka untuk mencetak generasi inovator energi masa depan langsung dari lapangan.',
-    image: `${import.meta.env.BASE_URL}divisi_university.jpeg`,
+    image: `${import.meta.env.BASE_URL}divisi_university.webp`,
     imagePlaceholder: 'linear-gradient(160deg, #0c1e30 0%, #0a3d5c 55%, #0e5c8a 100%)',
   },
 ]
