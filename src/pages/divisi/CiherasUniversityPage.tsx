@@ -3,7 +3,7 @@ import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
 import {
-  GraduationCapIcon, BookOpenIcon, LightbulbIcon, UsersIcon, ArrowRight,
+  ArrowRight,
 } from 'lucide-react'
 import Navbar from '../../components/Navbar'
 import FooterCTA from '../../components/FooterCTA'
