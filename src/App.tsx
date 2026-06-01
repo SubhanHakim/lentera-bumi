@@ -1,6 +1,8 @@
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import StatsSection from './components/StatsSection'
+import DivisiSection from './components/DivisiSection'
+import SkyDancerSection from './components/SkyDancerSection'
 import KontribusiSection from './components/KontribusiSection'
 import ProyekSection from './components/ProyekSection'
 import FooterCTA from './components/FooterCTA'
@@ -18,6 +20,8 @@ function App() {
         {/* Spacer accounts for fixed navbar on sections below hero */}
         <div style={{ height: 80 }} aria-hidden="true" />
         <StatsSection />
+        <DivisiSection />
+        <SkyDancerSection />
         <KontribusiSection />
         <ProyekSection />
         <FooterCTA />
