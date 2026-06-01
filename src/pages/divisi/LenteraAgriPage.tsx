@@ -24,24 +24,24 @@ const stagger: Variants = {
 
 const STATS = [
   {
-    index: '01', value: '200+', numericTarget: 200, suffix: '+',
-    label: 'Petani Mitra',
-    sublabel: 'Petani lokal yang aktif bermitra dan menerima pendampingan teknologi pertanian modern.',
+    index: '01', value: '65', numericTarget: 65, suffix: '',
+    label: 'Mitra Peternak',
+    sublabel: 'Peternak lokal yang aktif bermitra dan mendapatkan pendampingan langsung dari tim Lentera Agri.',
   },
   {
-    index: '02', value: '12', numericTarget: 12, suffix: '',
-    label: 'Desa Dampingan',
-    sublabel: 'Desa di kawasan Tasikmalaya dan sekitarnya yang terjangkau program pemberdayaan kami.',
+    index: '02', value: '805+', numericTarget: 805, suffix: '+',
+    label: 'Domba / Kambing',
+    sublabel: 'Total hewan ternak domba dan kambing yang dikelola bersama jaringan mitra peternak kami.',
   },
   {
-    index: '03', value: '35%',
-    label: 'Peningkatan Hasil',
-    sublabel: 'Rata-rata peningkatan produktivitas panen yang dicapai oleh petani mitra kami.',
+    index: '03', value: '23+', numericTarget: 23, suffix: '+',
+    label: 'Sapi',
+    sublabel: 'Sapi yang dibudidayakan dan dipantau sebagai bagian dari program peternakan terpadu.',
   },
   {
-    index: '04', value: '5', numericTarget: 5, suffix: '',
-    label: 'Produk Inovasi',
-    sublabel: 'Teknologi dan produk pertanian inovatif yang telah dikembangkan dan diuji di lapangan.',
+    index: '04', value: '21.100+', numericTarget: 21100, suffix: '+',
+    label: 'KK Penerima Kurban',
+    sublabel: 'Kepala keluarga yang telah merasakan manfaat langsung dari program sosial kurban Lentera Agri.',
   },
 ]
 
@@ -54,66 +54,66 @@ const CORE_TECH = [
 
 const HIGHLIGHT_PROJECTS = [
   {
-    id: '01', client: 'DESA MITRA', year: '2023',
-    title: 'Program Pertanian Terpadu',
-    location: 'Tasikmalaya, Jawa Barat',
-    tech: 'Pertanian Presisi',
-    desc: 'Implementasi teknologi sensor tanah dan sistem irigasi otomatis untuk optimasi pola tanam di lahan milik petani mitra.',
-    tags: ['Sensor IoT', 'Irigasi Otomatis', 'Tasikmalaya'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
-    placeholder: 'linear-gradient(135deg, #0a2218 0%, #16a34a 100%)',
-  },
-  {
-    id: '02', client: 'KOMUNITAS TANI', year: '2024',
-    title: 'Transfer Teknologi Pertanian',
+    id: '01', client: 'LENTERA AGRI', year: 'Herbal',
+    title: 'Bubuk Daun Kelor Lentera',
     location: 'Ciheras, Tasikmalaya',
-    tech: 'Pelatihan',
-    desc: 'Program pelatihan intensif bagi petani lokal dalam adopsi teknologi pertanian modern, dari pemilihan benih hingga pasca panen.',
-    tags: ['Pelatihan', 'Teknologi Pangan', 'Ciheras'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
-    placeholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 100%)',
+    tech: 'Produk Herbal',
+    desc: 'Bubuk daun kelor berkualitas tinggi yang diproses melalui pengeringan suhu rendah secara cermat untuk mempertahankan kandungan nutrisi, vitamin, dan mineral alaminya secara optimal.',
+    tags: ['Kelor', 'Superfood', 'Pengeringan Cermat', 'Nutrisi Terjaga'],
+    image: `${import.meta.env.BASE_URL}agri/agri_kelor.webp`,
+    placeholder: 'linear-gradient(135deg, #052e16 0%, #166534 50%, #15803d 100%)',
   },
   {
-    id: '03', client: 'MASYARAKAT', year: '2024',
-    title: 'Pemberdayaan Pangan Lokal',
-    location: 'Pesisir Ciheras, Jabar',
-    tech: 'Ketahanan Pangan',
-    desc: 'Program pemberdayaan ketahanan pangan berbasis komunitas yang mengintegrasikan potensi lokal dengan inovasi teknologi pertanian.',
-    tags: ['Ketahanan Pangan', 'Komunitas', 'Lokal'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.webp`,
-    placeholder: 'linear-gradient(135deg, #0a2218 0%, #2d6a4f 100%)',
+    id: '02', client: 'LENTERA AGRI', year: 'Madu',
+    title: 'Lentera Honey',
+    location: 'Hutan Nusantara',
+    tech: 'Madu Hutan',
+    desc: 'Madu hutan mentah (raw honey) yang dipanen dari lebah liar Apis dorsata. Tidak dipanaskan dan tidak diproses berlebihan sehingga enzim, serbuk sari, dan manfaat alaminya tetap utuh. Kemasan 500 ml.',
+    tags: ['Raw Honey', 'Apis Dorsata', 'Tidak Dipanaskan', '500 ml'],
+    image: `${import.meta.env.BASE_URL}agri/agri_honey.webp`,
+    placeholder: 'linear-gradient(135deg, #451a03 0%, #92400e 50%, #b45309 100%)',
+  },
+  {
+    id: '03', client: 'LENTERA AGRI', year: 'VCO',
+    title: 'Vircoil — Virgin Coconut Oil',
+    location: 'Ciheras, Tasikmalaya',
+    tech: 'Virgin Coconut Oil',
+    desc: 'VCO (Virgin Coconut Oil) diproses melalui metode fermentasi tradisional tanpa pemanasan sehingga menghasilkan minyak kelapa murni dengan aroma kelapa segar yang khas dan kandungan asam laurat tinggi.',
+    tags: ['VCO', 'Fermentasi', 'Tanpa Pemanasan', 'Aroma Kelapa Segar'],
+    image: `${import.meta.env.BASE_URL}agri/agri_vco.webp`,
+    placeholder: 'linear-gradient(135deg, #1c1917 0%, #44403c 50%, #a8956a 100%)',
   },
 ]
 
 const ACTIVITIES = [
   {
-    no: '01', label: 'Diskusi & Riset Pertanian', category: 'Riset',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
-    placeholder: 'linear-gradient(135deg, #0a2218 0%, #16a34a 100%)',
+    no: '01', label: 'Pemilahan Daun Kelor', category: 'Proses Produksi',
+    image: `${import.meta.env.BASE_URL}agri/agri_proses_kelor.webp`,
+    placeholder: 'linear-gradient(135deg, #052e16 0%, #166534 100%)',
     featured: true,
   },
   {
-    no: '02', label: 'Tim Lapangan', category: 'Lapangan',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
-    placeholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 100%)',
+    no: '02', label: 'Pengeringan Daun Kelor', category: 'Produksi',
+    image: `${import.meta.env.BASE_URL}agri/agri_kelor.webp`,
+    placeholder: 'linear-gradient(135deg, #0a2218 0%, #15803d 100%)',
     featured: false,
   },
   {
-    no: '03', label: 'Foto Bersama Mitra', category: 'Kemitraan',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
-    placeholder: 'linear-gradient(135deg, #0a2218 0%, #2d6a4f 100%)',
+    no: '03', label: 'Vircoil — VCO Murni', category: 'Produk',
+    image: `${import.meta.env.BASE_URL}agri/agri_produk_vircoil.webp`,
+    placeholder: 'linear-gradient(135deg, #1c1917 0%, #78716c 100%)',
     featured: false,
   },
   {
-    no: '04', label: 'Kegiatan Sosial', category: 'Sosial',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_sosial_qurban.webp`,
-    placeholder: 'linear-gradient(135deg, #1a2e1a 0%, #3a7d44 100%)',
+    no: '04', label: 'Lentera Honey 500ml', category: 'Produk',
+    image: `${import.meta.env.BASE_URL}agri/agri_honey.webp`,
+    placeholder: 'linear-gradient(135deg, #451a03 0%, #b45309 100%)',
     featured: false,
   },
   {
-    no: '05', label: 'Kebersamaan Tim', category: 'Tim',
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_volleyball_pantai.webp`,
-    placeholder: 'linear-gradient(135deg, #0e3d1a 0%, #1a6b2e 100%)',
+    no: '05', label: 'Bahan Baku Kelapa', category: 'Bahan Baku',
+    image: `${import.meta.env.BASE_URL}agri/agri_vco.webp`,
+    placeholder: 'linear-gradient(135deg, #0c2a0a 0%, #166534 100%)',
     featured: false,
   },
 ]
@@ -398,7 +398,7 @@ export default function LenteraAgriPage() {
                 fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)', color: '#16a34a',
                 textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: 16,
               }}>
-                Rekam Jejak Program
+                Produk Unggulan
               </motion.p>
               <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
                 <motion.h2 variants={fadeUp} style={{
@@ -406,15 +406,15 @@ export default function LenteraAgriPage() {
                   fontSize: 'clamp(2rem, 3.8vw, 3.5rem)',
                   lineHeight: 1.1, letterSpacing: '-0.03em', color: '#0a2540', margin: 0,
                 }}>
-                  Highlight Program{' '}
-                  <span style={{ color: '#16a34a' }}>Agri</span>
+                  Produk{' '}
+                  <span style={{ color: '#16a34a' }}>Lentera Agri</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} style={{
                   fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.82rem, 1vw, 0.9rem)',
                   lineHeight: 1.75, color: '#64748b', maxWidth: 380, margin: 0,
                 }}>
-                  Tiga program unggulan yang membuktikan komitmen kami dalam membangun
-                  ekosistem pertanian berkelanjutan bersama masyarakat lokal.
+                  Tiga produk unggulan berbasis sumber daya alam lokal yang diproses
+                  dengan standar kualitas untuk menjaga kemurnian dan manfaatnya.
                 </motion.p>
               </div>
             </motion.div>
@@ -580,14 +580,14 @@ function AgriActivitySection() {
               lineHeight: 1.1, letterSpacing: '-0.03em', color: '#0a2540', margin: 0,
             }}>
               Di Balik{' '}
-              <span style={{ color: '#16a34a' }}>Karya Kami</span>
+              <span style={{ color: '#16a34a' }}>Produk Kami</span>
             </motion.h2>
             <motion.p variants={fadeUp} style={{
               fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.82rem, 1vw, 0.9rem)',
               lineHeight: 1.75, color: '#64748b', maxWidth: 380, margin: 0,
             }}>
-              Setiap program lahir dari keterlibatan langsung bersama komunitas petani
-              dan kerja keras tim di lapangan.
+              Dari pemilahan bahan baku hingga produk siap pakai — setiap langkah
+              dikerjakan dengan teliti untuk menjaga kualitas dan kemurnian alaminya.
             </motion.p>
           </div>
         </motion.div>

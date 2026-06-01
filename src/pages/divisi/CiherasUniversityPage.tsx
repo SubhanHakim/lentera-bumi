@@ -24,66 +24,154 @@ const stagger: Variants = {
 
 const STATS = [
   {
-    index: '01', value: '500+', numericTarget: 500, suffix: '+',
-    label: 'Alumni Program',
-    sublabel: 'Peserta yang telah menyelesaikan program pembelajaran berbasis lapangan bersama kami.',
+    index: '01', value: '1.050+', numericTarget: 1050, suffix: '+',
+    label: 'Mahasiswa KP',
+    sublabel: 'Mahasiswa kerja praktik dari berbagai perguruan tinggi yang telah belajar dan berkarya langsung di Ciheras.',
   },
   {
-    index: '02', value: '20', numericTarget: 20, suffix: '',
-    label: 'Modul Pembelajaran',
-    sublabel: 'Kurikulum terstruktur yang dikembangkan dari pengalaman nyata riset dan lapangan.',
+    index: '02', value: '2.000+', numericTarget: 2000, suffix: '+',
+    label: 'Mahasiswa Berkunjung',
+    sublabel: 'Mahasiswa yang telah mengunjungi dan melakukan studi lapangan di site riset Ciheras.',
   },
   {
-    index: '03', value: '15', numericTarget: 15, suffix: '',
-    label: 'Mitra Industri',
-    sublabel: 'Perusahaan dan institusi yang berkolaborasi dalam program magang dan riset terapan.',
+    index: '03', value: '101', numericTarget: 101, suffix: '',
+    label: 'Perguruan Tinggi',
+    sublabel: 'Jumlah institusi pendidikan tinggi dari seluruh Indonesia yang telah bermitra dan mengirimkan mahasiswanya.',
   },
   {
-    index: '04', value: '8', numericTarget: 8, suffix: '',
-    label: 'Startup Inkubasi',
-    sublabel: 'Startup teknologi hijau yang lahir dari program inkubasi dan mentorship Ciheras University.',
+    index: '04', value: '45', numericTarget: 45, suffix: '',
+    label: 'Kota Asal',
+    sublabel: 'Kota dari berbagai penjuru Indonesia yang mahasiswanya telah menginjakkan kaki di Ciheras.',
   },
 ]
 
-const CORE_TECH = [
-  { icon: GraduationCapIcon, label: 'Kurikulum Lapangan' },
-  { icon: BookOpenIcon,      label: 'Riset Terbuka' },
-  { icon: LightbulbIcon,     label: 'Inkubasi Inovasi' },
-  { icon: UsersIcon,         label: 'Mentorship' },
+const TOPIK_RISET = [
+  {
+    index: '01',
+    title: 'Bilah',
+    subtitle: 'Blade Design',
+    skills: ['Desain Aerodinamika', 'Pemilihan Material', 'Uji Kekuatan'],
+    desc: 'Mempelajari desain aerodinamika bilah untuk menghasilkan efisiensi optimal dari angin berkecepatan rendah hingga menengah. Mahasiswa menentukan material yang tepat serta melakukan uji kekuatan untuk memastikan ketahanan dan performa di lapangan.',
+    image: `${import.meta.env.BASE_URL}topik/topik_bilah.webp`,
+    placeholder: 'linear-gradient(135deg, #041828 0%, #0a4060 100%)',
+  },
+  {
+    index: '02',
+    title: 'Generator',
+    subtitle: 'Electromagnetic Design',
+    skills: ['Prinsip Elektromagnetik', 'Desain Stator-Rotor', 'Pengujian Performa'],
+    desc: 'Mempelajari prinsip elektromagnetik dalam konversi energi mekanik menjadi listrik. Mahasiswa merancang, membuat, dan menguji generator sesuai kebutuhan sistem turbin skala mikro secara langsung di workshop Ciheras.',
+    image: `${import.meta.env.BASE_URL}topik/topik_generator.webp`,
+    placeholder: 'linear-gradient(135deg, #0a1828 0%, #0e3d5c 100%)',
+  },
+  {
+    index: '03',
+    title: 'Controller',
+    subtitle: 'Control System',
+    skills: ['Sistem Kontrol Turbin', 'Elektronika Daya', 'Pemrograman'],
+    desc: 'Mengembangkan sistem kontrol turbin untuk mengatur performa dan keamanan operasional. Termasuk pembelajaran elektronika daya serta pemrograman mikrokontroler untuk mengoptimalkan kinerja sistem secara keseluruhan.',
+    image: `${import.meta.env.BASE_URL}topik/topik_controller.webp`,
+    placeholder: 'linear-gradient(135deg, #0e1a30 0%, #1a3d6a 100%)',
+  },
+  {
+    index: '04',
+    title: 'Data Logger',
+    subtitle: 'Monitoring System',
+    skills: ['Sensor & Akuisisi Data', 'Monitoring Real-time', 'Analisis Performa'],
+    desc: 'Mempelajari penggunaan sensor dan sistem akuisisi data untuk memantau performa turbin secara real-time. Data yang dikumpulkan digunakan untuk analisis, evaluasi, dan pengembangan sistem yang lebih efisien.',
+    image: `${import.meta.env.BASE_URL}topik/topik_datalogger.webp`,
+    placeholder: 'linear-gradient(135deg, #0a1624 0%, #0a3d5c 100%)',
+  },
 ]
 
-const HIGHLIGHT_PROJECTS = [
+const ALUR_PHASES = [
   {
-    id: '01', client: 'UNIVERSITAS MITRA', year: '2023',
-    title: 'Program KKN Energi Terbarukan',
-    location: 'Ciheras, Tasikmalaya',
-    tech: 'Kurikulum Lapangan',
-    desc: 'Kolaborasi dengan universitas mitra untuk program KKN berbasis riset energi terbarukan langsung di site Lentera Bumi Nusantara.',
-    tags: ['KKN', 'Energi Terbarukan', 'Ciheras'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_tim_lapangan.webp`,
-    placeholder: 'linear-gradient(135deg, #0c1e30 0%, #0a3d5c 100%)',
+    fase: '01',
+    label: 'Persiapan',
+    accent: '#5ab0d6',
+    steps: [
+      { no: 1, title: 'Daftar', desc: 'Kirim surat permohonan kegiatan ke tim LBN.' },
+      { no: 2, title: 'Konfirmasi', desc: 'Terima balasan resmi dan link pendaftaran.' },
+      { no: 3, title: 'Isi Form', desc: 'Lengkapi data diri melalui formulir yang tersedia.' },
+    ],
   },
   {
-    id: '02', client: 'MAHASISWA RISET', year: '2024',
-    title: 'Workshop Teknologi EBT',
-    location: 'Workshop Ciheras',
-    tech: 'Transfer Ilmu',
-    desc: 'Sesi workshop intensif bagi mahasiswa untuk memahami proses fabrikasi dan pengujian komponen turbin angin skala mikro.',
-    tags: ['Workshop', 'Fabrikasi', 'Mahasiswa'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_diskusi.webp`,
-    placeholder: 'linear-gradient(135deg, #0c1e30 0%, #1a3a5c 100%)',
+    fase: '02',
+    label: 'Orientasi',
+    accent: '#10b981',
+    steps: [
+      { no: 4, title: 'Datang', desc: 'Tiba di Ciheras dan ikuti sesi pengenalan awal.' },
+      { no: 5, title: 'Bentuk Tim', desc: 'Susun tim belajarmu, maksimal 5 orang per kelompok.' },
+      { no: 6, title: 'Modul', desc: 'Terima modul sesuai topik yang kamu pilih.' },
+    ],
   },
   {
-    id: '03', client: 'INKUBATOR', year: '2024',
-    title: 'Demo Day Startup Hijau',
-    location: 'Ciheras, Tasikmalaya',
-    tech: 'Inkubasi',
-    desc: 'Presentasi akhir startup teknologi hijau peserta program inkubasi dihadapan investor dan mitra industri energi terbarukan.',
-    tags: ['Startup', 'Teknologi Hijau', 'Demo Day'],
-    image: `${import.meta.env.BASE_URL}kegiatan/kegiatan_foto_bersama.webp`,
-    placeholder: 'linear-gradient(135deg, #0e1a30 0%, #1a2e5c 100%)',
+    fase: '03',
+    label: 'Pelaksanaan',
+    accent: '#f59e0b',
+    steps: [
+      { no: 7,  title: 'Progress',    desc: 'Belajar, bertanya, dan berdiskusi dengan siapa pun untuk siap naik level.' },
+      { no: 8,  title: 'Presentasi',  desc: 'Rayakan capaianmu dan lakukan transfer knowledge ke rekan lain.' },
+      { no: 9,  title: 'Final',       desc: 'Laksanakan presentasi akhir sebagai penutup perjalananmu.' },
+      { no: 10, title: 'Bagikan',     desc: 'Ceritakan pengalamanmu selama berada di Ciheras University!' },
+    ],
   },
 ]
+
+const JALUR_BELAJAR = [
+  {
+    index: '01',
+    title: 'Kerja Praktek',
+    subtitle: 'KP / Magang',
+    duration: '1–3 Bulan',
+    forLevel: 'D3 / S1',
+    tagline: 'Belajar dari pekerjaan nyata, bukan simulasi.',
+    desc: 'Program KP memberi kesempatan bekerja langsung di workshop fabrikasi, site pemasangan turbin, dan tim riset Lentera Bumi Nusantara. Kamu terlibat dalam proyek aktif — bukan sekadar mengamati.',
+    includes: [
+      'Penempatan di tim teknis aktif',
+      'Akses penuh ke workshop & site lapangan',
+      'Surat referensi resmi dari LBN',
+      'Mentorship 1-on-1 dengan insinyur senior',
+    ],
+    accent: '#0c6b96',
+    accentBg: '#eff8fd',
+  },
+  {
+    index: '02',
+    title: 'Studi Mandiri',
+    subtitle: 'Independent Study',
+    duration: 'Fleksibel',
+    forLevel: 'Semua Jenjang',
+    tagline: 'Datang dengan pertanyaan. Pulang dengan jawaban.',
+    desc: 'Cocok untuk peneliti atau mahasiswa yang ingin mengeksplorasi topik spesifik secara mendalam dengan jadwal yang disesuaikan kebutuhan dan bimbingan langsung dari tim Ciheras.',
+    includes: [
+      'Akses penuh data & instrumen riset',
+      'Jadwal fleksibel & self-directed',
+      'Dokumentasi teknis internal LBN',
+      'Sharing session rutin dengan tim riset',
+    ],
+    accent: '#0e8a6e',
+    accentBg: '#f0fdf4',
+  },
+  {
+    index: '03',
+    title: 'Tugas Akhir',
+    subtitle: 'TA / Skripsi / Tesis',
+    duration: '3–6 Bulan',
+    forLevel: 'S1 / S2 / S3',
+    tagline: 'Riset bermakna, di tempat yang benar-benar nyata.',
+    desc: 'Topik penelitianmu berdampak langsung pada pengembangan teknologi energi terbarukan Indonesia. Infrastruktur riset lengkap, opsi co-supervisor dari LBN, dan data lapangan sungguhan.',
+    includes: [
+      'Infrastruktur riset & alat ukur lengkap',
+      'Opsi co-supervisor dari praktisi LBN',
+      'Data lapangan turbin real-time',
+      'Hasil riset berpotensi dipublikasikan',
+    ],
+    accent: '#7c3aed',
+    accentBg: '#f5f3ff',
+  },
+]
+
 
 const ACTIVITIES = [
   {
@@ -121,13 +209,11 @@ const ACTIVITIES = [
 /* ─── Page ─── */
 
 export default function CiherasUniversityPage() {
-  const tekRef      = useRef<HTMLDivElement>(null)
-  const statsRef    = useRef<HTMLDivElement>(null)
-  const projectsRef = useRef<HTMLDivElement>(null)
+  const tekRef   = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
 
-  const tekInView      = useInView(tekRef,      { once: true, amount: 0.15 })
-  const statsInView    = useInView(statsRef,    { once: true, amount: 0.2 })
-  const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 })
+  const tekInView   = useInView(tekRef,   { once: true, amount: 0.15 })
+  const statsInView = useInView(statsRef, { once: true, amount: 0.2 })
 
   return (
     <>
@@ -303,180 +389,79 @@ export default function CiherasUniversityPage() {
           </div>
         </section>
 
-        {/* ══ Pilar Program ══ */}
-        <section id="teknologi" ref={tekRef} className="relative overflow-hidden" style={{ background: '#ffffff' }}>
-          <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
-            backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
-            backgroundSize: '28px 28px', opacity: 0.35,
+        {/* ══ Topik Riset ══ */}
+        <section
+          id="teknologi"
+          ref={tekRef}
+          style={{ position: 'relative', background: 'linear-gradient(180deg, #041220 0%, #062030 100%)', overflow: 'hidden' }}
+        >
+          {/* Dot grid texture */}
+          <div aria-hidden style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: 'radial-gradient(circle, rgba(90,176,214,0.07) 1px, transparent 1px)',
+            backgroundSize: '36px 36px',
           }} />
-          <div aria-hidden className="absolute -top-32 -right-32 pointer-events-none rounded-full" style={{
-            width: 520, height: 520,
-            background: 'radial-gradient(circle, rgba(147,197,253,0.1) 0%, transparent 70%)',
+          {/* Radial glow top-right */}
+          <div aria-hidden style={{
+            position: 'absolute', top: '-10%', right: '-5%', width: '45%', height: '60%',
+            borderRadius: '50%',
+            background: 'radial-gradient(ellipse, rgba(37,99,235,0.1) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }} />
 
-          <div
-            className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center"
-            style={{ maxWidth: 1400, margin: '0 auto', padding: 'clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem)' }}
-          >
-            {/* Left */}
-            <motion.div variants={stagger} initial="hidden" animate={tekInView ? 'show' : 'hidden'}>
-              <motion.div variants={fadeUp} className="mb-5">
-                <span style={{
-                  fontFamily: 'var(--font-sans)', fontWeight: 600,
-                  fontSize: 'clamp(0.62rem, 0.85vw, 0.7rem)', color: '#2563eb',
-                  textTransform: 'uppercase', letterSpacing: '0.28em',
-                }}>
-                  Divisi Pendidikan & Riset
-                </span>
-              </motion.div>
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
 
-              <motion.h2 variants={fadeUp} className="font-bold leading-[1.15] m-0"
-                style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', letterSpacing: '-0.03em', color: '#0a2540' }}>
-                Belajar dari
-                <br />Lapangan Nyata
-              </motion.h2>
-
-              {/* Accent bar */}
-              <motion.div
-                variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
-                style={{
-                  height: 3, width: 44,
-                  background: 'linear-gradient(to right, #93c5fd, rgba(147,197,253,0.2))',
-                  borderRadius: 2, transformOrigin: 'left',
-                  marginTop: 20, marginBottom: 24,
-                }}
-              />
-
-              <motion.p variants={fadeUp} className="text-slate-500 leading-[1.8]"
-                style={{ fontSize: 'clamp(0.85rem, 1.05vw, 0.95rem)', maxWidth: 440 }}>
-                Ciheras University menghadirkan pengalaman belajar yang tidak bisa
-                ditemukan di kelas — langsung di site energi, workshop fabrikasi,
-                dan komunitas petani yang nyata.
-              </motion.p>
-            </motion.div>
-
-            {/* Right — 2×2 icon grid */}
+            {/* ── Section header ── */}
             <motion.div
               variants={stagger} initial="hidden" animate={tekInView ? 'show' : 'hidden'}
-              className="grid grid-cols-2 gap-6"
+              style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
             >
-              {CORE_TECH.map((tech, i) => (
+              <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
                 <motion.div
-                  key={i} variants={fadeUp}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ duration: 0.28, ease: EASE }}
-                  className="flex flex-col items-center gap-3"
-                >
-                  <div className="relative flex items-center justify-center rounded-full" style={{
-                    width: 'clamp(72px, 8vw, 88px)', height: 'clamp(72px, 8vw, 88px)',
-                    background: 'linear-gradient(148deg, #0c1e30 0%, #0a3d5c 60%, #1a5c8a 100%)',
-                    boxShadow: '0 6px 24px rgba(10,61,92,0.28), 0 2px 6px rgba(0,0,0,0.12)',
-                  }}>
-                    <div aria-hidden className="absolute inset-0 rounded-full" style={{ border: '1px solid rgba(147,197,253,0.25)' }} />
-                    <tech.icon size={28} color="#bfdbfe" strokeWidth={1.6} className="relative z-10" />
-                  </div>
-                  <span className="font-semibold text-center" style={{
-                    fontSize: 'clamp(0.82rem, 1vw, 0.9rem)', color: '#1e2e3a', letterSpacing: '0.02em',
-                  }}>
-                    {tech.label}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+                  variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.45, ease: EASE } } }}
+                  style={{ height: 1, width: 32, background: 'linear-gradient(to left, #5ab0d6, transparent)', transformOrigin: 'right', flexShrink: 0 }}
+                />
+                <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.58rem, 0.75vw, 0.66rem)', color: '#5ab0d6', textTransform: 'uppercase', letterSpacing: '0.34em', whiteSpace: 'nowrap' }}>
+                  Topik Riset
+                </span>
+                <motion.div
+                  variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.45, ease: EASE } } }}
+                  style={{ height: 1, flex: 1, background: 'linear-gradient(to right, #5ab0d6, transparent)', transformOrigin: 'left' }}
+                />
+              </motion.div>
 
-        {/* ══ Highlight Program ══ */}
-        <section ref={projectsRef} style={{ background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ height: 3, background: 'linear-gradient(to right, #93c5fd, #2563eb, transparent)' }} />
-
-          <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
-
-            <motion.div variants={stagger} initial="hidden" animate={projectsInView ? 'show' : 'hidden'}
-              style={{ marginBottom: 'clamp(2.5rem, 4vw, 4rem)' }}>
-              <motion.p variants={fadeUp} style={{
-                fontFamily: 'var(--font-sans)', fontWeight: 600,
-                fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)', color: '#2563eb',
-                textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: 16,
-              }}>
-                Rekam Jejak Program
-              </motion.p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 20 }}>
                 <motion.h2 variants={fadeUp} style={{
                   fontFamily: 'var(--font-sans)', fontWeight: 700,
-                  fontSize: 'clamp(2rem, 3.8vw, 3.5rem)',
-                  lineHeight: 1.1, letterSpacing: '-0.03em', color: '#0a2540', margin: 0,
+                  fontSize: 'clamp(2rem, 3.8vw, 3.5rem)', lineHeight: 1.08,
+                  letterSpacing: '-0.035em', color: '#ffffff', margin: 0,
                 }}>
-                  Highlight Program{' '}
-                  <span style={{ color: '#2563eb' }}>Edukasi</span>
+                  4 Topik{' '}
+                  <span style={{ color: '#5ab0d6' }}>Studi</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} style={{
                   fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.82rem, 1vw, 0.9rem)',
-                  lineHeight: 1.75, color: '#64748b', maxWidth: 380, margin: 0,
+                  lineHeight: 1.76, color: 'rgba(255,255,255,0.48)', maxWidth: 420, margin: 0,
                 }}>
-                  Tiga program unggulan yang membuktikan bahwa pendidikan paling
-                  efektif terjadi langsung di lapangan bersama para praktisi.
+                  Mahasiswa terlibat langsung dalam perancangan, pembuatan, dan pengujian sistem turbin angin skala mikro.
                 </motion.p>
               </div>
             </motion.div>
 
-            <motion.div
-              variants={stagger} initial="hidden" animate={projectsInView ? 'show' : 'hidden'}
-              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}
-            >
-              {HIGHLIGHT_PROJECTS.map((p) => (
-                <motion.article
-                  key={p.id} variants={fadeUp}
-                  whileHover="hover" initial="rest" animate="rest"
-                  style={{ display: 'flex', flexDirection: 'column', background: '#ffffff', borderRadius: 16, overflow: 'hidden', boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}
-                >
-                  <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
-                    <motion.img src={p.image} alt={p.title}
-                      variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
-                      transition={{ duration: 0.55, ease: EASE }}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                      onError={(e) => { e.currentTarget.style.display = 'none' }}
-                    />
-                    <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: -1, background: p.placeholder }} />
-                    <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,18,32,0.65) 0%, transparent 55%)' }} />
-                    <div style={{ position: 'absolute', top: 14, left: 14, background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 6, padding: '4px 10px' }}>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(0.58rem, 0.72vw, 0.65rem)', color: '#ffffff', letterSpacing: '0.12em', textTransform: 'uppercase' }}>{p.client}</span>
-                    </div>
-                    <div style={{ position: 'absolute', top: 14, right: 14, background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(6px)', borderRadius: 4, padding: '3px 8px' }}>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.08em' }}>{p.year}</span>
-                    </div>
-                    <div style={{ position: 'absolute', bottom: 14, left: 14, background: '#2563eb', borderRadius: 4, padding: '3px 9px' }}>
-                      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)', color: '#ffffff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{p.tech}</span>
-                    </div>
-                    <span style={{ position: 'absolute', bottom: 14, right: 14, fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(0.65rem, 0.8vw, 0.72rem)', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em' }}>{p.id}</span>
-                  </div>
-
-                  <div style={{ padding: 'clamp(1.25rem, 2vw, 1.75rem)', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 'clamp(0.68rem, 0.82vw, 0.74rem)', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.16em', margin: 0 }}>{p.location}</p>
-                    <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(1.05rem, 1.4vw, 1.3rem)', lineHeight: 1.25, letterSpacing: '-0.02em', color: '#0a2540', margin: 0 }}>{p.title}</h3>
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.8rem, 0.92vw, 0.875rem)', lineHeight: 1.72, color: '#64748b', margin: 0, flex: 1 }}>{p.desc}</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
-                      {p.tags.map((tag) => (
-                        <span key={tag} style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: '0.68rem', color: '#2563eb', background: '#eff6ff', borderRadius: 4, padding: '3px 8px', letterSpacing: '0.04em' }}>{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <motion.div
-                    variants={{ rest: { opacity: 0, height: 0 }, hover: { opacity: 1, height: 'auto' } }}
-                    transition={{ duration: 0.22 }}
-                    style={{ overflow: 'hidden', borderTop: '1px solid #f1f5f9' }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.875rem 1.75rem', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.78rem, 0.9vw, 0.85rem)', color: '#2563eb', letterSpacing: '0.01em' }}>
-                      Lihat detail program <ArrowRight size={15} />
-                    </div>
-                  </motion.div>
-                </motion.article>
+            {/* ── Alternating rows ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.2vw, 1rem)' }}>
+              {TOPIK_RISET.map((topik, i) => (
+                <TopikRow key={topik.index} topik={topik} flip={i % 2 !== 0} inView={tekInView} delay={i * 0.08} />
               ))}
-            </motion.div>
-
+            </div>
           </div>
         </section>
+
+        {/* ══ Jalur Belajar ══ */}
+        <JalurBelajarSection />
+
+        {/* ══ Alur Belajar ══ */}
+        <AlurBelajarSection />
 
         {/* ══ Aktivitas Tim ══ */}
         <UniActivitySection />
@@ -541,6 +526,592 @@ function UniCountUp({ target, suffix, inView }: { target: number; suffix: string
     return ctrl.stop
   }, [inView, count, target])
   return <span><motion.span>{display}</motion.span>{suffix}</span>
+}
+
+/* ─────────────────────────────────────────────
+   Alur Belajar Section
+───────────────────────────────────────────── */
+
+function AlurBelajarSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.04 })
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position:   'relative',
+        background: '#ffffff',
+        overflow:   'hidden',
+      }}
+    >
+      {/* Top accent */}
+      <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
+
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
+
+        {/* ── Header — two col ── */}
+        <motion.div
+          variants={stagger} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(2rem, 4vw, 5rem)', alignItems: 'end', marginBottom: 'clamp(4rem, 6vw, 6rem)' }}
+        >
+          <div>
+            <motion.p variants={fadeUp} style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 600,
+              fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)', color: '#0c6b96',
+              textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: 14,
+            }}>
+              Langkah demi Langkah
+            </motion.p>
+            <motion.h2 variants={fadeUp} style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(2rem, 3.8vw, 3.5rem)', lineHeight: 1.08,
+              letterSpacing: '-0.035em', color: '#0a2540', margin: 0,
+            }}>
+              Alur Belajar di{' '}
+              <span style={{ color: '#0c6b96' }}>Ciheras University</span>
+            </motion.h2>
+          </div>
+          <motion.p variants={fadeUp} style={{
+            fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.85rem, 1.05vw, 0.95rem)',
+            lineHeight: 1.82, color: '#64748b', margin: 0, alignSelf: 'end',
+          }}>
+            10 langkah terstruktur dalam tiga fase — dari permohonan pertama hingga kamu membagikan ceritamu ke dunia.
+          </motion.p>
+        </motion.div>
+
+        {/* ── Phases ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(2rem, 3vw, 3.5rem)', alignItems: 'start' }}>
+          {ALUR_PHASES.map((phase, pi) => (
+            <AlurPhaseColumn key={phase.fase} phase={phase} inView={inView} delay={pi * 0.16} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Alur Phase Column
+───────────────────────────────────────────── */
+
+interface AlurPhase {
+  fase:   string
+  label:  string
+  accent: string
+  steps:  { no: number; title: string; desc: string }[]
+}
+
+function AlurPhaseColumn({ phase, inView, delay }: { phase: AlurPhase; inView: boolean; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.72, ease: EASE, delay }}
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
+      {/* ── Phase label row ── */}
+      <div style={{
+        display:       'flex',
+        alignItems:    'center',
+        gap:           12,
+        marginBottom:  'clamp(1.5rem, 2.5vw, 2.5rem)',
+        paddingBottom: 'clamp(1rem, 1.8vw, 1.5rem)',
+        borderBottom:  `2px solid ${phase.accent}`,
+      }}>
+        {/* Phase number */}
+        <span style={{
+          fontFamily:    'var(--font-sans)', fontWeight: 900,
+          fontSize:      'clamp(2rem, 3.5vw, 3rem)',
+          letterSpacing: '-0.05em', lineHeight: 1,
+          color:         phase.accent,
+        }}>
+          {phase.fase}
+        </span>
+        <div>
+          <p style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 600,
+            fontSize:      'clamp(0.56rem, 0.7vw, 0.62rem)', color: '#94a3b8',
+            textTransform: 'uppercase', letterSpacing: '0.24em', margin: '0 0 2px 0',
+          }}>
+            Fase
+          </p>
+          <h3 style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 700,
+            fontSize:      'clamp(1rem, 1.4vw, 1.2rem)', letterSpacing: '-0.025em',
+            color:         '#0a2540', margin: 0, lineHeight: 1.1,
+          }}>
+            {phase.label}
+          </h3>
+        </div>
+      </div>
+
+      {/* ── Steps ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+        {/* Vertical track line */}
+        <div style={{
+          position:   'absolute',
+          left:       15,
+          top:        8,
+          bottom:     8,
+          width:      1,
+          background: `linear-gradient(to bottom, ${phase.accent}50, ${phase.accent}10)`,
+        }} />
+
+        {phase.steps.map((step, si) => {
+          const isLast = si === phase.steps.length - 1
+          return (
+            <motion.div
+              key={step.no}
+              initial={{ opacity: 0, x: -16 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
+              transition={{ duration: 0.6, ease: EASE, delay: delay + si * 0.09 }}
+              whileHover={{ x: 4 }}
+              style={{
+                display:       'flex',
+                gap:           'clamp(0.875rem, 1.4vw, 1.25rem)',
+                paddingBottom: isLast ? 0 : 'clamp(1.25rem, 2vw, 1.75rem)',
+                cursor:        'default',
+              }}
+            >
+              {/* Node */}
+              <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 1 }}>
+                <div style={{
+                  width:       32,
+                  height:      32,
+                  borderRadius:'50%',
+                  background:  '#ffffff',
+                  border:      `2px solid ${phase.accent}`,
+                  display:     'flex',
+                  alignItems:  'center',
+                  justifyContent: 'center',
+                  boxShadow:   `0 0 0 4px ${phase.accent}12`,
+                }}>
+                  <span style={{
+                    fontFamily:    'var(--font-sans)', fontWeight: 800,
+                    fontSize:      '0.64rem', color: phase.accent,
+                    letterSpacing: '-0.01em',
+                  }}>
+                    {step.no}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div style={{ paddingTop: 4, flex: 1 }}>
+                <p style={{
+                  fontFamily:    'var(--font-sans)', fontWeight: 700,
+                  fontSize:      'clamp(0.9rem, 1.1vw, 1rem)',
+                  color:         '#0a2540', margin: '0 0 5px 0',
+                  letterSpacing: '-0.01em', lineHeight: 1.2,
+                }}>
+                  {step.title}
+                </p>
+                <p style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize:   'clamp(0.78rem, 0.9vw, 0.84rem)',
+                  lineHeight: 1.65, color: '#64748b', margin: 0,
+                }}>
+                  {step.desc}
+                </p>
+              </div>
+            </motion.div>
+          )
+        })}
+      </div>
+    </motion.div>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Jalur Belajar Section
+───────────────────────────────────────────── */
+
+function JalurBelajarSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.08 })
+
+  return (
+    <section ref={ref} style={{ background: '#ffffff', position: 'relative', overflow: 'hidden' }}>
+      {/* Top accent line */}
+      <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
+
+      {/* Subtle dot grid */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #e2e8f0 1px, transparent 1px)',
+        backgroundSize: '30px 30px', opacity: 0.45,
+      }} />
+
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
+
+        {/* ── Header ── */}
+        <motion.div
+          variants={stagger} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+        >
+          <motion.p variants={fadeUp} style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 600,
+            fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)', color: '#0c6b96',
+            textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: 14,
+          }}>
+            Jalur Belajar
+          </motion.p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 20 }}>
+            <motion.h2 variants={fadeUp} style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(2rem, 3.8vw, 3.5rem)', lineHeight: 1.08,
+              letterSpacing: '-0.035em', color: '#0a2540', margin: 0,
+            }}>
+              Pilih Jalur{' '}
+              <span style={{ color: '#0c6b96' }}>Belajarmu</span>
+            </motion.h2>
+
+            <motion.p variants={fadeUp} style={{
+              fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.82rem, 1vw, 0.9rem)',
+              lineHeight: 1.76, color: '#64748b', maxWidth: 380, margin: 0,
+            }}>
+              Tiga jalur untuk mahasiswa dan peneliti dengan tujuan yang berbeda — semua berbasis pengalaman nyata di Ciheras.
+            </motion.p>
+          </div>
+        </motion.div>
+
+        {/* ── Cards ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}>
+          {JALUR_BELAJAR.map((jalur, i) => (
+            <JalurCard key={jalur.index} jalur={jalur} inView={inView} delay={i * 0.12} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Jalur Card
+───────────────────────────────────────────── */
+
+interface JalurData {
+  index:    string
+  title:    string
+  subtitle: string
+  duration: string
+  forLevel: string
+  tagline:  string
+  desc:     string
+  includes: string[]
+  accent:   string
+  accentBg: string
+}
+
+function JalurCard({ jalur, inView, delay }: { jalur: JalurData; inView: boolean; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      transition={{ duration: 0.72, ease: EASE, delay }}
+      whileHover={{ y: -6, boxShadow: `0 16px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06)` }}
+      style={{
+        background:   '#ffffff',
+        borderRadius: 18,
+        border:       '1px solid #e8edf4',
+        overflow:     'hidden',
+        position:     'relative',
+        boxShadow:    '0 2px 8px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04)',
+        display:      'flex',
+        flexDirection:'column',
+        cursor:       'default',
+        transition:   'box-shadow 0.28s',
+      }}
+    >
+      {/* Top accent bar */}
+      <div style={{ height: 5, background: jalur.accent, flexShrink: 0 }} />
+
+      {/* Ghost index watermark */}
+      <div aria-hidden style={{
+        position:      'absolute', right: 12, top: 4,
+        fontFamily:    'var(--font-sans)', fontWeight: 900,
+        fontSize:      'clamp(5rem, 9vw, 8rem)',
+        color:         jalur.accent,
+        opacity:       0.055,
+        lineHeight:    1, letterSpacing: '-0.06em',
+        userSelect:    'none', pointerEvents: 'none',
+      }}>
+        {jalur.index}
+      </div>
+
+      {/* Card content */}
+      <div style={{ padding: 'clamp(1.75rem, 2.5vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: 20, flex: 1, position: 'relative' }}>
+
+        {/* Index + badges row */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
+          <span style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 700,
+            fontSize:      '0.64rem', color: jalur.accent,
+            background:    jalur.accentBg, borderRadius: 4,
+            padding:       '3px 9px', letterSpacing: '0.1em',
+          }}>
+            {jalur.index}
+          </span>
+          <span style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 500,
+            fontSize:      '0.64rem', color: '#64748b',
+            background:    '#f1f5f9', borderRadius: 4,
+            padding:       '3px 9px', letterSpacing: '0.04em',
+          }}>
+            {jalur.forLevel}
+          </span>
+          <span style={{ flex: 1 }} />
+          <span style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 600,
+            fontSize:      '0.62rem', color: '#94a3b8',
+            letterSpacing: '0.06em',
+          }}>
+            {jalur.duration}
+          </span>
+        </div>
+
+        {/* Title + subtitle */}
+        <div>
+          <h3 style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 700,
+            fontSize:      'clamp(1.5rem, 2.4vw, 2rem)',
+            lineHeight:    1.1, letterSpacing: '-0.03em',
+            color:         '#0a2540', margin: '0 0 4px 0',
+          }}>
+            {jalur.title}
+          </h3>
+          <p style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 500,
+            fontSize:      'clamp(0.7rem, 0.85vw, 0.78rem)',
+            color:         jalur.accent, textTransform: 'uppercase',
+            letterSpacing: '0.14em', margin: 0,
+          }}>
+            {jalur.subtitle}
+          </p>
+        </div>
+
+        {/* Tagline */}
+        <p style={{
+          fontFamily:  'var(--font-sans)', fontStyle: 'italic',
+          fontSize:    'clamp(0.88rem, 1.05vw, 0.96rem)',
+          lineHeight:  1.55, color: '#475569', margin: 0,
+          borderLeft:  `3px solid ${jalur.accent}`,
+          paddingLeft: 14,
+        }}>
+          {jalur.tagline}
+        </p>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: `linear-gradient(to right, ${jalur.accent}30, transparent)` }} />
+
+        {/* Description */}
+        <p style={{
+          fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.8rem, 0.92vw, 0.875rem)',
+          lineHeight: 1.78, color: '#64748b', margin: 0,
+        }}>
+          {jalur.desc}
+        </p>
+
+        {/* Includes */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'flex-end' }}>
+          <p style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 600,
+            fontSize:      'clamp(0.66rem, 0.8vw, 0.72rem)',
+            color:         '#0a2540', textTransform: 'uppercase',
+            letterSpacing: '0.14em', margin: 0,
+          }}>
+            Yang didapat
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {jalur.includes.map((item) => (
+              <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                {/* Check dot */}
+                <div style={{
+                  width: 18, height: 18, borderRadius: '50%',
+                  background: jalur.accentBg,
+                  border: `1.5px solid ${jalur.accent}50`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0, marginTop: 1,
+                }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: jalur.accent }} />
+                </div>
+                <span style={{
+                  fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.78rem, 0.9vw, 0.84rem)',
+                  lineHeight: 1.5, color: '#475569',
+                }}>
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </motion.div>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Topik Row
+───────────────────────────────────────────── */
+
+interface TopikData {
+  index:       string
+  title:       string
+  subtitle:    string
+  skills:      string[]
+  desc:        string
+  image:       string
+  placeholder: string
+}
+
+function TopikRow({
+  topik,
+  flip,
+  inView,
+  delay,
+}: {
+  topik: TopikData
+  flip: boolean
+  inView: boolean
+  delay: number
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      transition={{ duration: 0.7, ease: EASE, delay }}
+      style={{
+        display:       'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        minHeight:     'clamp(240px, 28vw, 340px)',
+        borderRadius:  14,
+        overflow:      'hidden',
+        direction:     flip ? 'rtl' : 'ltr',
+        border:        '1px solid rgba(255,255,255,0.06)',
+      }}
+    >
+      {/* ── Image panel ── */}
+      <motion.div
+        whileHover="hover"
+        initial="rest"
+        animate="rest"
+        style={{ position: 'relative', minHeight: 200, direction: 'ltr', overflow: 'hidden' }}
+      >
+        {/* Gradient base */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: topik.placeholder }} />
+
+        {/* Photo */}
+        <motion.img
+          src={topik.image}
+          alt={topik.title}
+          variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+          transition={{ duration: 0.65, ease: EASE }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          onError={(e) => { e.currentTarget.style.opacity = '0' }}
+        />
+
+        {/* Overlay */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,18,40,0.75) 0%, rgba(4,18,40,0.2) 60%, transparent 100%)' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: flip ? 'linear-gradient(to left, rgba(4,18,40,0.6) 0%, transparent 60%)' : 'linear-gradient(to right, rgba(4,18,40,0.6) 0%, transparent 60%)' }} />
+
+        {/* Ghost index watermark */}
+        <div aria-hidden style={{
+          position:      'absolute', bottom: -16, right: 12,
+          fontFamily:    'var(--font-sans)', fontWeight: 900,
+          fontSize:      'clamp(5rem, 10vw, 9rem)',
+          color:         'rgba(255,255,255,0.05)',
+          lineHeight:    1, letterSpacing: '-0.06em',
+          userSelect:    'none', pointerEvents: 'none',
+        }}>
+          {topik.index}
+        </div>
+
+        {/* Hover blue tint */}
+        <motion.div
+          aria-hidden
+          variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+          transition={{ duration: 0.3 }}
+          style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, rgba(37,99,235,0.15) 0%, transparent 60%)' }}
+        />
+      </motion.div>
+
+      {/* ── Content panel ── */}
+      <div style={{
+        direction:       'ltr',
+        background:      'rgba(255,255,255,0.03)',
+        backdropFilter:  'blur(2px)',
+        padding:         'clamp(1.75rem, 3vw, 3rem)',
+        display:         'flex',
+        flexDirection:   'column',
+        justifyContent:  'center',
+        gap:             20,
+        borderLeft:      flip ? 'none' : '1px solid rgba(255,255,255,0.05)',
+        borderRight:     flip ? '1px solid rgba(255,255,255,0.05)' : 'none',
+      }}>
+        {/* Index + subtitle row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 700,
+            fontSize:      'clamp(0.62rem, 0.8vw, 0.7rem)',
+            color:         '#5ab0d6',
+            background:    'rgba(90,176,214,0.12)',
+            borderRadius:  4, padding: '3px 9px',
+            letterSpacing: '0.1em',
+          }}>
+            {topik.index}
+          </span>
+          <div style={{ flex: 1, height: 1, background: 'rgba(90,176,214,0.18)' }} />
+          <span style={{
+            fontFamily:    'var(--font-sans)', fontWeight: 500,
+            fontSize:      'clamp(0.58rem, 0.72vw, 0.65rem)',
+            color:         'rgba(255,255,255,0.35)',
+            textTransform: 'uppercase', letterSpacing: '0.18em', whiteSpace: 'nowrap',
+          }}>
+            {topik.subtitle}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 style={{
+          fontFamily:    'var(--font-sans)', fontWeight: 700,
+          fontSize:      'clamp(1.6rem, 2.8vw, 2.4rem)',
+          lineHeight:    1.05, letterSpacing: '-0.035em',
+          color:         '#ffffff', margin: 0,
+        }}>
+          {topik.title}
+        </h3>
+
+        {/* Description */}
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize:   'clamp(0.82rem, 0.96vw, 0.9rem)',
+          lineHeight: 1.78, color: 'rgba(255,255,255,0.52)', margin: 0,
+        }}>
+          {topik.desc}
+        </p>
+
+        {/* Skill tags */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {topik.skills.map((s) => (
+            <span key={s} style={{
+              fontFamily:    'var(--font-sans)', fontWeight: 500,
+              fontSize:      '0.64rem', color: '#5ab0d6',
+              background:    'rgba(90,176,214,0.1)',
+              border:        '1px solid rgba(90,176,214,0.2)',
+              borderRadius:  4, padding: '3px 9px',
+              letterSpacing: '0.04em',
+            }}>
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  )
 }
 
 /* ─────────────────────────────────────────────
