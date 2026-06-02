@@ -4,7 +4,7 @@ import VisiMisiSection from '../components/VisiMisiSection'
 import NilaiSection from '../components/NilaiSection'
 import JejakLangkahSection from '../components/JejakLangkahSection'
 import FounderSection from '../components/FounderSection'
-import GaleriSection from '../components/GaleriSection'
+import SiteCiherasSection from '../components/SiteCiherasSection'
 import LokasiSection from '../components/LokasiSection'
 import FooterCTA from '../components/FooterCTA'
 import { useSmoothScroll } from '../hooks/useSmoothScroll'
@@ -21,7 +21,7 @@ export default function AboutPage() {
         <NilaiSection />
         <JejakLangkahSection />
         <FounderSection />
-        <GaleriSection />
+        <SiteCiherasSection />
         <LokasiSection />
         <FooterCTA />
       </main>

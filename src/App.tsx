@@ -2,11 +2,15 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
+import TentangSection from './components/TentangSection'
 import StatsSection from './components/StatsSection'
+import TopikKuasaiSection from './components/TopikKuasaiSection'
 import DivisiSection from './components/DivisiSection'
 import SkyDancerSection from './components/SkyDancerSection'
 import KontribusiSection from './components/KontribusiSection'
 import ProyekSection from './components/ProyekSection'
+import SiteCiherasSection from './components/SiteCiherasSection'
+import PanganPemberdayaanSection from './components/PanganPemberdayaanSection'
 import FooterCTA from './components/FooterCTA'
 import AboutPage from './pages/AboutPage'
 import ProyekPage from './pages/ProyekPage'
@@ -37,12 +41,15 @@ function HomePage() {
       <Navbar />
       <main>
         <HeroSection />
-        <div style={{ height: 80 }} aria-hidden="true" />
+        <TentangSection />
         <StatsSection />
+        <TopikKuasaiSection />
         <DivisiSection />
         <SkyDancerSection />
         <KontribusiSection />
         <ProyekSection />
+        <SiteCiherasSection />
+        <PanganPemberdayaanSection />
         <FooterCTA />
       </main>
     </>

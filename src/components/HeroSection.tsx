@@ -6,8 +6,6 @@ import {
   useTransform,
   type Variants,
 } from 'framer-motion'
-import { HiArrowRight } from 'react-icons/hi'
-import { RiMailSendLine } from 'react-icons/ri'
 import { LuChevronDown } from 'react-icons/lu'
 import { scrollToSection } from '../hooks/useSmoothScroll'
 
@@ -16,7 +14,6 @@ import { scrollToSection } from '../hooks/useSmoothScroll'
 ──────────────────────────── */
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
-const NAV_H = 80
 
 /* ─────────────────────────────
    Variants
@@ -47,7 +44,7 @@ export default function HeroSection() {
     <section
       id="beranda"
       ref={ref}
-      style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}
+      style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}
     >
       {/* ── Background parallax ── */}
       <motion.div
@@ -61,34 +58,77 @@ export default function HeroSection() {
           src={`${import.meta.env.BASE_URL}hero_Section.webp`}
           alt=""
           aria-hidden="true"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 50%' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 45%' }}
         />
       </motion.div>
 
-      {/* ── Dark overlay — bottom-to-top + left vignette ── */}
+      {/* ── Ambient Wind Flow Effect (represents the beach breeze of Ciheras) ── */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          aria-hidden="true"
+          initial={{ x: '-10%', opacity: 0 }}
+          animate={inView ? { x: '110%', opacity: [0, 0.35, 0.35, 0] } : {}}
+          transition={{
+            duration: 8 + i * 2,
+            delay: i * 1.5,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          style={{
+            position: 'absolute',
+            zIndex: 2,
+            pointerEvents: 'none',
+            top: `${20 + i * 13}%`,
+            left: 0,
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(90, 176, 214, 0.25), rgba(45, 212, 191, 0.2), transparent)',
+            width: `${150 + i * 80}px`,
+          }}
+        />
+      ))}
+
+      {/* ── Ambient Radial Glow behind the title ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: '8%',
+          top: '35%',
+          width: '38vw',
+          height: '38vw',
+          background: 'radial-gradient(circle, rgba(90, 176, 214, 0.08) 0%, transparent 70%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* ── Dark overlay — bottom-to-top + left vignette (tuned for high visibility of wind turbines) ── */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute', inset: 0, zIndex: 1,
-          background: 'linear-gradient(to top, rgba(3,12,24,0.97) 0%, rgba(4,16,32,0.85) 25%, rgba(5,20,40,0.52) 50%, rgba(6,24,48,0.2) 70%, transparent 88%)',
+          background: 'linear-gradient(to top, rgba(3,12,24,0.75) 0%, rgba(3,12,24,0.3) 35%, rgba(3,12,24,0.05) 70%, transparent 95%)',
         }}
       />
       <div
         aria-hidden="true"
         style={{
           position: 'absolute', inset: 0, zIndex: 1,
-          background: 'linear-gradient(to right, rgba(3,12,24,0.7) 0%, rgba(3,12,24,0.35) 35%, transparent 65%)',
+          background: 'linear-gradient(to right, rgba(3,12,24,0.5) 0%, rgba(3,12,24,0.1) 45%, transparent 80%)',
         }}
       />
 
       {/* ── Content ── */}
       <div
         style={{
-          position: 'absolute', inset: 0, zIndex: 10,
+          position: 'relative', zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          paddingTop: NAV_H,
+          minHeight: '100svh',
+          paddingTop: 'clamp(100px, 12vh, 140px)',
+          paddingBottom: 'clamp(40px, 6vh, 80px)',
         }}
       >
         {/* Inner max-width wrapper */}
@@ -105,171 +145,61 @@ export default function HeroSection() {
             initial="hidden"
             animate={inView ? 'show' : 'hidden'}
           >
-
-            {/* Eyebrow */}
-            <motion.div
-              variants={fadeUp}
-              style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}
-            >
-              <span style={{
-                width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
-                background: '#5ab0d6',
-                boxShadow: '0 0 8px rgba(90,176,214,0.85)',
-              }} />
-              <span style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 500,
-                fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)',
-                color: 'rgba(255,255,255,0.5)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.28em',
-              }}>
-                Lentera Bumi Nusantara · Ciheras · Tasikmalaya
-              </span>
-            </motion.div>
-
             {/* Headline — two stacked lines, each in overflow:hidden for clip reveal */}
             <div style={{ overflow: 'hidden' }}>
               <motion.h1
                 variants={fadeUp}
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontWeight: 700,
-                  fontSize: 'clamp(2.2rem, 4.4vw, 4rem)',
-                  lineHeight: 1.07,
+                  fontWeight: 800,
+                  fontSize: 'clamp(2.5rem, 6.2vw, 6.2rem)',
+                  lineHeight: 1.05,
                   letterSpacing: '-0.03em',
                   color: '#ffffff',
-                  margin: '0 0 4px 0',
+                  margin: 0,
+                  textShadow: '0 2px 24px rgba(3,12,24,0.4)',
                 }}
               >
-                Teknologi Energi
+                Teknologi
               </motion.h1>
             </div>
 
-            <div style={{ overflow: 'hidden', marginBottom: 36 }}>
+            <div style={{ overflow: 'hidden', marginTop: 12 }}>
               <motion.h1
                 variants={fadeUp}
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontWeight: 700,
-                  fontSize: 'clamp(2.2rem, 4.4vw, 4rem)',
-                  lineHeight: 1.07,
+                  fontWeight: 800,
+                  fontSize: 'clamp(2.5rem, 6.2vw, 6.2rem)',
+                  lineHeight: 1.05,
                   letterSpacing: '-0.03em',
-                  color: '#5ab0d6',
                   margin: 0,
+                  textShadow: '0 2px 24px rgba(3,12,24,0.4)',
                 }}
               >
-                dan Pemberdayaan
+                <span style={{ fontWeight: 300, fontStyle: 'italic', color: 'rgba(255,255,255,0.6)', marginRight: 'clamp(10px, 1.5vw, 24px)' }}>dan</span>
+                <span style={{ color: '#ffffff' }}>
+                  Pemberdayaan
+                </span>
               </motion.h1>
             </div>
 
-            {/* Accent line */}
+            {/* Glowing Accent Anchor Line under the minimal title */}
             <motion.div
               variants={{
                 hidden: { scaleX: 0, opacity: 0 },
-                show: { scaleX: 1, opacity: 1, transition: { duration: 0.5, ease: EASE } },
+                show: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.8, ease: EASE } },
               }}
               style={{
-                height: 2,
-                width: 'clamp(40px, 4vw, 60px)',
-                background: 'linear-gradient(to right, #5ab0d6, transparent)',
+                height: '3px',
+                width: '140px',
+                background: 'linear-gradient(to right, #7ecde8, #2dd4bf, transparent)',
                 transformOrigin: 'left',
-                marginBottom: 28,
+                marginTop: '36px',
+                borderRadius: '9999px',
+                boxShadow: '0 0 12px rgba(45, 212, 191, 0.4)',
               }}
             />
-
-            {/* Paragraph */}
-            <motion.p
-              variants={fadeUp}
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                lineHeight: 1.8,
-                color: 'rgba(255,255,255,0.62)',
-                maxWidth: 560,
-                margin: '0 0 40px 0',
-              }}
-            >
-              Di tepi Pantai Ciheras, kami membangun turbin angin, melakukan
-              transfer knowledge kepada mahasiswa, dan memberdayakan warga lokal —
-              semuanya dalam satu ekosistem. Kepercayaan{' '}
-              <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>PLN dan PT PJB</span>
-              , serta{' '}
-              <span style={{ color: '#7ecde8', fontWeight: 600 }}>1.050+ mahasiswa</span>
-              {' '}yang telah berkarya di sini adalah bukti —{' '}
-              <span style={{ color: '#fff', fontWeight: 700, fontStyle: 'italic' }}>kami bergerak.</span>
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={fadeUp}
-              style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 14 }}
-            >
-              {/* Primary */}
-              <motion.a
-                href="#divisi"
-                onClick={(e) => { e.preventDefault(); scrollToSection('#divisi') }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: 'spring', stiffness: 420, damping: 22 }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  fontFamily: 'var(--font-sans)',
-                  fontWeight: 600,
-                  fontSize: 'clamp(0.82rem, 0.95vw, 0.9rem)',
-                  color: '#0a3d5c',
-                  background: '#ffffff',
-                  borderRadius: 9999,
-                  padding: '13px 28px',
-                  letterSpacing: '0.01em',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 24px rgba(0,0,0,0.22)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                Jelajahi Divisi Kami
-                <motion.span
-                  style={{ display: 'inline-flex' }}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: 'spring', stiffness: 500 }}
-                >
-                  <HiArrowRight size={15} />
-                </motion.span>
-              </motion.a>
-
-              {/* Secondary */}
-              <motion.a
-                href="#hubungi-kami"
-                onClick={(e) => { e.preventDefault(); scrollToSection('#hubungi-kami') }}
-                whileHover={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.18 }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  fontFamily: 'var(--font-sans)',
-                  fontWeight: 600,
-                  fontSize: 'clamp(0.82rem, 0.95vw, 0.9rem)',
-                  color: '#ffffff',
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1.5px solid rgba(255,255,255,0.3)',
-                  borderRadius: 9999,
-                  padding: '13px 28px',
-                  backdropFilter: 'blur(12px)',
-                  letterSpacing: '0.01em',
-                  textDecoration: 'none',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                <RiMailSendLine size={15} />
-                Mulai Kolaborasi
-              </motion.a>
-            </motion.div>
-
           </motion.div>
         </div>
       </div>
@@ -286,7 +216,7 @@ export default function HeroSection() {
         aria-hidden="true"
       >
         <button
-          onClick={() => scrollToSection('#stats')}
+          onClick={() => scrollToSection('#tentang')}
           aria-label="Scroll ke bawah"
           style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,

@@ -523,12 +523,12 @@ function WindDashboard() {
       )}
 
       {/* ── KPI ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12 }}>
+      <div className="kpi-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12 }}>
         {KPI_CARDS.map((k, i) => <KpiCard key={i} {...k} />)}
       </div>
 
       {/* ── Mast + Weibull ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div className="mast-weibull-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <Panel title="Profil kecepatan per ketinggian" tag="α = 0.6">
           <div style={{ fontSize: 11, color: T.textDim, marginBottom: 18 }}>Proyeksi shear exponent α = 0.6</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 13 }}>
@@ -563,7 +563,7 @@ function WindDashboard() {
       </div>
 
       {/* ── Hourly + Daily ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div className="charts-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <Panel title="Rata-rata per jam" tag="Sensor 15m">
           <div style={{ position: 'relative', width: '100%', height: 174 }}><canvas ref={hrRef} /></div>
           <div style={{ fontSize: 10, color: T.textDim, textAlign: 'center', marginTop: 8, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Jam (WIB)</div>
@@ -578,7 +578,7 @@ function WindDashboard() {
       <Panel title="Mawar Angin (Wind Rose)" tag={ml}>
         {state.roseAll ? (
           <>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24 }}>
+            <div className="rose-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24 }}>
               <WindRose data={state.roseAll}    label="Keseluruhan" sub="00:00 – 23:59" result={roseResultText(state.roseAll)} />
               <WindRose data={state.roseDay!}   label="Siang hari"  sub="06:00 – 18:00" result={roseResultText(state.roseDay!)} />
               <WindRose data={state.roseNight!} label="Malam hari"  sub="18:00 – 06:00" result={roseResultText(state.roseNight!)} />
@@ -598,7 +598,7 @@ function WindDashboard() {
 
       {/* ── Stats ── */}
       <Panel title="Ringkasan Statistik" tag={ml}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
+        <div className="stats-table-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
           {[
             [
               ['Kec. rata-rata 15m', stats ? `${stats.avg15.toFixed(3)} m/s` : '--', false],
@@ -642,6 +642,28 @@ function WindDashboard() {
       <style>{`
         @keyframes livepulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(5,150,105,0.4)} 50%{opacity:.7;box-shadow:0 0 0 4px rgba(5,150,105,0)} }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 1024px) {
+          .kpi-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .mast-weibull-grid,
+          .charts-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .rose-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .kpi-grid,
+          .rose-grid,
+          .stats-table-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .stats-table-grid {
+            gap: 0 !important;
+          }
+        }
       `}</style>
     </div>
   )
@@ -658,7 +680,7 @@ export default function PotensiAnginPage() {
       <main>
 
         {/* ══ Hero ══ */}
-        <section style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}>
+        <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url(${import.meta.env.BASE_URL}divisi_energi.webp)`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, rgba(3,8,20,0.97) 0%, rgba(4,10,26,0.86) 26%, rgba(5,14,32,0.52) 52%, rgba(6,18,38,0.2) 72%, transparent 88%)' }} />
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(3,8,20,0.74) 0%, rgba(3,8,20,0.38) 40%, transparent 66%)' }} />
@@ -679,13 +701,19 @@ export default function PotensiAnginPage() {
             <Wind size={300} color="#fff" strokeWidth={0.5} />
           </motion.div>
 
-          <div style={{ position: 'absolute', inset: 0, zIndex: 10, display: 'flex', alignItems: 'center', paddingTop: 80 }}>
+          <div style={{
+            position: 'relative', zIndex: 10,
+            display: 'flex', alignItems: 'center',
+            minHeight: '100svh',
+            paddingTop: 'clamp(100px, 12vh, 140px)',
+            paddingBottom: 'clamp(40px, 6vh, 80px)',
+          }}>
             <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 clamp(1.75rem, 5vw, 5rem)' }}>
               <motion.div variants={stagger} initial="hidden" animate="show">
 
-                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
+                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
                   <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#6ee7b7', boxShadow: '0 0 10px rgba(110,231,183,0.9)', flexShrink: 0 }} />
-                  <span style={{ fontSize: 'clamp(0.6rem, 0.72vw, 0.68rem)', fontWeight: 600, color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', letterSpacing: '0.32em' }}>
+                  <span style={{ fontSize: 'clamp(0.6rem, 0.72vw, 0.68rem)', fontWeight: 600, color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', letterSpacing: 'clamp(0.12em, 1.5vw, 0.32em)', minWidth: 0, wordBreak: 'break-word' }}>
                     Data Lapangan · Ciheras, Tasikmalaya · Lentera Bumi Nusantara
                   </span>
                 </motion.div>

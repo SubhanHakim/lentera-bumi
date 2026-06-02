@@ -1,4 +1,4 @@
-﻿import { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
@@ -221,7 +221,7 @@ export default function CiherasUniversityPage() {
       <main>
 
         {/* ══ Hero ══ */}
-        <section style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}>
+        <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
           <div
             aria-hidden
             style={{
@@ -240,15 +240,17 @@ export default function CiherasUniversityPage() {
           }} />
 
           <div style={{
-            position: 'absolute', inset: 0, zIndex: 10,
+            position: 'relative', zIndex: 10,
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
-            paddingTop: 80,
+            minHeight: '100svh',
+            paddingTop: 'clamp(100px, 12vh, 140px)',
+            paddingBottom: 'clamp(40px, 6vh, 80px)',
           }}>
             <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 clamp(1.75rem, 5vw, 5rem)' }}>
               <motion.div variants={stagger} initial="hidden" animate="show">
 
                 {/* Eyebrow */}
-                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
+                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
                   <span style={{
                     width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
                     background: '#93c5fd', boxShadow: '0 0 8px rgba(147,197,253,0.85)',
@@ -257,7 +259,9 @@ export default function CiherasUniversityPage() {
                     fontFamily: 'var(--font-sans)', fontWeight: 500,
                     fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)',
                     color: 'rgba(255,255,255,0.5)',
-                    textTransform: 'uppercase', letterSpacing: '0.28em',
+                    textTransform: 'uppercase', letterSpacing: 'clamp(0.12em, 1.5vw, 0.28em)',
+                    minWidth: 0,
+                    wordBreak: 'break-word',
                   }}>
                     Divisi 03 · Pendidikan & Riset · Lentera Bumi Nusantara
                   </span>
@@ -553,6 +557,7 @@ function AlurBelajarSection() {
         {/* ── Header — two col ── */}
         <motion.div
           variants={stagger} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          className="alur-header-grid"
           style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(2rem, 4vw, 5rem)', alignItems: 'end', marginBottom: 'clamp(4rem, 6vw, 6rem)' }}
         >
           <div>
@@ -1166,6 +1171,7 @@ function UniActivitySection() {
 
         <motion.div
           variants={gridV} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          className="activity-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -1176,6 +1182,7 @@ function UniActivitySection() {
           {ACTIVITIES.map((act) => (
             <motion.div
               key={act.no} variants={fadeUp}
+              className="activity-card"
               style={{ gridColumn: act.featured ? '1 / 3' : undefined, borderRadius: 16, overflow: 'hidden' }}
             >
               <motion.div
@@ -1227,6 +1234,29 @@ function UniActivitySection() {
             </motion.div>
           ))}
         </motion.div>
+        <style>{`
+          @media (max-width: 860px) {
+            .alur-header-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+            }
+          }
+          @media (max-width: 900px) {
+            .activity-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              grid-template-rows: auto !important;
+            }
+            .activity-card {
+              grid-column: auto !important;
+              aspect-ratio: 4 / 3;
+            }
+          }
+          @media (max-width: 600px) {
+            .activity-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   )

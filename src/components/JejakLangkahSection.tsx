@@ -125,6 +125,7 @@ function MilestoneEntry({ milestone: m, index }: { milestone: Milestone; index: 
   return (
     <motion.div
       variants={entryV}
+      className="milestone-entry"
       style={{
         position: 'relative',
         display: 'grid',
@@ -134,7 +135,7 @@ function MilestoneEntry({ milestone: m, index }: { milestone: Milestone; index: 
       }}
     >
       {/* ── Year column ── */}
-      <div style={{ paddingTop: 2, textAlign: 'right', paddingRight: 0 }}>
+      <div className="milestone-year" style={{ paddingTop: 2, textAlign: 'right', paddingRight: 0 }}>
         <motion.span
           whileHover={{ color: '#0c6b96' }}
           transition={{ duration: 0.2 }}
@@ -154,7 +155,7 @@ function MilestoneEntry({ milestone: m, index }: { milestone: Milestone; index: 
       </div>
 
       {/* ── Node column ── */}
-      <div style={{
+      <div className="milestone-node" style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -187,6 +188,7 @@ function MilestoneEntry({ milestone: m, index }: { milestone: Milestone; index: 
         whileHover="hover"
         initial="rest"
         animate="rest"
+        className="milestone-card"
         style={{
           position: 'relative',
           background: '#ffffff',
@@ -424,6 +426,27 @@ export default function JejakLangkahSection() {
 
         </div>
 
+        <style>{`
+          @media (max-width: 600px) {
+            .milestone-entry {
+              grid-template-columns: 24px 1fr !important;
+              gap: 12px !important;
+            }
+            .milestone-year {
+              grid-column: 2;
+              text-align: left !important;
+              padding-bottom: 6px;
+            }
+            .milestone-node {
+              grid-column: 1;
+              grid-row: 1 / 3;
+              height: 100%;
+            }
+            .milestone-card {
+              grid-column: 2;
+            }
+          }
+        `}</style>
       </div>
     </section>
   )

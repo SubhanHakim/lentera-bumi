@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 
 /* ─────────────────────────────────────────────
@@ -315,7 +315,6 @@ export default function GaleriSection() {
             grid-template-rows: repeat(7, 240px) !important;
             grid-template-areas:
               "hero"
-              "foto_bersama"
               "instalasi"
               "vawt"
               "volley"

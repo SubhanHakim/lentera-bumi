@@ -404,6 +404,7 @@ export default function VisiMisiSection() {
               {/* 2 × 2 cards */}
               <motion.div
                 variants={containerV}
+                className="misi-grid"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
@@ -428,6 +429,11 @@ export default function VisiMisiSection() {
             gap: clamp(2.5rem, 6vw, 3.5rem) !important;
           }
           .vm-divider { display: none !important; }
+        }
+        @media (max-width: 600px) {
+          .misi-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </section>

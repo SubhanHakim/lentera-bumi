@@ -1,4 +1,4 @@
-﻿import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 import { ArrowRight, BookOpen, Quote, ExternalLink, Calendar, User } from 'lucide-react'
 import { FaInstagram, FaYoutube } from 'react-icons/fa'
@@ -116,7 +116,7 @@ export default function CeritaCiherasPage() {
       <main>
 
         {/* ══ HERO ══════════════════════════════════════════════ */}
-        <section style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}>
+        <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
           <div aria-hidden style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: `url(${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.webp)`,
@@ -132,15 +132,17 @@ export default function CeritaCiherasPage() {
           }} />
 
           <div style={{
-            position: 'absolute', inset: 0, zIndex: 10,
+            position: 'relative', zIndex: 10,
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
-            paddingTop: 80,
+            minHeight: '100svh',
+            paddingTop: 'clamp(100px, 12vh, 140px)',
+            paddingBottom: 'clamp(40px, 6vh, 80px)',
           }}>
             <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 clamp(1.75rem, 5vw, 5rem)' }}>
               <motion.div variants={stagger} initial="hidden" animate="show">
 
                 {/* Eyebrow */}
-                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
+                <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
                   <span style={{
                     width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
                     background: '#93c5fd', boxShadow: '0 0 8px rgba(147,197,253,0.85)',
@@ -149,7 +151,9 @@ export default function CeritaCiherasPage() {
                     fontFamily: 'var(--font-sans)', fontWeight: 500,
                     fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)',
                     color: 'rgba(255,255,255,0.5)',
-                    textTransform: 'uppercase', letterSpacing: '0.28em',
+                    textTransform: 'uppercase', letterSpacing: 'clamp(0.12em, 1.5vw, 0.28em)',
+                    minWidth: 0,
+                    wordBreak: 'break-word',
                   }}>
                     Cerita · Inspirasi · Komunitas · Lentera Bumi Nusantara
                   </span>

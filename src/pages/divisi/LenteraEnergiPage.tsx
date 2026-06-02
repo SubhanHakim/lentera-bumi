@@ -1,4 +1,4 @@
-﻿import { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import {
   motion, useInView, useMotionValue, useTransform, animate, type Variants,
 } from 'framer-motion'
@@ -117,7 +117,7 @@ export default function LenteraEnergiPage() {
         <section
           style={{
             position: 'relative',
-            height: '100svh',
+            minHeight: '100svh',
             overflow: 'hidden',
           }}
         >
@@ -143,9 +143,11 @@ export default function LenteraEnergiPage() {
 
           {/* Content — vertically centered like HeroSection */}
           <div style={{
-            position: 'absolute', inset: 0, zIndex: 10,
+            position: 'relative', zIndex: 10,
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
-            paddingTop: 80,
+            minHeight: '100svh',
+            paddingTop: 'clamp(100px, 12vh, 140px)',
+            paddingBottom: 'clamp(40px, 6vh, 80px)',
           }}>
             <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 clamp(1.75rem, 5vw, 5rem)' }}>
               <motion.div variants={stagger} initial="hidden" animate="show">
@@ -153,7 +155,7 @@ export default function LenteraEnergiPage() {
                 {/* Eyebrow — dot + text, persis seperti HeroSection */}
                 <motion.div
                   variants={fadeUp}
-                  style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}
                 >
                   <span style={{
                     width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
@@ -166,7 +168,9 @@ export default function LenteraEnergiPage() {
                     fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)',
                     color: 'rgba(255,255,255,0.5)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.28em',
+                    letterSpacing: 'clamp(0.12em, 1.5vw, 0.28em)',
+                    minWidth: 0,
+                    wordBreak: 'break-word',
                   }}>
                     Divisi 01 · Energi Terbarukan · Lentera Bumi Nusantara
                   </span>
@@ -873,6 +877,7 @@ function ActivitySection() {
           variants={gridV}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
+          className="activity-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -885,6 +890,7 @@ function ActivitySection() {
             <motion.div
               key={act.no}
               variants={fadeUp}
+              className="activity-card"
               style={{
                 gridColumn: act.featured ? '1 / 3' : undefined,
                 borderRadius: 16,
@@ -1016,6 +1022,23 @@ function ActivitySection() {
           ))}
         </motion.div>
 
+        <style>{`
+          @media (max-width: 900px) {
+            .activity-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              grid-template-rows: auto !important;
+            }
+            .activity-card {
+              grid-column: auto !important;
+              aspect-ratio: 4 / 3;
+            }
+          }
+          @media (max-width: 600px) {
+            .activity-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   )

@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react'
+import { useRef } from 'react'
 import {
   motion,
   useInView,
@@ -224,7 +224,7 @@ function ProyekHero() {
   return (
     <section
       ref={ref}
-      style={{ position: 'relative', height: '100svh', overflow: 'hidden' }}
+      style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}
     >
       {/* Background parallax */}
       <motion.div
@@ -244,17 +244,19 @@ function ProyekHero() {
 
       {/* Content — flex column centred, offset for navbar */}
       <div style={{
-        position: 'absolute', inset: 0, zIndex: 10,
+        position: 'relative', zIndex: 10,
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        paddingTop: 80,
+        minHeight: '100svh',
+        paddingTop: 'clamp(100px, 12vh, 140px)',
+        paddingBottom: 'clamp(40px, 6vh, 80px)',
       }}>
         <div style={{ maxWidth: 1400, width: '100%', margin: '0 auto', padding: '0 clamp(1.75rem, 5vw, 5rem)' }}>
           <motion.div variants={containerV} initial="hidden" animate={inView ? 'show' : 'hidden'}>
 
             {/* Eyebrow */}
-            <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
+            <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5ab0d6', boxShadow: '0 0 8px rgba(90,176,214,0.85)', flexShrink: 0 }} />
-              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 'clamp(0.12em, 1.5vw, 0.28em)', minWidth: 0, wordBreak: 'break-word' }}>
                 Lentera Bumi Nusantara · Portofolio Proyek
               </span>
             </motion.div>
@@ -388,7 +390,7 @@ function ClientsStripSection() {
           animate={inView ? 'show' : 'hidden'}
           style={{
             display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(180px, 22vw, 260px), 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(180px, 100%), 1fr))',
             gap:                 'clamp(0.6rem, 1vw, 1rem)',
           }}
         >
@@ -462,7 +464,7 @@ function FeaturedSection() {
           variants={containerV}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}
         >
           {FEATURED_PROJECTS.map((p) => (
             <FeaturedCard key={p.id} project={p} />
@@ -652,7 +654,7 @@ function PLNSection() {
           variants={containerV}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(1rem, 1.5vw, 1.5rem)' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: 'clamp(1rem, 1.5vw, 1.5rem)' }}
         >
           {PLN_TIMELINE.map((item, i) => (
             <motion.div
@@ -733,7 +735,7 @@ function OtherClientsSection() {
           variants={containerV}
           initial="hidden"
           animate={inView ? 'show' : 'hidden'}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 'clamp(1.25rem, 2vw, 2rem)' }}
         >
           {OTHER_CLIENTS.map((c) => (
             <OtherClientCard key={c.client} client={c} />

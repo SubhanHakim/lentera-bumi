@@ -29,41 +29,36 @@ const pillarV: Variants = {
 ───────────────────────────────────────────── */
 
 interface Nilai {
-  no:     string
-  prefix: string
-  root:   string
-  desc:   string
-  Icon:   IconType
+  no:    string
+  title: string
+  desc:  string
+  Icon:  IconType
 }
 
 const NILAI: Nilai[] = [
   {
-    no:     '01',
-    prefix: 'Ber',
-    root:   'sama',
-    Icon:   HiUserGroup,
-    desc:   'Permasalahan negeri ini tidak akan selesai bila dipikirkan sendirian. Perlu kerjasama dan kolaborasi dalam menghasilkan suatu karya.',
+    no:    '01',
+    title: 'Bersama',
+    Icon:  HiUserGroup,
+    desc:  'Permasalahan negeri ini tidak akan selesai bila dipikirkan sendirian. Perlu kerjasama dan kolaborasi dalam menghasilkan suatu karya.',
   },
   {
-    no:     '02',
-    prefix: 'Ber',
-    root:   'karya',
-    Icon:   HiLightBulb,
-    desc:   'Mengidentifikasi masalah dan menemukan solusinya. Menghasilkan suatu karya untuk menyelesaikan permasalahan sangat diperlukan.',
+    no:    '02',
+    title: 'Berkarya',
+    Icon:  HiLightBulb,
+    desc:  'Mengidentifikasi masalah dan menemukan solusinya. Menghasilkan suatu karya untuk menyelesaikan permasalahan sangat diperlukan.',
   },
   {
-    no:     '03',
-    prefix: 'Ber',
-    root:   'kembang',
-    Icon:   HiAcademicCap,
-    desc:   'Senantiasa memperbaiki diri agar terus dapat menghasilkan karya terbaik melalui perbaikan berkelanjutan.',
+    no:    '03',
+    title: 'Berkembang',
+    Icon:  HiAcademicCap,
+    desc:  'Senantiasa memperbaiki diri agar terus dapat menghasilkan karya terbaik melalui perbaikan berkelanjutan.',
   },
   {
-    no:     '04',
-    prefix: 'Ber',
-    root:   'manfaat',
-    Icon:   HiHeart,
-    desc:   'Suatu karya yang dilakukan bersama haruslah dapat memberi manfaat dan dapat diaplikasikan untuk menyelesaikan permasalahan.',
+    no:    '04',
+    title: 'Bermanfaat',
+    Icon:  HiHeart,
+    desc:  'Suatu karya yang dilakukan bersama haruslah dapat memberi manfaat dan dapat diaplikasikan untuk menyelesaikan permasalahan.',
   },
 ]
 
@@ -173,24 +168,9 @@ function PillarCard({ nilai: n }: { nilai: Nilai }) {
         </motion.div>
       </div>
 
-      {/* ── Signature typography: "Ber" + root ── */}
+      {/* ── Value Title — Bold and Unified in one line ── */}
       <div style={{ position: 'relative', marginBottom: 20 }}>
-        {/* "Ber" prefix — small, teal */}
-        <div style={{
-          fontFamily: 'var(--font-sans)',
-          fontWeight: 600,
-          fontSize: 'clamp(0.7rem, 0.9vw, 0.8rem)',
-          color: '#5ab0d6',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          lineHeight: 1,
-          marginBottom: 2,
-        }}>
-          {n.prefix}—
-        </div>
-
-        {/* Root word — large, white */}
-        <motion.div
+        <motion.h3
           variants={{
             rest:  { color: '#ffffff' },
             hover: { color: '#7ecde8' },
@@ -199,14 +179,14 @@ function PillarCard({ nilai: n }: { nilai: Nilai }) {
           style={{
             fontFamily: 'var(--font-sans)',
             fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
-            lineHeight: 1.0,
-            letterSpacing: '-0.04em',
-            textTransform: 'capitalize',
+            fontSize: 'clamp(1.6rem, 2.4vw, 2.1rem)',
+            lineHeight: 1.15,
+            letterSpacing: '-0.03em',
+            margin: 0,
           }}
         >
-          {n.root.charAt(0).toUpperCase() + n.root.slice(1)}
-        </motion.div>
+          {n.title}
+        </motion.h3>
       </div>
 
       {/* Thin divider */}
