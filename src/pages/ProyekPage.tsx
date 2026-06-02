@@ -9,7 +9,6 @@ import {
 import { LuChevronDown } from 'react-icons/lu'
 import Navbar from '../components/Navbar'
 import FooterCTA from '../components/FooterCTA'
-import { useSmoothScroll } from '../hooks/useSmoothScroll'
 
 /* ─────────────────────────────────────────────
    Constants & Variants
@@ -193,8 +192,6 @@ const OTHER_CLIENTS: OtherClient[] = [
 ───────────────────────────────────────────── */
 
 export default function ProyekPage() {
-  useSmoothScroll()
-
   return (
     <>
       <Navbar />
@@ -438,7 +435,7 @@ function FeaturedSection() {
   const inView = useInView(ref, { once: true, amount: 0.06 })
 
   return (
-    <section ref={ref} style={{ background: '#f8fafc', position: 'relative' }}>
+    <section ref={ref} style={{ background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
       {/* Top accent line — consistent with ProyekSection */}
       <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
 
@@ -714,7 +711,7 @@ function OtherClientsSection() {
   const inView = useInView(ref, { once: true, amount: 0.06 })
 
   return (
-    <section ref={ref} style={{ background: '#ffffff', position: 'relative', borderTop: '3px solid #5ab0d6' }}>
+    <section ref={ref} style={{ background: '#ffffff', position: 'relative', borderTop: '3px solid #5ab0d6', overflow: 'hidden' }}>
       {/* Decorative blob */}
       <div aria-hidden style={{ position: 'absolute', top: -80, right: -60, width: 420, height: 420, borderRadius: '50%', background: 'radial-gradient(circle, rgba(90,176,214,0.05) 0%, transparent 65%)', pointerEvents: 'none' }} />
 

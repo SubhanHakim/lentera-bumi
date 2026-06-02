@@ -7,11 +7,8 @@ import FounderSection from '../components/FounderSection'
 import SiteCiherasSection from '../components/SiteCiherasSection'
 import LokasiSection from '../components/LokasiSection'
 import FooterCTA from '../components/FooterCTA'
-import { useSmoothScroll } from '../hooks/useSmoothScroll'
 
 export default function AboutPage() {
-  useSmoothScroll()
-
   return (
     <>
       <Navbar />

@@ -22,20 +22,39 @@ import CeritaCiherasPage from './pages/CeritaCiherasPage'
 import { useSmoothScroll, lenisInstance } from './hooks/useSmoothScroll'
 import './App.css'
 
+if (typeof window !== 'undefined') {
+  window.history.scrollRestoration = 'manual'
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
+    // Scroll immediately
     if (lenisInstance) {
       lenisInstance.scrollTo(0, { immediate: true })
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+
+    // Schedule scroll resetting on subsequent frames to avoid browser layout shifts restoring scroll
+    const handleScroll = () => {
+      if (lenisInstance) {
+        lenisInstance.scrollTo(0, { immediate: true })
+      }
+      window.scrollTo(0, 0)
+    }
+
+    const rafId = requestAnimationFrame(handleScroll)
+    const timeoutId = setTimeout(handleScroll, 40)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      clearTimeout(timeoutId)
+    }
   }, [pathname])
   return null
 }
 
 function HomePage() {
-  useSmoothScroll()
-
   return (
     <>
       <Navbar />
@@ -57,6 +76,8 @@ function HomePage() {
 }
 
 export default function App() {
+  useSmoothScroll()
+
   return (
     <>
       <ScrollToTop />

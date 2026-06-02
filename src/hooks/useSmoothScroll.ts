@@ -9,6 +9,9 @@ export let lenisInstance: Lenis | null = null
  */
 export function useSmoothScroll() {
   useEffect(() => {
+    // Reset window scroll immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+
     const lenis = new Lenis({
       duration: 1.25,           // seconds per scroll — increase for lazier feel
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
@@ -17,6 +20,9 @@ export function useSmoothScroll() {
     })
 
     lenisInstance = lenis
+    
+    // Reset Lenis scroll immediately
+    lenis.scrollTo(0, { immediate: true })
 
     function raf(time: number) {
       lenis.raf(time)

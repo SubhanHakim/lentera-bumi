@@ -111,7 +111,7 @@ export default function Navbar() {
           style={{
             maxWidth: '1400px',
             height: `${NAVBAR_HEIGHT}px`,
-            padding: '0 clamp(1.5rem, 5vw, 5rem)',
+            padding: '0 clamp(1rem, 3.5vw, 5rem)',
           }}
         >
           {/* LEFT — Logo */}
@@ -252,7 +252,7 @@ function Logo({ navigate, currentPath }: { navigate: (p: string) => void; curren
         src={`${import.meta.env.BASE_URL}logo_lentera.webp`}
         alt="Lentera Bumi Nusantara"
         className="w-auto object-contain select-none"
-        style={{ height: 'clamp(52px, 6vw, 68px)' }}
+        style={{ height: 'clamp(44px, 5vw, 60px)' }}
         draggable={false}
       />
     </a>
