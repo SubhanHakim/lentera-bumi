@@ -113,7 +113,7 @@ const ALUR_PHASES = [
       { no: 7,  title: 'Progress',    desc: 'Belajar, bertanya, dan berdiskusi dengan siapa pun untuk siap naik level.' },
       { no: 8,  title: 'Presentasi',  desc: 'Rayakan capaianmu dan lakukan transfer knowledge ke rekan lain.' },
       { no: 9,  title: 'Final',       desc: 'Laksanakan presentasi akhir sebagai penutup perjalananmu.' },
-      { no: 10, title: 'Bagikan',     desc: 'Ceritakan pengalamanmu selama berada di Ciheras University!' },
+      { no: 10, title: 'Ceritakan',   desc: 'Ceritakan pengalamanmu selama berada di Ciheras University!' },
     ],
   },
 ]
@@ -125,14 +125,7 @@ const JALUR_BELAJAR = [
     subtitle: 'KP / Magang',
     duration: '1–3 Bulan',
     forLevel: 'D3 / S1',
-    tagline: 'Belajar dari pekerjaan nyata, bukan simulasi.',
     desc: 'Program KP memberi kesempatan bekerja langsung di workshop fabrikasi, site pemasangan turbin, dan tim riset Lentera Bumi Nusantara. Kamu terlibat dalam proyek aktif — bukan sekadar mengamati.',
-    includes: [
-      'Penempatan di tim teknis aktif',
-      'Akses penuh ke workshop & site lapangan',
-      'Surat referensi resmi dari LBN',
-      'Mentorship 1-on-1 dengan insinyur senior',
-    ],
     accent: '#0c6b96',
     accentBg: '#eff8fd',
   },
@@ -142,14 +135,7 @@ const JALUR_BELAJAR = [
     subtitle: 'Independent Study',
     duration: 'Fleksibel',
     forLevel: 'Semua Jenjang',
-    tagline: 'Datang dengan pertanyaan. Pulang dengan jawaban.',
     desc: 'Cocok untuk peneliti atau mahasiswa yang ingin mengeksplorasi topik spesifik secara mendalam dengan jadwal yang disesuaikan kebutuhan dan bimbingan langsung dari tim Ciheras.',
-    includes: [
-      'Akses penuh data & instrumen riset',
-      'Jadwal fleksibel & self-directed',
-      'Dokumentasi teknis internal LBN',
-      'Sharing session rutin dengan tim riset',
-    ],
     accent: '#0e8a6e',
     accentBg: '#f0fdf4',
   },
@@ -159,14 +145,7 @@ const JALUR_BELAJAR = [
     subtitle: 'TA / Skripsi / Tesis',
     duration: '3–6 Bulan',
     forLevel: 'S1 / S2 / S3',
-    tagline: 'Riset bermakna, di tempat yang benar-benar nyata.',
     desc: 'Topik penelitianmu berdampak langsung pada pengembangan teknologi energi terbarukan Indonesia. Infrastruktur riset lengkap, opsi co-supervisor dari LBN, dan data lapangan sungguhan.',
-    includes: [
-      'Infrastruktur riset & alat ukur lengkap',
-      'Opsi co-supervisor dari praktisi LBN',
-      'Data lapangan turbin real-time',
-      'Hasil riset berpotensi dipublikasikan',
-    ],
     accent: '#7c3aed',
     accentBg: '#f5f3ff',
   },
@@ -295,23 +274,9 @@ export default function CiherasUniversityPage() {
                   style={{
                     height: 2, width: 'clamp(40px, 4vw, 60px)',
                     background: 'linear-gradient(to right, #93c5fd, transparent)',
-                    transformOrigin: 'left', marginBottom: 28,
+                    transformOrigin: 'left', marginBottom: 40,
                   }}
                 />
-
-                {/* Description */}
-                <motion.p variants={fadeUp} style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                  lineHeight: 1.8, color: 'rgba(255,255,255,0.62)',
-                  maxWidth: 560, margin: '0 0 40px 0',
-                }}>
-                  Platform pembelajaran terbuka untuk mencetak generasi inovator energi
-                  masa depan — langsung dari lapangan, berbasis pengalaman nyata di{' '}
-                  <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>
-                    ekosistem Lentera Bumi Nusantara
-                  </span>.
-                </motion.p>
 
                 {/* CTAs */}
                 <motion.div variants={fadeUp} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -355,6 +320,9 @@ export default function CiherasUniversityPage() {
             </div>
           </div>
         </section>
+
+        {/* ══ Deskripsi Divisi ══ */}
+        <CiherasDeskripsiSection />
 
         {/* ══ Stats ══ */}
         <section ref={statsRef} className="relative bg-white overflow-hidden" style={{ borderTop: '3px solid #2563eb' }}>
@@ -487,6 +455,145 @@ interface StatItem {
   suffix?: string
   label: string
   sublabel: string
+}
+
+function CiherasDeskripsiSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.15 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
+  }
+
+  const PILAR = ['Belajar', 'Berkolaborasi', 'Berdampak']
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: '#ffffff',
+        overflow: 'hidden',
+        borderTop: '3px solid #2563eb',
+      }}
+    >
+      {/* Dot-grid */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+        backgroundSize: '28px 28px', opacity: 0.3,
+      }} />
+      {/* Blue glow */}
+      <div aria-hidden style={{
+        position: 'absolute', top: -80, right: -80, pointerEvents: 'none',
+        width: 460, height: 460, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)',
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+        gap: 'clamp(3rem, 6vw, 6rem)',
+        alignItems: 'center',
+      }}>
+
+        {/* Left — label + heading */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: '#2563eb', boxShadow: '0 0 8px rgba(37,99,235,0.8)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: '#2563eb', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Divisi 03
+            </span>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(1.85rem, 3.5vw, 2.9rem)',
+              lineHeight: 1.1, letterSpacing: '-0.03em',
+              color: '#0a2540', margin: '0 0 20px 0',
+            }}
+          >
+            Ciheras <br />
+            <span style={{ color: '#2563eb' }}>University</span>
+          </motion.h2>
+
+          <motion.div
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
+            style={{
+              height: 3, width: 48,
+              background: 'linear-gradient(to right, #2563eb, rgba(37,99,235,0.2))',
+              borderRadius: 2, transformOrigin: 'left', marginBottom: 28,
+            }}
+          />
+
+          {/* Pilar tags */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {PILAR.map((p, i) => (
+              <span key={i} style={{
+                fontFamily: 'var(--font-sans)', fontWeight: 600,
+                fontSize: 'clamp(0.72rem, 0.85vw, 0.8rem)',
+                color: '#2563eb', background: '#eff6ff',
+                border: '1px solid rgba(37,99,235,0.18)',
+                borderRadius: 999, padding: '0.4rem 1rem', letterSpacing: '0.02em',
+              }}>
+                {p}
+              </span>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Right — description */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.92rem, 1.1vw, 1.05rem)',
+              lineHeight: 1.85, color: '#475569', margin: 0,
+            }}
+          >
+            Ruang belajar terbuka dari Lentera Bumi Nusantara yang menyatukan ilmu,
+            pengalaman lapangan, dan kehidupan komunitas. Di sini, mahasiswa belajar
+            langsung di site turbin dan memahami realitas masyarakat secara nyata.
+          </motion.p>
+
+          <motion.div
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.4, ease: EASE } } }}
+            style={{ height: 1, background: 'linear-gradient(to right, #e2e8f0, transparent)', transformOrigin: 'left' }}
+          />
+
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.92rem, 1.1vw, 1.05rem)',
+              lineHeight: 1.85, fontWeight: 500,
+              color: '#0a2540', margin: 0,
+            }}
+          >
+            Belajar, berkolaborasi, dan{' '}
+            <span style={{ color: '#2563eb' }}>berdampak</span>.
+          </motion.p>
+        </motion.div>
+
+      </div>
+    </section>
+  )
 }
 
 function UniStatCard({ stat: s, inView }: { stat: StatItem; inView: boolean }) {
@@ -804,9 +911,7 @@ interface JalurData {
   subtitle: string
   duration: string
   forLevel: string
-  tagline:  string
   desc:     string
-  includes: string[]
   accent:   string
   accentBg: string
 }
@@ -898,20 +1003,6 @@ function JalurCard({ jalur, inView, delay }: { jalur: JalurData; inView: boolean
           </p>
         </div>
 
-        {/* Tagline */}
-        <p style={{
-          fontFamily:  'var(--font-sans)', fontStyle: 'italic',
-          fontSize:    'clamp(0.88rem, 1.05vw, 0.96rem)',
-          lineHeight:  1.55, color: '#475569', margin: 0,
-          borderLeft:  `3px solid ${jalur.accent}`,
-          paddingLeft: 14,
-        }}>
-          {jalur.tagline}
-        </p>
-
-        {/* Divider */}
-        <div style={{ height: 1, background: `linear-gradient(to right, ${jalur.accent}30, transparent)` }} />
-
         {/* Description */}
         <p style={{
           fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.8rem, 0.92vw, 0.875rem)',
@@ -919,40 +1010,6 @@ function JalurCard({ jalur, inView, delay }: { jalur: JalurData; inView: boolean
         }}>
           {jalur.desc}
         </p>
-
-        {/* Includes */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1, justifyContent: 'flex-end' }}>
-          <p style={{
-            fontFamily:    'var(--font-sans)', fontWeight: 600,
-            fontSize:      'clamp(0.66rem, 0.8vw, 0.72rem)',
-            color:         '#0a2540', textTransform: 'uppercase',
-            letterSpacing: '0.14em', margin: 0,
-          }}>
-            Yang didapat
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {jalur.includes.map((item) => (
-              <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                {/* Check dot */}
-                <div style={{
-                  width: 18, height: 18, borderRadius: '50%',
-                  background: jalur.accentBg,
-                  border: `1.5px solid ${jalur.accent}50`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0, marginTop: 1,
-                }}>
-                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: jalur.accent }} />
-                </div>
-                <span style={{
-                  fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.78rem, 0.9vw, 0.84rem)',
-                  lineHeight: 1.5, color: '#475569',
-                }}>
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
 
       </div>
     </motion.div>

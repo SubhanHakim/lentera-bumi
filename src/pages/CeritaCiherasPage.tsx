@@ -119,7 +119,7 @@ export default function CeritaCiherasPage() {
         <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
           <div aria-hidden style={{
             position: 'absolute', inset: 0, zIndex: 0,
-            backgroundImage: `url(${import.meta.env.BASE_URL}kegiatan/kegiatan_vawt_tower.webp)`,
+            backgroundImage: `url(${import.meta.env.BASE_URL}ciheras_bg.webp)`,
             backgroundSize: 'cover', backgroundPosition: 'center 30%',
           }} />
           <div aria-hidden style={{

@@ -33,7 +33,7 @@ const DIVISI: Divisi[] = [
     id: '01',
     category: 'Energi Terbarukan',
     title: 'Lentera Energi Nusantara',
-    desc: 'Riset dan pengembangan teknologi pembangkit listrik tenaga angin skala mikro — bilah, generator, controller, hingga data logger — untuk kemandirian energi Indonesia.',
+    desc: 'Divisi yang bergerak di bidang penguasaan, penerapan, dan pengembangan teknologi pemanfaatan energi baru terbarukan untuk aplikasi di daerah tertinggal. Fokus: Riset, Pendidikan, dan Pengembangan Teknologi.',
     image: `${import.meta.env.BASE_URL}divisi_energi.webp`,
     imagePlaceholder: 'linear-gradient(160deg, #041c2e 0%, #0a4f75 55%, #0c6b96 100%)',
     featured: true,

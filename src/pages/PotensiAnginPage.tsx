@@ -681,7 +681,7 @@ export default function PotensiAnginPage() {
 
         {/* ══ Hero ══ */}
         <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
-          <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url(${import.meta.env.BASE_URL}divisi_energi.webp)`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundImage: `url(${import.meta.env.BASE_URL}ciheras_bg.webp)`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, rgba(3,8,20,0.97) 0%, rgba(4,10,26,0.86) 26%, rgba(5,14,32,0.52) 52%, rgba(6,18,38,0.2) 72%, transparent 88%)' }} />
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(3,8,20,0.74) 0%, rgba(3,8,20,0.38) 40%, transparent 66%)' }} />
           <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'radial-gradient(ellipse 55% 45% at 10% 70%, rgba(5,150,105,0.1), transparent)' }} />

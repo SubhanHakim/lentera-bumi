@@ -180,45 +180,6 @@ export default function AboutStatementSection() {
             }}
           />
 
-          {/* ── Description (Left-aligned, highly readable line-length, NO BUTTONS) ── */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 20,
-              maxWidth: 580, // perfect reading width identical to Division headers
-              width: '100%',
-            }}
-          >
-            {/* Paragraph 1 */}
-            <motion.p
-              variants={fadeUp}
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                lineHeight: 1.8,
-                color: 'rgba(255,255,255,0.62)',
-                margin: 0,
-              }}
-            >
-              Berpusat pada bidang riset dan pengembangan teknologi inti dari pembangkit listrik tenaga bayu skala mikro, antara lain bilah, generator, controller, dan data logger serta pengembangan teknologi pertanian dan peternakan untuk meningkatkan nilainya dan memberdayakan masyarakat sekitar.
-            </motion.p>
-
-            {/* Paragraph 2 */}
-            <motion.p
-              variants={fadeUp}
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                lineHeight: 1.8,
-                fontWeight: 500,
-                color: 'rgba(255,255,255,0.85)',
-                margin: 0,
-              }}
-            >
-              Manifestasi dari aktifitas tersebut hadir dalam bentuk karya dan juga kolaborasi bersama para stakeholder yang mempunyai misi serupa dalam mengembangkan Energi Baru Terbarukan di Indonesia.
-            </motion.p>
-          </div>
 
         </motion.div>
       </div>

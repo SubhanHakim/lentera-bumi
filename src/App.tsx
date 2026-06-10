@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import TentangSection from './components/TentangSection'
-import StatsSection from './components/StatsSection'
 import TopikKuasaiSection from './components/TopikKuasaiSection'
 import DivisiSection from './components/DivisiSection'
 import SkyDancerSection from './components/SkyDancerSection'
@@ -61,7 +60,6 @@ function HomePage() {
       <main>
         <HeroSection />
         <TentangSection />
-        <StatsSection />
         <TopikKuasaiSection />
         <DivisiSection />
         <SkyDancerSection />

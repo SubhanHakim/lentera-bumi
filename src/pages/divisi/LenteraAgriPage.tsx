@@ -1,9 +1,11 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import {
-  motion, useInView, useMotionValue, useTransform, animate, type Variants,
+  motion, useInView, type Variants,
 } from 'framer-motion'
 import {
-  SproutIcon, DropletsIcon, UsersIcon, TrendingUpIcon, ArrowRight,
+  TrendingUpIcon, ArrowRight,
+  ShieldCheckIcon, ScaleIcon, MapPinIcon, SmartphoneIcon,
+  HeartHandshakeIcon, BadgeCheckIcon,
 } from 'lucide-react'
 import Navbar from '../../components/Navbar'
 import FooterCTA from '../../components/FooterCTA'
@@ -22,35 +24,6 @@ const stagger: Variants = {
 
 /* ─── Data ─── */
 
-const STATS = [
-  {
-    index: '01', value: '65', numericTarget: 65, suffix: '',
-    label: 'Mitra Peternak',
-    sublabel: 'Peternak lokal yang aktif bermitra dan mendapatkan pendampingan langsung dari tim Lentera Agri.',
-  },
-  {
-    index: '02', value: '805+', numericTarget: 805, suffix: '+',
-    label: 'Domba / Kambing',
-    sublabel: 'Total hewan ternak domba dan kambing yang dikelola bersama jaringan mitra peternak kami.',
-  },
-  {
-    index: '03', value: '23+', numericTarget: 23, suffix: '+',
-    label: 'Sapi',
-    sublabel: 'Sapi yang dibudidayakan dan dipantau sebagai bagian dari program peternakan terpadu.',
-  },
-  {
-    index: '04', value: '21.100+', numericTarget: 21100, suffix: '+',
-    label: 'KK Penerima Kurban',
-    sublabel: 'Kepala keluarga yang telah merasakan manfaat langsung dari program sosial kurban Lentera Agri.',
-  },
-]
-
-const CORE_TECH = [
-  { icon: SproutIcon,    label: 'Pertanian Presisi' },
-  { icon: DropletsIcon,  label: 'Irigasi Cerdas' },
-  { icon: TrendingUpIcon,label: 'Peternakan' },
-  { icon: UsersIcon,     label: 'Pemberdayaan Petani' },
-]
 
 const HIGHLIGHT_PROJECTS = [
   {
@@ -121,12 +94,8 @@ const ACTIVITIES = [
 /* ─── Page ─── */
 
 export default function LenteraAgriPage() {
-  const tekRef      = useRef<HTMLDivElement>(null)
-  const statsRef    = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
 
-  const tekInView      = useInView(tekRef,      { once: true, amount: 0.15 })
-  const statsInView    = useInView(statsRef,    { once: true, amount: 0.2 })
   const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 })
 
   return (
@@ -209,25 +178,12 @@ export default function LenteraAgriPage() {
                   style={{
                     height: 2, width: 'clamp(40px, 4vw, 60px)',
                     background: 'linear-gradient(to right, #4ade80, transparent)',
-                    transformOrigin: 'left', marginBottom: 28,
+                    transformOrigin: 'left', marginBottom: 40,
                   }}
                 />
 
-                {/* Description */}
-                <motion.p variants={fadeUp} style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                  lineHeight: 1.8, color: 'rgba(255,255,255,0.62)',
-                  maxWidth: 560, margin: '0 0 40px 0',
-                }}>
-                  Inovasi teknologi pertanian dan peternakan untuk meningkatkan produktivitas
-                  serta memberdayakan masyarakat sekitar menuju{' '}
-                  <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>ketahanan pangan berkelanjutan</span>{' '}
-                  di seluruh Nusantara.
-                </motion.p>
-
                 {/* CTAs */}
-                <motion.div variants={fadeUp} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <motion.div variants={fadeUp} style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
                   <motion.a
                     href="#teknologi"
                     onClick={(e) => { e.preventDefault(); document.getElementById('teknologi')?.scrollIntoView({ behavior: 'smooth' }) }}
@@ -242,7 +198,7 @@ export default function LenteraAgriPage() {
                       letterSpacing: '0.02em', textDecoration: 'none',
                     }}
                   >
-                    Lihat Teknologi <ArrowRight size={15} />
+                    Lihat Produk <ArrowRight size={15} />
                   </motion.a>
                   <motion.a
                     href="#hubungi-kami"
@@ -264,130 +220,71 @@ export default function LenteraAgriPage() {
                   </motion.a>
                 </motion.div>
 
+                {/* Mini stats */}
+                <motion.div
+                  variants={fadeUp}
+                  style={{
+                    display: 'flex', flexWrap: 'wrap', gap: 'clamp(1rem, 3vw, 2.5rem)',
+                    paddingTop: 8,
+                  }}
+                >
+                  {[
+                    { value: '65', label: 'Mitra Peternak' },
+                    { value: '805+', label: 'Domba & Kambing' },
+                    { value: '23+', label: 'Sapi' },
+                    { value: '21.100+', label: 'KK Penerima Kurban' },
+                  ].map((s, i) => (
+                    <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <span style={{
+                        fontFamily: 'var(--font-sans)', fontWeight: 700,
+                        fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)',
+                        color: '#4ade80', letterSpacing: '-0.02em', lineHeight: 1.1,
+                      }}>
+                        {s.value}
+                      </span>
+                      <span style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: 'clamp(0.65rem, 0.8vw, 0.72rem)',
+                        color: 'rgba(255,255,255,0.45)',
+                        letterSpacing: '0.04em',
+                      }}>
+                        {s.label}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
+
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* ══ Stats ══ */}
-        <section ref={statsRef} className="relative bg-white overflow-hidden" style={{ borderTop: '3px solid #16a34a' }}>
-          <div className="relative z-10 mx-auto" style={{ maxWidth: 1400, padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
-
-            <motion.div
-              variants={stagger} initial="hidden" animate={statsInView ? 'show' : 'hidden'}
-              className="mb-14 lg:mb-18 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6"
-            >
-              <div>
-                <motion.p variants={fadeUp} className="font-semibold uppercase tracking-[0.28em] mb-3"
-                  style={{ fontSize: 'clamp(0.6rem, 0.85vw, 0.7rem)', color: '#16a34a' }}>
-                  Dalam Angka
-                </motion.p>
-                <motion.h2 variants={fadeUp} className="font-bold leading-[1.1] m-0"
-                  style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3.25rem)', letterSpacing: '-0.03em', color: '#0a2540' }}>
-                  Bukan sekadar rencana —<br />
-                  <span style={{ color: '#16a34a' }}>ini jejaknya.</span>
-                </motion.h2>
-              </div>
-              <motion.p variants={fadeUp} className="text-slate-500 leading-[1.75] lg:max-w-[380px]"
-                style={{ fontSize: 'clamp(0.82rem, 1.05vw, 0.9rem)' }}>
-                Setiap angka adalah hasil kerja nyata — dari lahan pertanian, kandang ternak,
-                hingga program pelatihan bersama komunitas petani lokal.
-              </motion.p>
-            </motion.div>
-
-            <motion.div
-              variants={stagger} initial="hidden" animate={statsInView ? 'show' : 'hidden'}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-100"
-            >
-              {STATS.map((s) => (
-                <AgriStatCard key={s.index} stat={s} inView={statsInView} />
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ══ Teknologi Inti ══ */}
-        <section id="teknologi" ref={tekRef} className="relative overflow-hidden" style={{ background: '#ffffff' }}>
-          <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
+        {/* ══ Deskripsi Divisi ══ */}
+        <section style={{
+          position: 'relative', background: '#ffffff', overflow: 'hidden',
+          borderTop: '3px solid #16a34a',
+        }}>
+          {/* Dot-grid */}
+          <div aria-hidden style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
             backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
-            backgroundSize: '28px 28px', opacity: 0.35,
+            backgroundSize: '28px 28px', opacity: 0.3,
           }} />
-          <div aria-hidden className="absolute -top-32 -right-32 pointer-events-none rounded-full" style={{
-            width: 520, height: 520,
+          {/* Green glow */}
+          <div aria-hidden style={{
+            position: 'absolute', top: -80, right: -80, pointerEvents: 'none',
+            width: 460, height: 460, borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%)',
           }} />
 
-          <div
-            className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center"
-            style={{ maxWidth: 1400, margin: '0 auto', padding: 'clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem)' }}
-          >
-            {/* Left */}
-            <motion.div variants={stagger} initial="hidden" animate={tekInView ? 'show' : 'hidden'}>
-              <motion.div variants={fadeUp} className="mb-5">
-                <span style={{
-                  fontFamily: 'var(--font-sans)', fontWeight: 600,
-                  fontSize: 'clamp(0.62rem, 0.85vw, 0.7rem)', color: '#16a34a',
-                  textTransform: 'uppercase', letterSpacing: '0.28em',
-                }}>
-                  Divisi Pertanian & Peternakan
-                </span>
-              </motion.div>
-
-              <motion.h2 variants={fadeUp} className="font-bold leading-[1.15] m-0"
-                style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', letterSpacing: '-0.03em', color: '#0a2540' }}>
-                Menguasai, Menerapkan
-                <br />dan Mengembangkan Agri
-              </motion.h2>
-
-              {/* Accent bar */}
-              <motion.div
-                variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
-                style={{
-                  height: 3, width: 44,
-                  background: 'linear-gradient(to right, #4ade80, rgba(74,222,128,0.2))',
-                  borderRadius: 2, transformOrigin: 'left',
-                  marginTop: 20, marginBottom: 24,
-                }}
-              />
-
-              <motion.p variants={fadeUp} className="text-slate-500 leading-[1.8]"
-                style={{ fontSize: 'clamp(0.85rem, 1.05vw, 0.95rem)', maxWidth: 440 }}>
-                Kami mengembangkan solusi pertanian dan peternakan berbasis teknologi —
-                dari sensor presisi, irigasi cerdas, hingga pemberdayaan petani lokal
-                untuk produktivitas pangan yang lebih tinggi.
-              </motion.p>
-            </motion.div>
-
-            {/* Right — 2×2 icon grid */}
-            <motion.div
-              variants={stagger} initial="hidden" animate={tekInView ? 'show' : 'hidden'}
-              className="grid grid-cols-2 gap-6"
-            >
-              {CORE_TECH.map((tech, i) => (
-                <motion.div
-                  key={i} variants={fadeUp}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ duration: 0.28, ease: EASE }}
-                  className="flex flex-col items-center gap-3"
-                >
-                  <div className="relative flex items-center justify-center rounded-full" style={{
-                    width: 'clamp(72px, 8vw, 88px)', height: 'clamp(72px, 8vw, 88px)',
-                    background: 'linear-gradient(148deg, #0a2218 0%, #0f5c35 60%, #16a34a 100%)',
-                    boxShadow: '0 6px 24px rgba(15,92,53,0.28), 0 2px 6px rgba(0,0,0,0.12)',
-                  }}>
-                    <div aria-hidden className="absolute inset-0 rounded-full" style={{ border: '1px solid rgba(74,222,128,0.25)' }} />
-                    <tech.icon size={28} color="#bbf7d0" strokeWidth={1.6} className="relative z-10" />
-                  </div>
-                  <span className="font-semibold text-center" style={{
-                    fontSize: 'clamp(0.82rem, 1vw, 0.9rem)', color: '#1e3a2e', letterSpacing: '0.02em',
-                  }}>
-                    {tech.label}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+          <AgriDeskripsiContent />
         </section>
+
+        {/* ══ Ekosistem Kami ══ */}
+        <AgriEkosistemSection />
+
+        {/* ══ Layanan Lentera Farm ══ */}
+        <LayananLenteraFarmSection />
 
         {/* ══ Highlight Project ══ */}
         <section ref={projectsRef} style={{ background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
@@ -481,6 +378,9 @@ export default function LenteraAgriPage() {
           </div>
         </section>
 
+        {/* ══ Platform Belanja ══ */}
+        <PlatformBelanjaSection />
+
         {/* ══ Aktivitas Tim ══ */}
         <AgriActivitySection />
 
@@ -494,61 +394,774 @@ export default function LenteraAgriPage() {
    AgriStatCard + CountUp
 ───────────────────────────────────────────── */
 
-interface StatItem {
-  index: string
-  value: string
-  numericTarget?: number
-  suffix?: string
-  label: string
-  sublabel: string
-}
 
-function AgriStatCard({ stat: s, inView }: { stat: StatItem; inView: boolean }) {
+/* ─────────────────────────────────────────────
+   Layanan Lentera Farm Section
+───────────────────────────────────────────── */
+
+const QURBAN_FEATURES = [
+  {
+    icon: ShieldCheckIcon,
+    title: 'Hewan Qurban Sehat & Terpantau',
+    desc: 'Kami memastikan setiap hewan qurban cukup usia, sehat, dan dipantau secara berkala untuk menjaga kualitas serta berat badan yang optimal sehingga manfaatnya dapat dirasakan lebih luas.',
+  },
+  {
+    icon: ScaleIcon,
+    title: 'Sumber Transparan & Harga yang Adil',
+    desc: 'Hewan qurban berasal dari peternak Lentera Farm dan mitra lokal yang dibina secara langsung. Sistem harga berbasis timbang hidup diterapkan agar peternak dan konsumen sama-sama memperoleh nilai yang adil.',
+  },
+  {
+    icon: MapPinIcon,
+    title: 'Penyaluran Tepat Sasaran',
+    desc: 'Daging qurban disalurkan ke desa-desa pelosok Tasikmalaya Selatan melalui pendataan bersama tokoh lokal terpercaya, agar manfaat qurban dapat diterima masyarakat yang benar-benar membutuhkan.',
+  },
+  {
+    icon: SmartphoneIcon,
+    title: 'Pemesanan Mudah & Tetap Sesuai Syariat',
+    desc: 'Seluruh proses pemesanan dapat dilakukan secara online dengan mudah, mulai dari memilih hewan hingga pembayaran. Proses penyembelihan dan distribusi berjalan sesuai syariat serta terdokumentasi dengan baik.',
+  },
+]
+
+const AQIQAH_FEATURES = [
+  {
+    icon: BadgeCheckIcon,
+    title: 'Hewan Aqiqah Sehat & Sesuai Syariat',
+    desc: 'Kami memastikan setiap hewan aqiqah cukup usia, sehat, dan berkualitas sehingga memenuhi syarat sekaligus memberikan manfaat terbaik bagi penerima.',
+  },
+  {
+    icon: HeartHandshakeIcon,
+    title: 'Dari Masyarakat untuk Masyarakat',
+    desc: 'Hewan aqiqah dibeli dari peternak lokal, dimasak oleh warga sekitar, lalu dibagikan kembali kepada masyarakat kampung agar manfaat ekonomi dan sosialnya dapat dirasakan bersama.',
+  },
+  {
+    icon: TrendingUpIcon,
+    title: 'Mendukung Kesejahteraan Peternak',
+    desc: 'Setiap pembelian hewan aqiqah turut membantu peternak lokal memperoleh pendapatan yang lebih stabil tanpa harus menunggu musim qurban.',
+  },
+  {
+    icon: SmartphoneIcon,
+    title: 'Pemesanan Praktis & Transparan',
+    desc: 'Seluruh proses aqiqah dapat dilakukan secara online dengan mudah, mulai dari pemilihan paket hingga pembayaran, lengkap dengan dokumentasi penyembelihan dan distribusi makanan.',
+  },
+]
+
+function ProgramBlock({
+  title, features, image,
+}: {
+  title: string
+  features: { icon: React.ElementType; title: string; desc: string }[]
+  image: string
+}) {
+  const cardV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  }
+
   return (
-    <motion.div
-      variants={fadeUp}
-      className="group relative flex flex-col gap-5 cursor-default bg-white hover:bg-[#f0fdf4] transition-colors duration-300"
-      style={{ padding: 'clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem)' }}
-    >
-      <div className="absolute left-0 top-0 bottom-0 w-[3px] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"
-        style={{ background: '#4ade80', transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }} />
-      <span className="font-semibold" style={{ fontSize: 'clamp(0.7rem, 0.9vw, 0.8rem)', color: '#16a34a', letterSpacing: '0.18em' }}>
-        {s.index}
-      </span>
-      <div className="font-bold text-[#0a2540] leading-none" style={{ fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', letterSpacing: '-0.04em' }}>
-        {s.numericTarget !== undefined
-          ? <AgriCountUp target={s.numericTarget} suffix={s.suffix ?? ''} inView={inView} />
-          : s.value
-        }
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
+      {/* Program header with photo */}
       <motion.div
-        variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.55, ease: EASE } } }}
-        className="origin-left h-px w-full"
-        style={{ background: 'linear-gradient(to right, #4ade80 0%, #e2e8f0 60%)' }}
-      />
-      <div>
-        <p className="font-semibold text-[#0a2540] mb-2" style={{ fontSize: 'clamp(0.85rem, 1.1vw, 1rem)', letterSpacing: '-0.01em' }}>{s.label}</p>
-        <p className="text-slate-400 leading-[1.7]" style={{ fontSize: 'clamp(0.75rem, 0.9vw, 0.825rem)' }}>{s.sublabel}</p>
-      </div>
-    </motion.div>
+        variants={fadeUp}
+        style={{
+          position: 'relative',
+          borderRadius: 16,
+          overflow: 'hidden',
+          height: 'clamp(140px, 18vw, 220px)',
+        }}
+      >
+        <img
+          src={image}
+          alt={title}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, rgba(3,18,8,0.88) 0%, rgba(3,18,8,0.55) 55%, rgba(3,18,8,0.2) 100%)',
+        }} />
+        <div style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+          gap: 8,
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 600,
+            fontSize: 'clamp(0.6rem, 0.72vw, 0.68rem)',
+            color: '#4ade80', textTransform: 'uppercase', letterSpacing: '0.26em',
+          }}>
+            Lentera Farm
+          </span>
+          <h3 style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 700,
+            fontSize: 'clamp(1.35rem, 2.5vw, 2rem)',
+            lineHeight: 1.12, letterSpacing: '-0.025em',
+            color: '#ffffff', margin: 0,
+          }}>
+            {title}
+          </h3>
+          <div style={{
+            height: 2, width: 36,
+            background: 'linear-gradient(to right, #4ade80, transparent)',
+            borderRadius: 2,
+          }} />
+        </div>
+      </motion.div>
+
+      {/* Feature cards 2×2 */}
+      <motion.div
+        variants={cardV}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+          gap: 'clamp(0.875rem, 1.5vw, 1.25rem)',
+        }}
+      >
+        {features.map((f, i) => (
+          <motion.div
+            key={i}
+            variants={fadeUp}
+            style={{
+              background: '#ffffff',
+              border: '1px solid #e2e8f0',
+              borderRadius: 14,
+              padding: 'clamp(1.25rem, 2vw, 1.75rem)',
+              display: 'flex', flexDirection: 'column', gap: 14,
+              transition: 'border-color 0.2s, box-shadow 0.2s',
+            }}
+            whileHover={{
+              y: -3,
+              boxShadow: '0 8px 28px rgba(22,163,74,0.1)',
+            }}
+            transition={{ duration: 0.25, ease: EASE }}
+          >
+            {/* Icon */}
+            <div style={{
+              width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+              background: '#f0fdf4',
+              border: '1px solid rgba(22,163,74,0.18)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <f.icon size={18} color="#16a34a" strokeWidth={1.8} />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <h4 style={{
+                fontFamily: 'var(--font-sans)', fontWeight: 700,
+                fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
+                lineHeight: 1.3, letterSpacing: '-0.01em',
+                color: '#0a2540', margin: 0,
+              }}>
+                {f.title}
+              </h4>
+              <p style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(0.78rem, 0.9vw, 0.84rem)',
+                lineHeight: 1.72, color: '#64748b', margin: 0,
+              }}>
+                {f.desc}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   )
 }
 
-function AgriCountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
-  const count   = useMotionValue(0)
-  const display = useTransform(count, (v) => Math.round(v).toLocaleString('id-ID'))
-  useEffect(() => {
-    if (!inView) return
-    count.set(0)
-    const ctrl = animate(count, target, { duration: 2.0, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] })
-    return ctrl.stop
-  }, [inView, count, target])
-  return <span><motion.span>{display}</motion.span>{suffix}</span>
+function LayananLenteraFarmSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.08 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+  }
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: '#f8fafc',
+        overflow: 'hidden',
+        borderTop: '3px solid #16a34a',
+      }}
+    >
+      {/* Dot-grid */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+        backgroundSize: '28px 28px', opacity: 0.3,
+      }} />
+      {/* Green glow top-right */}
+      <div aria-hidden style={{
+        position: 'absolute', top: -100, right: -100, pointerEvents: 'none',
+        width: 500, height: 500, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%)',
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+      }}>
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          {/* Section header */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: '#16a34a', boxShadow: '0 0 8px rgba(22,163,74,0.8)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: '#16a34a', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Layanan Lentera Farm
+            </span>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(1.9rem, 3.5vw, 3rem)',
+              lineHeight: 1.1, letterSpacing: '-0.03em',
+              color: '#0a2540', margin: '0 0 16px 0',
+            }}
+          >
+            Dari kandang hingga <span style={{ color: '#16a34a' }}>meja makan</span>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
+              lineHeight: 1.8, color: '#475569',
+              maxWidth: 560, margin: '0 0 20px 0',
+            }}
+          >
+            Lentera Farm melayani kebutuhan hewan qurban dan aqiqah dengan standar syariat,
+            harga transparan, dan penyaluran yang tepat sasaran bagi masyarakat sekitar.
+          </motion.p>
+
+          <motion.div
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
+            style={{
+              height: 3, width: 48,
+              background: 'linear-gradient(to right, #16a34a, rgba(22,163,74,0.2))',
+              borderRadius: 2, transformOrigin: 'left',
+              marginBottom: 'clamp(2.5rem, 4vw, 4rem)',
+            }}
+          />
+
+          {/* Two program blocks stacked */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(3rem, 5vw, 5rem)' }}>
+            <ProgramBlock
+              title="Program Qurban"
+              features={QURBAN_FEATURES}
+              image={`${import.meta.env.BASE_URL}divisi_agri.webp`}
+            />
+            <ProgramBlock
+              title="Layanan Aqiqah"
+              features={AQIQAH_FEATURES}
+              image={`${import.meta.env.BASE_URL}agri/agri_proses_kelor.webp`}
+            />
+          </div>
+
+          {/* CTA */}
+          <motion.div variants={fadeUp} style={{ marginTop: 'clamp(2.5rem, 4vw, 4rem)', display: 'flex', justifyContent: 'center' }}>
+            <a
+              href="#hubungi-kami"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                fontFamily: 'var(--font-sans)', fontWeight: 600,
+                fontSize: 'clamp(0.85rem, 1vw, 0.95rem)',
+                color: '#ffffff',
+                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
+                borderRadius: 999,
+                padding: 'clamp(0.75rem, 1.2vw, 0.95rem) clamp(2rem, 3vw, 2.75rem)',
+                textDecoration: 'none', letterSpacing: '0.02em',
+                boxShadow: '0 4px 20px rgba(22,163,74,0.3)',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(22,163,74,0.42)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(22,163,74,0.3)'
+              }}
+            >
+              Hubungi Kami
+              <ArrowRight size={16} strokeWidth={2.2} />
+            </a>
+          </motion.div>
+
+        </motion.div>
+      </div>
+    </section>
+  )
 }
+
+function AgriEkosistemSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.15 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.15, delayChildren: 0.05 } },
+  }
+
+  const EKOSISTEM = [
+    {
+      initial: 'LF',
+      name: 'Lentera Farm',
+      color: '#16a34a',
+      colorBg: '#f0fdf4',
+      colorBorder: 'rgba(22,163,74,0.2)',
+      desc: 'Kami bermitra dengan masyarakat lokal untuk merawat dan mengembangkan peternakan secara adil dan berkelanjutan guna menghasilkan ternak terbaik bagi konsumen.',
+    },
+    {
+      initial: 'LO',
+      name: 'Lentera Organik',
+      color: '#15803d',
+      colorBg: '#f0fdf4',
+      colorBorder: 'rgba(21,128,61,0.2)',
+      desc: 'Produksi dan penjualan produk olahan hasil bumi yang alami dan menyehatkan — dari ladang langsung ke tangan konsumen.',
+    },
+  ]
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: 'linear-gradient(135deg, #031208 0%, #062010 50%, #0a3018 100%)',
+        overflow: 'hidden',
+      }}
+    >
+      <div style={{ height: 3, background: 'linear-gradient(to right, #4ade80, #16a34a, transparent)' }} />
+
+      {/* Radial glow */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700, height: 700, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 65%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+      }}>
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          {/* Header */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 8px rgba(74,222,128,0.85)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Ekosistem Kami
+            </span>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(1.9rem, 3.5vw, 3rem)',
+              lineHeight: 1.1, letterSpacing: '-0.03em',
+              color: '#ffffff', margin: '0 0 20px 0',
+            }}
+          >
+            Dua entitas, <span style={{ color: '#4ade80' }}>satu misi</span>
+          </motion.h2>
+
+          <motion.div
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
+            style={{
+              height: 2, width: 48,
+              background: 'linear-gradient(to right, #4ade80, transparent)',
+              borderRadius: 2, transformOrigin: 'left', marginBottom: 'clamp(2.5rem, 4vw, 4rem)',
+            }}
+          />
+
+          {/* Cards */}
+          <motion.div
+            variants={containerV}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
+              gap: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
+          >
+            {EKOSISTEM.map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(74,222,128,0.18)',
+                  borderRadius: 16,
+                  padding: 'clamp(1.75rem, 3vw, 2.5rem)',
+                  backdropFilter: 'blur(10px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 20,
+                }}
+              >
+                {/* Logo placeholder */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 12, flexShrink: 0,
+                    background: item.colorBg,
+                    border: `1px solid ${item.colorBorder}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '0.9rem', color: item.color, letterSpacing: '-0.02em' }}>
+                      {item.initial}
+                    </span>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', color: '#ffffff', margin: 0, letterSpacing: '-0.01em' }}>
+                      {item.name}
+                    </p>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.6rem, 0.72vw, 0.68rem)', color: item.color, margin: 0, textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 600 }}>
+                      Lentera Agri Nusantara
+                    </p>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: 1, background: 'rgba(74,222,128,0.12)' }} />
+
+                {/* Description */}
+                <p style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 'clamp(0.85rem, 1vw, 0.925rem)',
+                  lineHeight: 1.8, color: 'rgba(255,255,255,0.55)',
+                  margin: 0,
+                }}>
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function AgriDeskripsiContent() {
+  const ref    = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.2 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
+  }
+
+  const FOKUS = ['Pertanian', 'Peternakan', 'Pemberdayaan Masyarakat']
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+        gap: 'clamp(3rem, 6vw, 6rem)',
+        alignItems: 'center',
+      }}
+    >
+      {/* Left — label + heading */}
+      <motion.div variants={containerV} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+        <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: '#16a34a', boxShadow: '0 0 8px rgba(22,163,74,0.8)' }} />
+          <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: '#16a34a', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+            Divisi 02
+          </span>
+        </motion.div>
+
+        <motion.h2
+          variants={fadeUp}
+          style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 700,
+            fontSize: 'clamp(1.85rem, 3.5vw, 2.9rem)',
+            lineHeight: 1.1, letterSpacing: '-0.03em',
+            color: '#0a2540', margin: '0 0 20px 0',
+          }}
+        >
+          Lentera Agri <br />
+          <span style={{ color: '#16a34a' }}>Nusantara</span>
+        </motion.h2>
+
+        <motion.div
+          variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } } }}
+          style={{
+            height: 3, width: 48,
+            background: 'linear-gradient(to right, #16a34a, rgba(22,163,74,0.2))',
+            borderRadius: 2, transformOrigin: 'left', marginBottom: 28,
+          }}
+        />
+
+        <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+          {FOKUS.map((f, i) => (
+            <span key={i} style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 600,
+              fontSize: 'clamp(0.72rem, 0.85vw, 0.8rem)',
+              color: '#16a34a', background: '#f0fdf4',
+              border: '1px solid rgba(22,163,74,0.2)',
+              borderRadius: 999, padding: '0.4rem 1rem', letterSpacing: '0.02em',
+            }}>
+              {f}
+            </span>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* Right — description */}
+      <motion.div variants={containerV} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+        <motion.p
+          variants={fadeUp}
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(0.92rem, 1.1vw, 1.05rem)',
+            lineHeight: 1.85, color: '#475569', margin: 0,
+          }}
+        >
+          Divisi yang bergerak dalam pemanfaatan potensi serta pengembangan teknologi
+          pertanian dan peternakan untuk meningkatkan nilainya dan{' '}
+          <span style={{ fontWeight: 600, color: '#0a2540' }}>memberdayakan masyarakat</span>.
+        </motion.p>
+      </motion.div>
+    </div>
+  )
+}
+
 
 /* ─────────────────────────────────────────────
    Activity Section
 ───────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   Platform Belanja Section
+───────────────────────────────────────────── */
+
+function PlatformBelanjaSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.2 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  }
+
+  const PLATFORMS = [
+    {
+      name: 'Shopee',
+      handle: 'Lentera Organik',
+      href: '#',        // ganti dengan link toko Shopee
+      bg: '#EE4D2D',
+      bgHover: '#d94424',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.5 9h-1.18A6.5 6.5 0 0 0 5.68 9H4.5A2.5 2.5 0 0 0 2 11.5v8A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-8A2.5 2.5 0 0 0 19.5 9zM12 4a4.5 4.5 0 0 1 4.46 5H7.54A4.5 4.5 0 0 1 12 4zm0 10a2 2 0 1 1 2-2 2 2 0 0 1-2 2z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'Tokopedia',
+      handle: 'Lentera Organik',
+      href: '#',        // ganti dengan link toko Tokopedia
+      bg: '#42B549',
+      bgHover: '#359940',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4 10H8a1 1 0 0 1-.894-1.447l2-4A1 1 0 0 1 10 10h4a1 1 0 0 1 .894.553l2 4A1 1 0 0 1 16 16z"/>
+        </svg>
+      ),
+    },
+    {
+      name: 'WhatsApp',
+      handle: 'Chat Langsung',
+      href: '#',        // ganti dengan link wa.me/...
+      bg: '#25D366',
+      bgHover: '#1ebe59',
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.77.46 3.432 1.265 4.881L2 22l5.232-1.232A9.953 9.953 0 0 0 12.004 22C17.523 22 22 17.523 22 12.004 22 6.477 17.523 2 12.004 2zm0 18.154a8.13 8.13 0 0 1-4.163-1.14l-.298-.177-3.104.732.766-3.025-.194-.31A8.154 8.154 0 1 1 12.004 20.154z"/>
+        </svg>
+      ),
+    },
+  ]
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: 'linear-gradient(135deg, #031208 0%, #062010 50%, #0a3018 100%)',
+        overflow: 'hidden',
+      }}
+    >
+      <div style={{ height: 3, background: 'linear-gradient(to right, #4ade80, #16a34a, transparent)' }} />
+
+      {/* Radial glow */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700, height: 700, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 65%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: 0,
+      }}>
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+        >
+          {/* Eyebrow */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 8px rgba(74,222,128,0.85)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Tersedia Di
+            </span>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 700,
+              fontSize: 'clamp(1.75rem, 3.2vw, 2.6rem)',
+              lineHeight: 1.1, letterSpacing: '-0.03em',
+              color: '#ffffff', margin: '0 0 12px 0',
+            }}
+          >
+            Beli produk kami di platform{' '}
+            <span style={{ color: '#4ade80' }}>favoritmu</span>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.85rem, 1vw, 0.925rem)',
+              lineHeight: 1.75, color: 'rgba(255,255,255,0.5)',
+              maxWidth: 480, margin: '0 0 48px 0',
+            }}
+          >
+            Produk Lentera Organik tersedia di berbagai platform belanja online.
+            Pilih yang paling nyaman untukmu.
+          </motion.p>
+
+          {/* Platform cards */}
+          <motion.div
+            variants={containerV}
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 'clamp(1rem, 2vw, 1.5rem)',
+              width: '100%',
+            }}
+          >
+            {PLATFORMS.map((p, i) => (
+              <motion.a
+                key={i}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={fadeUp}
+                whileHover={{ y: -4, scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.25, ease: EASE }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 16,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: 16,
+                  padding: 'clamp(1.1rem, 2vw, 1.5rem) clamp(1.5rem, 3vw, 2.25rem)',
+                  textDecoration: 'none',
+                  minWidth: 'clamp(200px, 25vw, 280px)',
+                  backdropFilter: 'blur(10px)',
+                  cursor: 'pointer',
+                  transition: 'border-color 0.2s',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(74,222,128,0.35)'
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'
+                }}
+              >
+                {/* Platform icon badge */}
+                <div style={{
+                  width: 52, height: 52, borderRadius: 14, flexShrink: 0,
+                  background: p.bg,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#ffffff',
+                  boxShadow: `0 4px 16px ${p.bg}55`,
+                }}>
+                  {p.icon}
+                </div>
+
+                {/* Text */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 3, textAlign: 'left' }}>
+                  <span style={{
+                    fontFamily: 'var(--font-sans)', fontWeight: 700,
+                    fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
+                    color: '#ffffff', letterSpacing: '-0.01em',
+                  }}>
+                    {p.name}
+                  </span>
+                  <span style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'clamp(0.7rem, 0.82vw, 0.76rem)',
+                    color: 'rgba(255,255,255,0.45)',
+                    letterSpacing: '0.04em',
+                  }}>
+                    {p.handle}
+                  </span>
+                </div>
+
+                {/* Arrow */}
+                <ArrowRight
+                  size={16}
+                  color="rgba(255,255,255,0.3)"
+                  style={{ marginLeft: 'auto', flexShrink: 0 }}
+                />
+              </motion.a>
+            ))}
+          </motion.div>
+
+        </motion.div>
+      </div>
+    </section>
+  )
+}
 
 function AgriActivitySection() {
   const ref    = useRef<HTMLElement>(null)

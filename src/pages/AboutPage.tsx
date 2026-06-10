@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import AboutStatementSection from '../components/AboutStatementSection'
+import ProfilSection from '../components/ProfilSection'
 import VisiMisiSection from '../components/VisiMisiSection'
 import NilaiSection from '../components/NilaiSection'
 import JejakLangkahSection from '../components/JejakLangkahSection'
@@ -14,6 +15,7 @@ export default function AboutPage() {
       <Navbar />
       <main>
         <AboutStatementSection />
+        <ProfilSection />
         <VisiMisiSection />
         <NilaiSection />
         <JejakLangkahSection />

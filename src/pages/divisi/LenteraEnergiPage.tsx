@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import {
-  motion, useInView, useMotionValue, useTransform, animate, type Variants,
+  motion, useInView, type Variants,
 } from 'framer-motion'
 import {
   ArrowRight,
@@ -70,42 +70,14 @@ const CORE_TECH = [
   { icon: WindIcon,         label: 'Bilah' },
 ]
 
-const STATS = [
-  {
-    index: '01',
-    value: '15+', numericTarget: 15, suffix: '+',
-    label: 'Prototipe Turbin',
-    sublabel: 'Bilah, generator, controller, dan data logger yang dikembangkan dari nol di workshop kami.',
-  },
-  {
-    index: '02',
-    value: '8', numericTarget: 8, suffix: '',
-    label: 'Desa Mitra',
-    sublabel: 'Komunitas yang telah merasakan manfaat langsung energi terbarukan skala mikro.',
-  },
-  {
-    index: '03',
-    value: '120 kW',
-    label: 'Kapasitas Terpasang',
-    sublabel: 'Total daya pembangkit angin dan surya yang beroperasi aktif di lapangan.',
-  },
-  {
-    index: '04',
-    value: '3', numericTarget: 3, suffix: '',
-    label: 'Riset Aktif',
-    sublabel: 'Proyek pengembangan teknologi yang sedang berjalan bersama mitra industri.',
-  },
-]
 
 /* ─── Page ─── */
 
 export default function LenteraEnergiPage() {
   const tekRef      = useRef<HTMLDivElement>(null)
-  const statsRef    = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
 
   const tekInView      = useInView(tekRef,      { once: true, amount: 0.15 })
-  const statsInView    = useInView(statsRef,    { once: true, amount: 0.2 })
   const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 })
 
   return (
@@ -221,29 +193,9 @@ export default function LenteraEnergiPage() {
                     width: 'clamp(40px, 4vw, 60px)',
                     background: 'linear-gradient(to right, #5ab0d6, transparent)',
                     transformOrigin: 'left',
-                    marginBottom: 28,
+                    marginBottom: 40,
                   }}
                 />
-
-                {/* Description */}
-                <motion.p
-                  variants={fadeUp}
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
-                    lineHeight: 1.8,
-                    color: 'rgba(255,255,255,0.62)',
-                    maxWidth: 560,
-                    margin: '0 0 40px 0',
-                  }}
-                >
-                  Riset dan pengembangan teknologi pembangkit listrik tenaga angin skala mikro —
-                  dari bilah, generator, controller, hingga data logger — untuk mewujudkan{' '}
-                  <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>
-                    kemandirian energi Indonesia
-                  </span>{' '}
-                  dari sumber alam yang melimpah.
-                </motion.p>
 
                 {/* CTA — motion.a langsung, konsisten dengan Navbar & HeroSection */}
                 <motion.div variants={fadeUp} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -302,63 +254,8 @@ export default function LenteraEnergiPage() {
           </div>
         </section>
 
-        {/* ══ Stats ══ */}
-        <section
-          ref={statsRef}
-          className="relative bg-white overflow-hidden"
-          style={{ borderTop: '3px solid #5ab0d6' }}
-        >
-          <div
-            className="relative z-10 mx-auto"
-            style={{ maxWidth: 1400, padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}
-          >
-            {/* Header */}
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate={statsInView ? 'show' : 'hidden'}
-              className="mb-14 lg:mb-18 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6"
-            >
-              <div>
-                <motion.p
-                  variants={fadeUp}
-                  className="font-semibold uppercase tracking-[0.28em] mb-3"
-                  style={{ fontSize: 'clamp(0.6rem, 0.85vw, 0.7rem)', color: '#5ab0d6' }}
-                >
-                  Dalam Angka
-                </motion.p>
-                <motion.h2
-                  variants={fadeUp}
-                  className="font-bold leading-[1.1] m-0"
-                  style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3.25rem)', letterSpacing: '-0.03em', color: '#0a2540' }}
-                >
-                  Bukan sekadar rencana —<br />
-                  <span style={{ color: '#0c6b96' }}>ini jejaknya.</span>
-                </motion.h2>
-              </div>
-              <motion.p
-                variants={fadeUp}
-                className="text-slate-500 leading-[1.75] lg:max-w-[380px]"
-                style={{ fontSize: 'clamp(0.82rem, 1.05vw, 0.9rem)' }}
-              >
-                Setiap angka adalah hasil kerja nyata — dari workshop fabrikasi,
-                lapangan instalasi, hingga riset bersama komunitas lokal.
-              </motion.p>
-            </motion.div>
-
-            {/* Stats grid */}
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate={statsInView ? 'show' : 'hidden'}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-100"
-            >
-              {STATS.map((s) => (
-                <DivisiStatCard key={s.index} stat={s} inView={statsInView} />
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        {/* ══ Deskripsi Divisi ══ */}
+        <DeskripsiDivisiSection />
 
         {/* ══ Teknologi Inti ══ */}
         <section
@@ -432,9 +329,9 @@ export default function LenteraEnergiPage() {
                 className="text-slate-500 leading-[1.8]"
                 style={{ fontSize: 'clamp(0.85rem, 1.05vw, 0.95rem)', maxWidth: 440 }}
               >
-                Kami menguasai, menerapkan, dan mengembangkan teknologi pembangkit
-                listrik tenaga angin skala mikro dari desain hingga produksi dengan
-                empat teknologi inti yang kami kuasai sendiri.
+                Divisi yang bergerak di bidang penguasaan, penerapan, dan pengembangan
+                teknologi pemanfaatan energi baru terbarukan untuk aplikasi di daerah
+                tertinggal — dengan fokus pada riset, pendidikan, dan pengembangan teknologi.
               </motion.p>
             </motion.div>
 
@@ -491,6 +388,15 @@ export default function LenteraEnergiPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* ══ Infrastruktur Energi ══ */}
+        <InfrastrukturEnergiSection />
+
+        {/* ══ Monitoring & Research ══ */}
+        <MonitoringResearchSection />
+
+        {/* ══ Pembelajaran ══ */}
+        <PembelajaranSection />
 
         {/* ══ Highlight Project ══ */}
         <section ref={projectsRef} style={{ background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
@@ -653,86 +559,680 @@ export default function LenteraEnergiPage() {
   )
 }
 
+
 /* ─────────────────────────────────────────────
-   DivisiStatCard + CountUp — mengikuti StatsSection utama
+   Deskripsi Divisi Section
 ───────────────────────────────────────────── */
 
-interface StatItem {
-  index: string
-  value: string
-  numericTarget?: number
-  suffix?: string
-  label: string
-  sublabel: string
-}
+function DeskripsiDivisiSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.2 })
 
-function DivisiStatCard({ stat: s, inView }: { stat: StatItem; inView: boolean }) {
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
+  }
+
+  const FOKUS = ['Riset', 'Pendidikan', 'Pengembangan Teknologi']
+
   return (
-    <motion.div
-      variants={fadeUp}
-      className="group relative flex flex-col gap-5 cursor-default bg-white hover:bg-[#f0f8fc] transition-colors duration-300"
-      style={{ padding: 'clamp(2rem, 3vw, 3rem) clamp(1.5rem, 2.5vw, 2.5rem)' }}
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: '#ffffff',
+        overflow: 'hidden',
+        borderTop: '3px solid #5ab0d6',
+      }}
     >
-      {/* Hover left accent strip */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-[3px] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300"
-        style={{ background: '#5ab0d6', transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)' }}
-      />
+      {/* Dot-grid texture */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+        opacity: 0.3,
+      }} />
+      {/* Blue glow */}
+      <div aria-hidden style={{
+        position: 'absolute', top: -80, right: -80, pointerEvents: 'none',
+        width: 460, height: 460, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(90,176,214,0.1) 0%, transparent 70%)',
+      }} />
 
-      {/* Index */}
-      <span
-        className="font-semibold"
-        style={{ fontSize: 'clamp(0.7rem, 0.9vw, 0.8rem)', color: '#5ab0d6', letterSpacing: '0.18em' }}
-      >
-        {s.index}
-      </span>
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+        gap: 'clamp(3rem, 6vw, 6rem)',
+        alignItems: 'center',
+      }}>
 
-      {/* Value — count-up if numeric */}
-      <div
-        className="font-bold text-[#0a2540] leading-none"
-        style={{ fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', letterSpacing: '-0.04em' }}
-      >
-        {s.numericTarget !== undefined
-          ? <CountUp target={s.numericTarget} suffix={s.suffix ?? ''} inView={inView} />
-          : s.value
-        }
+        {/* Left — label + heading */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: '#5ab0d6', boxShadow: '0 0 8px rgba(90,176,214,0.8)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: '#5ab0d6', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Divisi 01
+            </span>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: 'clamp(1.85rem, 3.5vw, 2.9rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: '#0a2540',
+              margin: '0 0 20px 0',
+            }}
+          >
+            Lentera Energi <br />
+            <span style={{ color: '#0c6b96' }}>Nusantara</span>
+          </motion.h2>
+
+          <motion.div
+            variants={{
+              hidden: { scaleX: 0, opacity: 0 },
+              show:   { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } },
+            }}
+            style={{
+              height: 3, width: 48,
+              background: 'linear-gradient(to right, #5ab0d6, rgba(90,176,214,0.2))',
+              borderRadius: 2,
+              transformOrigin: 'left',
+              marginBottom: 28,
+            }}
+          />
+
+          {/* Fokus tags */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {FOKUS.map((f, i) => (
+              <span key={i} style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: 'clamp(0.72rem, 0.85vw, 0.8rem)',
+                color: '#0c6b96',
+                background: '#eff8fd',
+                border: '1px solid rgba(12,107,150,0.18)',
+                borderRadius: 999,
+                padding: '0.4rem 1rem',
+                letterSpacing: '0.02em',
+              }}>
+                {f}
+              </span>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Right — description */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'flex', flexDirection: 'column', gap: 0 }}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.92rem, 1.1vw, 1.05rem)',
+              lineHeight: 1.85,
+              color: '#475569',
+              margin: 0,
+            }}
+          >
+            Divisi yang bergerak di bidang penguasaan, penerapan, dan pengembangan
+            teknologi pemanfaatan energi baru terbarukan untuk aplikasi di{' '}
+            <span style={{ fontWeight: 600, color: '#0a2540' }}>daerah tertinggal</span>.
+          </motion.p>
+        </motion.div>
+
       </div>
-
-      {/* Gradient divider */}
-      <motion.div
-        variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.55, ease: EASE } } }}
-        className="origin-left h-px w-full"
-        style={{ background: 'linear-gradient(to right, #5ab0d6 0%, #e2e8f0 60%)' }}
-      />
-
-      {/* Label + sublabel */}
-      <div>
-        <p className="font-semibold text-[#0a2540] mb-2" style={{ fontSize: 'clamp(0.85rem, 1.1vw, 1rem)', letterSpacing: '-0.01em' }}>
-          {s.label}
-        </p>
-        <p className="text-slate-400 leading-[1.7]" style={{ fontSize: 'clamp(0.75rem, 0.9vw, 0.825rem)' }}>
-          {s.sublabel}
-        </p>
-      </div>
-    </motion.div>
+    </section>
   )
 }
 
-function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
-  const count   = useMotionValue(0)
-  const display = useTransform(count, (v) => Math.round(v).toLocaleString('id-ID'))
+/* ─────────────────────────────────────────────
+   Pembelajaran Section
+───────────────────────────────────────────── */
 
-  useEffect(() => {
-    if (!inView) return
-    count.set(0)
-    const ctrl = animate(count, target, {
-      duration: 2.0,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    })
-    return ctrl.stop
-  }, [inView, count, target])
+function PembelajaranSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.2 })
 
-  return <span><motion.span>{display}</motion.span>{suffix}</span>
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+  }
+
+  const AUDIENCE = [
+    { label: 'Mahasiswa' },
+    { label: 'Peneliti' },
+    { label: 'Komunitas' },
+    { label: 'Masyarakat' },
+  ]
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: 'linear-gradient(135deg, #030c18 0%, #062030 50%, #0a3352 100%)',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Decorative top border */}
+      <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
+
+      {/* Radial glow */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700, height: 700, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(90,176,214,0.08) 0%, transparent 65%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4.5rem, 8vw, 8rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: 0,
+      }}>
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0 }}
+        >
+          {/* Eyebrow */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5ab0d6', boxShadow: '0 0 8px rgba(90,176,214,0.85)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Pembelajaran
+            </span>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: 'clamp(2rem, 4.5vw, 3.8rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: '#ffffff',
+              margin: '0 0 28px 0',
+              maxWidth: 780,
+            }}
+          >
+            Laboratorium pembelajaran{' '}
+            <span style={{ color: '#5ab0d6' }}>terbuka</span>
+          </motion.h2>
+
+          {/* Accent bar */}
+          <motion.div
+            variants={{
+              hidden: { scaleX: 0, opacity: 0 },
+              show:   { scaleX: 1, opacity: 1, transition: { duration: 0.5, ease: EASE } },
+            }}
+            style={{
+              height: 2, width: 48,
+              background: 'linear-gradient(to right, #5ab0d6, transparent)',
+              borderRadius: 2,
+              transformOrigin: 'center',
+              marginBottom: 32,
+            }}
+          />
+
+          {/* Body */}
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
+              lineHeight: 1.85,
+              color: 'rgba(255,255,255,0.6)',
+              margin: '0 0 48px 0',
+              maxWidth: 640,
+            }}
+          >
+            Site Ciheras menjadi laboratorium pembelajaran terbuka bagi mahasiswa,
+            peneliti, komunitas, dan masyarakat yang ingin mempelajari energi
+            terbarukan secara langsung.
+          </motion.p>
+
+          {/* Audience tags */}
+          <motion.div
+            variants={fadeUp}
+            style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12 }}
+          >
+            {AUDIENCE.map((a, i) => (
+              <span
+                key={i}
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 600,
+                  fontSize: 'clamp(0.78rem, 0.9vw, 0.85rem)',
+                  color: 'rgba(255,255,255,0.82)',
+                  background: 'rgba(90,176,214,0.1)',
+                  border: '1px solid rgba(90,176,214,0.25)',
+                  borderRadius: 999,
+                  padding: '0.5rem 1.25rem',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                {a.label}
+              </span>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Monitoring & Research Section
+───────────────────────────────────────────── */
+
+function MonitoringResearchSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.15 })
+
+  const containerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
+  }
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: '#ffffff',
+        overflow: 'hidden',
+        borderTop: '3px solid #5ab0d6',
+      }}
+    >
+      {/* Dot-grid background */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          opacity: 0.35,
+        }}
+      />
+      {/* Blue wash — top-left */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute', top: -80, left: -80, pointerEvents: 'none',
+          width: 480, height: 480, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(90,176,214,0.1) 0%, transparent 70%)',
+        }}
+      />
+
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))',
+        gap: 'clamp(3rem, 6vw, 6rem)',
+        alignItems: 'center',
+      }}>
+
+        {/* Left — copy */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+        >
+          {/* Eyebrow */}
+          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: '#5ab0d6', boxShadow: '0 0 8px rgba(90,176,214,0.8)' }} />
+            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)', color: '#5ab0d6', textTransform: 'uppercase', letterSpacing: '0.28em' }}>
+              Monitoring &amp; Research
+            </span>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: 'clamp(1.9rem, 3.5vw, 3rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: '#0a2540',
+              margin: '0 0 20px 0',
+            }}
+          >
+            Data sebagai fondasi<br />
+            <span style={{ color: '#0c6b96' }}>riset yang kuat</span>
+          </motion.h2>
+
+          {/* Accent bar */}
+          <motion.div
+            variants={{
+              hidden: { scaleX: 0, opacity: 0 },
+              show:   { scaleX: 1, opacity: 1, transition: { duration: 0.48, ease: EASE } },
+            }}
+            style={{
+              height: 3, width: 48,
+              background: 'linear-gradient(to right, #5ab0d6, rgba(90,176,214,0.2))',
+              borderRadius: 2,
+              transformOrigin: 'left',
+              marginBottom: 28,
+            }}
+          />
+
+          {/* Body */}
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)',
+              lineHeight: 1.85,
+              color: '#475569',
+              margin: '0 0 36px 0',
+              maxWidth: 520,
+            }}
+          >
+            Pengembangan energi terbarukan tidak hanya bergantung pada teknologi pembangkit,
+            tetapi juga pada kualitas data dan pemahaman kondisi lapangan. Untuk mendukung
+            riset dan pengambilan keputusan berbasis data, LBN mengembangkan sistem monitoring
+            yang terintegrasi di Site Ciheras. Pengembangan fasilitas ini diperkuat melalui
+            kolaborasi dengan{' '}
+            <span style={{ fontWeight: 600, color: '#0a2540' }}>ProfEC Ventus</span>
+            {' '}yang memberikan dukungan berupa sensor data logger untuk pengukuran potensi
+            angin serta pemantauan kondisi lingkungan secara berkelanjutan.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div variants={fadeUp}>
+            <a
+              href="/potensi-angin"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: 'clamp(0.82rem, 0.95vw, 0.9rem)',
+                color: '#ffffff',
+                background: 'linear-gradient(135deg, #0c6b96 0%, #0a4f75 100%)',
+                borderRadius: 999,
+                padding: 'clamp(0.65rem, 1vw, 0.8rem) clamp(1.5rem, 2vw, 2rem)',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                boxShadow: '0 4px 16px rgba(12,107,150,0.3)',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 24px rgba(12,107,150,0.4)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 4px 16px rgba(12,107,150,0.3)'
+              }}
+            >
+              Lihat Data Potensi Angin
+              <ArrowRight size={16} strokeWidth={2.2} />
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Right — stat cards */}
+        <motion.div
+          variants={containerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(0.875rem, 1.5vw, 1.25rem)',
+          }}
+        >
+          {[
+            { label: 'Site Monitoring', value: 'Ciheras', sub: 'Tasikmalaya, Jawa Barat', accent: '#5ab0d6' },
+            { label: 'Mitra Teknologi', value: 'ProfEC', sub: 'Ventus — sensor & data logger', accent: '#0c6b96' },
+            { label: 'Parameter Ukur', value: '4+', sub: 'Kecepatan, arah, suhu, tekanan', accent: '#0a4f75' },
+            { label: 'Sistem', value: 'Real-time', sub: 'Pemantauan berkelanjutan 24/7', accent: '#5ab0d6' },
+          ].map((card, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              style={{
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: 14,
+                padding: 'clamp(1.25rem, 2vw, 1.75rem)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8,
+              }}
+            >
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 'clamp(0.58rem, 0.72vw, 0.65rem)', color: card.accent, textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+                {card.label}
+              </span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)', color: '#0a2540', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+                {card.value}
+              </span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.72rem, 0.85vw, 0.78rem)', color: '#64748b', lineHeight: 1.5 }}>
+                {card.sub}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Infrastruktur Energi Section
+───────────────────────────────────────────── */
+
+const INFRA_ITEMS = [
+  {
+    no: '01',
+    label: 'HAWT',
+    full: 'Horizontal Axis Wind Turbine',
+    desc: 'Turbin angin sumbu horizontal — teknologi utama pembangkit listrik tenaga angin skala menengah hingga besar untuk kawasan terbuka.',
+  },
+  {
+    no: '02',
+    label: 'VAWT',
+    full: 'Vertical Axis Wind Turbine',
+    desc: 'Turbin angin sumbu vertikal — cocok untuk lingkungan dengan angin turbulen dan instalasi di area padat atau berkontur.',
+  },
+  {
+    no: '03',
+    label: 'Panel Surya',
+    full: 'Photovoltaic Solar Panel',
+    desc: 'Sistem panel surya terintegrasi untuk pemanfaatan energi matahari di lokasi terpencil dan daerah tertinggal di Indonesia.',
+  },
+]
+
+function InfrastrukturEnergiSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.12 })
+
+  const headerV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
+  }
+  const cardV: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12, delayChildren: 0.35 } },
+  }
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        position: 'relative',
+        background: '#020914',
+        overflow: 'hidden',
+        minHeight: '75vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+      }}
+    >
+      {/* ── Video background ── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+        }}
+      >
+        <source src={`${import.meta.env.BASE_URL}DJI_0824.MP4`} type="video/mp4" />
+      </video>
+
+      {/* ── Overlays ── */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, zIndex: 1,
+        background: 'linear-gradient(to top, rgba(2,9,20,0.97) 0%, rgba(3,13,28,0.75) 45%, rgba(4,16,34,0.3) 100%)',
+      }} />
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, zIndex: 1,
+        background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 35%, rgba(2,9,20,0.45) 100%)',
+      }} />
+
+      {/* ── Content ── */}
+      <div style={{
+        position: 'relative', zIndex: 10,
+        maxWidth: 1400, width: '100%',
+        margin: '0 auto',
+        padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)',
+      }}>
+
+        {/* Header */}
+        <motion.div
+          variants={headerV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{ marginBottom: 'clamp(2rem, 3.5vw, 3.5rem)' }}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 600,
+              fontSize: 'clamp(0.6rem, 0.75vw, 0.7rem)',
+              color: '#5ab0d6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.28em',
+              marginBottom: 16,
+            }}
+          >
+            Infrastruktur Energi
+          </motion.p>
+
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: 'clamp(1.9rem, 3.8vw, 3.2rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: '#ffffff',
+              margin: 0,
+            }}
+          >
+            Teknologi yang kami <br />
+            <span style={{ color: '#5ab0d6' }}>bangun & operasikan</span>
+          </motion.h2>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          variants={cardV}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 'clamp(1rem, 2vw, 1.5rem)',
+          }}
+        >
+          {INFRA_ITEMS.map((item) => (
+            <motion.div
+              key={item.no}
+              variants={fadeUp}
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(90,176,214,0.22)',
+                borderRadius: 14,
+                padding: 'clamp(1.5rem, 2.5vw, 2rem)',
+                backdropFilter: 'blur(10px)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 14,
+              }}
+            >
+              {/* Number badge */}
+              <div style={{
+                width: 36, height: 36, borderRadius: '50%',
+                background: 'rgba(90,176,214,0.13)',
+                border: '1px solid rgba(90,176,214,0.28)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '0.68rem', color: '#5ab0d6', letterSpacing: '0.05em' }}>
+                  {item.no}
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', color: '#ffffff', margin: 0, letterSpacing: '-0.015em' }}>
+                  {item.label}
+                </h3>
+                <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 'clamp(0.62rem, 0.75vw, 0.7rem)', color: '#5ab0d6', margin: 0, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  {item.full}
+                </p>
+              </div>
+
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.82rem, 0.95vw, 0.875rem)', lineHeight: 1.75, color: 'rgba(255,255,255,0.52)', margin: 0 }}>
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
+  )
 }
 
 /* ─────────────────────────────────────────────

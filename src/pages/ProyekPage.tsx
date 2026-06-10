@@ -197,8 +197,10 @@ export default function ProyekPage() {
       <Navbar />
       <main>
         <ProyekHero />
+        <ProyekIntroSection />
         <ClientsStripSection />
         <FeaturedSection />
+        <CoverDokumentasiSection />
         <PLNSection />
         <OtherClientsSection />
         <FooterCTA />
@@ -273,27 +275,8 @@ function ProyekHero() {
             {/* Accent line */}
             <motion.div
               variants={{ hidden: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.5, ease: EASE } } }}
-              style={{ height: 2, width: 'clamp(40px, 4vw, 60px)', background: 'linear-gradient(to right, #5ab0d6, transparent)', transformOrigin: 'left', marginBottom: 28 }}
+              style={{ height: 2, width: 'clamp(40px, 4vw, 60px)', background: 'linear-gradient(to right, #5ab0d6, transparent)', transformOrigin: 'left' }}
             />
-
-            {/* Description */}
-            <motion.p variants={fadeUp} style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.88rem, 1.05vw, 0.975rem)', lineHeight: 1.8, color: 'rgba(255,255,255,0.62)', maxWidth: 560, margin: '0 0 40px 0' }}>
-              Lebih dari satu dekade berkolaborasi bersama lembaga negara, perusahaan energi, universitas, dan pelaku industri dalam mewujudkan Energi Baru Terbarukan di Indonesia.
-            </motion.p>
-
-            {/* Stats strip */}
-            <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(2rem, 4vw, 4rem)' }}>
-              {[
-                { value: '9',         label: 'Klien' },
-                { value: '12+',       label: 'Proyek' },
-                { value: '2013–2024', label: 'Rekam Jejak' },
-              ].map((s) => (
-                <div key={s.label} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(1.6rem, 2.8vw, 2.4rem)', color: '#ffffff', letterSpacing: '-0.04em', margin: 0, lineHeight: 1 }}>{s.value}</p>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)', color: 'rgba(255,255,255,0.38)', textTransform: 'uppercase', letterSpacing: '0.26em', margin: 0 }}>{s.label}</p>
-                </div>
-              ))}
-            </motion.div>
 
           </motion.div>
         </div>
@@ -318,6 +301,93 @@ function ProyekHero() {
           </motion.span>
         </div>
       </motion.div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Intro — desc + stats
+───────────────────────────────────────────── */
+
+function ProyekIntroSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.2 })
+
+  return (
+    <section
+      ref={ref}
+      style={{ background: '#ffffff', position: 'relative', overflow: 'hidden' }}
+    >
+      {/* Subtle dot grid */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #e2e8f0 1px, transparent 1px)',
+        backgroundSize: '30px 30px', opacity: 0.5,
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 1,
+        maxWidth: 1400, margin: '0 auto',
+        padding: 'clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem)',
+        display: 'flex', flexWrap: 'wrap',
+        alignItems: 'center', justifyContent: 'space-between',
+        gap: 'clamp(2.5rem, 5vw, 5rem)',
+      }}>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.72, ease: EASE }}
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
+            lineHeight: 1.85, color: '#475569',
+            maxWidth: 580, margin: 0, flex: '1 1 320px',
+          }}
+        >
+          Lebih dari satu dekade berkolaborasi bersama lembaga negara, perusahaan energi,
+          universitas, dan pelaku industri dalam mewujudkan{' '}
+          <span style={{ color: '#0c6b96', fontWeight: 600 }}>Energi Baru Terbarukan di Indonesia</span>.
+        </motion.p>
+
+        {/* Stats strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.72, ease: EASE, delay: 0.12 }}
+          style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(2rem, 4vw, 4rem)', flex: '0 0 auto' }}
+        >
+          {[
+            { value: '9',         label: 'Klien' },
+            { value: '12+',       label: 'Proyek' },
+            { value: '2013–2024', label: 'Rekam Jejak' },
+          ].map((s, i) => (
+            <div key={s.label} style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-start' }}>
+              {i > 0 && (
+                <div style={{ display: 'none' }} />
+              )}
+              <p style={{
+                fontFamily: 'var(--font-sans)', fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
+                color: '#0a2540', letterSpacing: '-0.04em',
+                margin: 0, lineHeight: 1,
+              }}>
+                {s.value}
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-sans)', fontWeight: 500,
+                fontSize: 'clamp(0.56rem, 0.7vw, 0.62rem)',
+                color: '#94a3b8', textTransform: 'uppercase',
+                letterSpacing: '0.26em', margin: 0,
+              }}>
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+
+      </div>
     </section>
   )
 }
@@ -467,6 +537,167 @@ function FeaturedSection() {
             <FeaturedCard key={p.id} project={p} />
           ))}
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   Cover Dokumentasi Section
+───────────────────────────────────────────── */
+
+const COVER_PROYEK = [
+  {
+    client: 'PERTAMINA',
+    year:   '2013',
+    title:  'PLTB Hybrid Sumba',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_sumba.webp`,
+  },
+  {
+    client: 'PT HUTAMA KARYA',
+    year:   '',
+    title:  'PMSG 100 kW',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_pmsg_hk.webp`,
+  },
+  {
+    client: 'DINAS PERTAMBANGAN & ENERGI',
+    year:   '2015',
+    title:  'Kab. Tulang Bawang',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_tulang_bawang.webp`,
+  },
+  {
+    client: 'ESDM',
+    year:   '2017',
+    title:  'PLTB Univ. Udayana Bali',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_udayana.webp`,
+  },
+  {
+    client: 'RESORT KOPI PANGGANG',
+    year:   '2016',
+    title:  'PLTB Imogiri, Yogyakarta',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_resort_kopi.webp`,
+  },
+  {
+    client: 'CeCUR',
+    year:   '2024',
+    title:  'VAWT & Panel Surya Samarinda',
+    image:  `${import.meta.env.BASE_URL}proyek/cover_cecur.webp`,
+  },
+]
+
+function CoverDokumentasiSection() {
+  const ref    = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.06 })
+
+  return (
+    <section ref={ref} style={{ background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ height: 3, background: 'linear-gradient(to right, #5ab0d6, #0c6b96, transparent)' }} />
+
+      {/* Dot grid */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, #e2e8f0 1px, transparent 1px)',
+        backgroundSize: '30px 30px', opacity: 0.5,
+      }} />
+
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', padding: 'clamp(4rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem)' }}>
+
+        {/* Header */}
+        <motion.div
+          variants={containerV} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{ marginBottom: 'clamp(2.5rem, 4vw, 4rem)' }}
+        >
+          <motion.p variants={fadeUp} style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 600,
+            fontSize: 'clamp(0.6rem, 0.8vw, 0.7rem)', color: '#5ab0d6',
+            textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: 12,
+          }}>
+            Dokumentasi Proyek
+          </motion.p>
+          <motion.h2 variants={fadeUp} style={{
+            fontFamily: 'var(--font-sans)', fontWeight: 700,
+            fontSize: 'clamp(1.75rem, 3.2vw, 3rem)', lineHeight: 1.1,
+            letterSpacing: '-0.03em', color: '#0a2540', margin: 0,
+          }}>
+            Cover <span style={{ color: '#0c6b96' }}>Setiap Proyek</span>
+          </motion.h2>
+        </motion.div>
+
+        {/* Grid */}
+        <motion.div
+          variants={containerV} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
+            gap: 'clamp(1rem, 1.5vw, 1.5rem)',
+          }}
+        >
+          {COVER_PROYEK.map((p) => (
+            <motion.div
+              key={p.title}
+              variants={fadeUp}
+              whileHover={{ y: -5, boxShadow: '0 16px 40px rgba(0,0,0,0.13)' }}
+              transition={{ duration: 0.24 }}
+              style={{
+                borderRadius: 14, overflow: 'hidden',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
+                background: '#ffffff',
+                cursor: 'default',
+                position: 'relative',
+              }}
+            >
+              {/* Cover photo */}
+              <div style={{ position: 'relative', aspectRatio: '3/2', overflow: 'hidden', background: '#e2e8f0' }}>
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  style={{
+                    width: '100%', height: '100%',
+                    objectFit: 'cover', objectPosition: 'center',
+                    display: 'block',
+                    transition: 'transform 0.48s ease',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
+                />
+                {/* Scrim */}
+                <div aria-hidden style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(4,18,32,0.72) 0%, transparent 55%)',
+                }} />
+                {/* Year badge */}
+                {p.year && (
+                  <div style={{
+                    position: 'absolute', top: 10, right: 10,
+                    background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(6px)',
+                    borderRadius: 4, padding: '3px 9px',
+                  }}>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.62rem', color: 'rgba(255,255,255,0.88)', letterSpacing: '0.08em' }}>{p.year}</span>
+                  </div>
+                )}
+                {/* Client badge bottom-left */}
+                <div style={{ position: 'absolute', bottom: 10, left: 12, right: 12 }}>
+                  <p style={{
+                    fontFamily: 'var(--font-sans)', fontWeight: 700,
+                    fontSize: 'clamp(0.56rem, 0.72vw, 0.64rem)',
+                    color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase',
+                    letterSpacing: '0.16em', margin: '0 0 3px 0',
+                  }}>
+                    {p.client}
+                  </p>
+                  <p style={{
+                    fontFamily: 'var(--font-sans)', fontWeight: 600,
+                    fontSize: 'clamp(0.88rem, 1.05vw, 0.96rem)',
+                    color: '#ffffff', margin: 0, lineHeight: 1.25,
+                  }}>
+                    {p.title}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   )
