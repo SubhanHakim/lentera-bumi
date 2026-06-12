@@ -134,8 +134,9 @@ export default function Navbar() {
           {/* RIGHT — CTA + hamburger */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <motion.a
-              href="#hubungi-kami"
-              onClick={(e) => handleNav(e, '#hubungi-kami', navOpts)}
+              href="https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04, backgroundColor: '#f0f8fd' }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
@@ -208,8 +209,10 @@ export default function Navbar() {
                   className="mt-2 pt-3 border-t border-white/10"
                 >
                   <a
-                    href="#hubungi-kami"
-                    onClick={(e) => handleNav(e, '#hubungi-kami', { ...navOpts, onClose: () => setMobileOpen(false) })}
+                    href="https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center rounded-full bg-white font-semibold transition-colors hover:bg-sky-50"
                     style={{ color: '#0c6b96', fontSize: 'var(--text-sm)', padding: '0.65rem 1.5rem', letterSpacing: '0.02em', fontFamily: 'var(--font-sans)', textDecoration: 'none' }}
                   >

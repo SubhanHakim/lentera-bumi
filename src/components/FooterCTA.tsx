@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
 import { HiArrowRight } from 'react-icons/hi'
-import { scrollToSection } from '../hooks/useSmoothScroll'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -119,8 +118,9 @@ export default function FooterCTA() {
             style={{ flexShrink: 0 }}
           >
             <motion.a
-              href="#hubungi-kami"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#hubungi-kami') }}
+              href="https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04, backgroundColor: 'rgba(255,255,255,0.1)' }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.18 }}

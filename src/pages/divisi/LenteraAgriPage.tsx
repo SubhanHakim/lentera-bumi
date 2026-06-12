@@ -201,7 +201,8 @@ export default function LenteraAgriPage() {
                     Lihat Produk <ArrowRight size={15} />
                   </motion.a>
                   <motion.a
-                    href="#hubungi-kami"
+                    href="https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0"
+                    target="_blank" rel="noopener noreferrer"
                     whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                     style={{
@@ -670,7 +671,8 @@ function LayananLenteraFarmSection() {
           {/* CTA */}
           <motion.div variants={fadeUp} style={{ marginTop: 'clamp(2.5rem, 4vw, 4rem)', display: 'flex', justifyContent: 'center' }}>
             <a
-              href="#hubungi-kami"
+              href="https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0"
+                    target="_blank" rel="noopener noreferrer"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 10,
                 fontFamily: 'var(--font-sans)', fontWeight: 600,
