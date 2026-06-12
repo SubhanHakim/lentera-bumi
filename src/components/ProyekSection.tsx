@@ -30,7 +30,7 @@ const PROJECTS: Proyek[] = [
     tech:             'Wind Turbine',
     desc:             'Pembangunan Pembangkit Listrik Tenaga Hybrid (Bayu dan Surya) di Sumba. Instalasi 100 unit turbin angin kapasitas 500 watt (total 50 kW) dan panel surya 20 kW di 4 lokasi.',
     tags:             ['PLTB Hybrid', '100 Unit', 'Sumba NTT'],
-    image:            `${import.meta.env.BASE_URL}proyek_pertamina.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_sumba.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #062f45 0%, #0c6b96 50%, #1a8fc0 100%)',
   },
   {
@@ -42,7 +42,7 @@ const PROJECTS: Proyek[] = [
     tech:             'PMSG Generator',
     desc:             'Pembuatan sarana penunjang, riset, dan kajian PLTB Combine System Tenaga Surya di Site Ciheras dan Site PLTA Niyama, Tulungagung. Pengembangan Permanent Magnet Generator 100 kW.',
     tags:             ['PMSG 100 kW', 'PLTB Hybrid', 'PLN NP'],
-    image:            `${import.meta.env.BASE_URL}proyek_pln.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_pmsg_hk.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #0a3d5c 0%, #0e7aaa 50%, #1a9fd4 100%)',
   },
   {
@@ -54,7 +54,7 @@ const PROJECTS: Proyek[] = [
     tech:             'VAWT',
     desc:             'Instalasi turbin vertikal 500 watt dan panel surya 500 Wp di Samarinda, dalam program ruang publik berketahanan iklim oleh Center for Climate and Urban Resilience.',
     tags:             ['VAWT', 'Panel Surya', 'Kaltim'],
-    image:            `${import.meta.env.BASE_URL}proyek_cecur.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_cecur.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 50%, #13a878 100%)',
   },
 ]

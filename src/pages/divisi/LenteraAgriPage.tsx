@@ -968,7 +968,7 @@ function PlatformBelanjaSection() {
     {
       name: 'Shopee',
       handle: 'Lentera Organik',
-      href: '#',        // ganti dengan link toko Shopee
+      href: 'https://shopee.co.id/tokolenterabumi',
       bg: '#EE4D2D',
       bgHover: '#d94424',
       icon: (
@@ -980,7 +980,7 @@ function PlatformBelanjaSection() {
     {
       name: 'Tokopedia',
       handle: 'Lentera Organik',
-      href: '#',        // ganti dengan link toko Tokopedia
+      href: 'https://www.tokopedia.com/lenterabumi',
       bg: '#42B549',
       bgHover: '#359940',
       icon: (
@@ -992,7 +992,7 @@ function PlatformBelanjaSection() {
     {
       name: 'WhatsApp',
       handle: 'Chat Langsung',
-      href: '#',        // ganti dengan link wa.me/...
+      href: 'https://api.whatsapp.com/send/?phone=6281395221474&text&type=phone_number&app_absent=0',
       bg: '#25D366',
       bgHover: '#1ebe59',
       icon: (

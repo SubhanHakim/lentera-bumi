@@ -58,7 +58,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech:             'Wind Turbine',
     desc:             'Pembangunan Pembangkit Listrik Tenaga Hybrid (Bayu dan Surya) di Sumba, Nusa Tenggara Timur. Instalasi 100 unit turbin angin 500 watt (total 50 kW) dan panel surya 20 kW di 4 lokasi — Desa Kalihi, Palindi, dan Tanarara di Kec. Kamanggih, Sumba Timur.',
     tags:             ['PLTB Hybrid', '100 Unit Turbin', '50 kW Total', 'Sumba NTT'],
-    image:            `${import.meta.env.BASE_URL}proyek_pertamina.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_sumba.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #062f45 0%, #0c6b96 50%, #1a8fc0 100%)',
   },
   {
@@ -70,7 +70,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech:             'PMSG Generator',
     desc:             'Pembuatan sarana penunjang, riset, dan kajian PLTB Combine System Tenaga Surya di Site Ciheras dan Site PLTA Niyama milik Nusantara Power, Tulungagung. Riset prototype sepeda listrik dan Golf Car listrik serta pembuatan Permanent Magnet Generator 100 kW.',
     tags:             ['PMSG 100 kW', 'PLTB Hybrid', 'Sepeda Listrik', 'Golf Car EV'],
-    image:            `${import.meta.env.BASE_URL}proyek_pln.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_pmsg_hk.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #0a3d5c 0%, #0e7aaa 50%, #1a9fd4 100%)',
   },
   {
@@ -82,7 +82,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     tech:             'VAWT',
     desc:             'LBN dipercaya oleh Center for Climate and Urban Resilience (CeCUR) untuk memasang turbin Vertikal berkapasitas 500 watt dan Panel Surya berkapasitas 500 Wp dalam program Pengadaan Pelaksana Konstruksi Terintegrasi Ruang Publik Berketahanan Iklim di Kota Samarinda.',
     tags:             ['VAWT 500 W', 'Panel Surya 500 Wp', 'Samarinda', 'Ketahanan Iklim'],
-    image:            `${import.meta.env.BASE_URL}proyek_cecur.webp`,
+    image:            `${import.meta.env.BASE_URL}proyek/cover_cecur.webp`,
     imagePlaceholder: 'linear-gradient(135deg, #0e4a35 0%, #0d7c5a 50%, #13a878 100%)',
   },
 ]
